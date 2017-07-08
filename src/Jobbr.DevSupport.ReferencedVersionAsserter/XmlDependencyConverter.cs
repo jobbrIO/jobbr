@@ -20,6 +20,11 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             var id = depdencencyNode.Attributes["id"];
             var versionString = depdencencyNode.Attributes["version"];
 
+            if (id == null || versionString == null)
+            {
+                return null;
+            }
+
             var nuspecDependency = new NuspecDependency { Name = id.Value, Version = versionString.Value };
             return nuspecDependency;
         }
