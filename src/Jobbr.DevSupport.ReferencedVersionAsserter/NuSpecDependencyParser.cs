@@ -34,10 +34,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             foreach (XmlNode depdencencyNode in depdencencyNodes)
             {
-                var id = depdencencyNode.Attributes["id"];
-                var versionString = depdencencyNode.Attributes["version"];
+                var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
 
-                this.Dependencies.Add(new NuspecDependency {Name = id.Value, Version = versionString.Value});
+                this.Dependencies.Add(nuspecDependency);
             }
         }
     }
