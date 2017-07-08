@@ -61,6 +61,106 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             Assert.IsNotNull(dependency);
         }
 
+        [TestMethod]
+        public void VersionConversion_Fixed()
+        {
+            var node = CreateXmlNode("packageX", "1.2.3");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.AreEqual(1, dependency.MinVersion.Major);
+            Assert.AreEqual(2, dependency.MinVersion.Minor);
+            Assert.AreEqual(3, dependency.MinVersion.Bugfix);
+            Assert.AreEqual(true, dependency.MinVersion.Inclusive);
+
+            Assert.AreEqual(1, dependency.MaxVersion.Major);
+            Assert.AreEqual(2, dependency.MaxVersion.Minor);
+            Assert.AreEqual(3, dependency.MaxVersion.Bugfix);
+            Assert.AreEqual(true, dependency.MaxVersion.Inclusive);
+        }
+
+        [TestMethod]
+        public void VersionConversion_MinInclusive_NoMax()
+        {
+            var node = CreateXmlNode("packageX", "[1.0,)");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.AreEqual(1, dependency.MinVersion.Major);
+            Assert.AreEqual(0, dependency.MinVersion.Minor);
+            Assert.AreEqual(0, dependency.MinVersion.Bugfix);
+            Assert.AreEqual(true, dependency.MinVersion.Inclusive);
+
+            Assert.IsNull(dependency.MaxVersion);
+        }
+
+        [TestMethod]
+        public void VersionConversion_MinExlusive_NoMax()
+        {
+            var node = CreateXmlNode("packageX", "(1.0,)");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.AreEqual(1, dependency.MinVersion.Major);
+            Assert.AreEqual(0, dependency.MinVersion.Minor);
+            Assert.AreEqual(0, dependency.MinVersion.Bugfix);
+            Assert.AreEqual(false, dependency.MinVersion.Inclusive);
+
+            Assert.IsNull(dependency.MaxVersion);
+        }
+
+        [TestMethod]
+        public void VersionConversion_NoMin_MaxInclusive()
+        {
+            var node = CreateXmlNode("packageX", "(1.0,]");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.IsNull(dependency.MinVersion);
+
+            Assert.AreEqual(1, dependency.MaxVersion.Major);
+            Assert.AreEqual(0, dependency.MaxVersion.Minor);
+            Assert.AreEqual(0, dependency.MaxVersion.Bugfix);
+            Assert.AreEqual(true, dependency.MaxVersion.Inclusive);
+        }
+
+        [TestMethod]
+        public void VersionConversion_NoMin_ExlusiveMax()
+        {
+            var node = CreateXmlNode("packageX", "(,1.0)");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.IsNull(dependency.MinVersion);
+
+            Assert.AreEqual(1, dependency.MaxVersion.Major);
+            Assert.AreEqual(0, dependency.MaxVersion.Minor);
+            Assert.AreEqual(0, dependency.MaxVersion.Bugfix);
+            Assert.AreEqual(false, dependency.MaxVersion.Inclusive);
+        }
+
+        [TestMethod]
+        public void VersionConversion_ExactRange_NoInclusion()
+        {
+            var node = CreateXmlNode("packageX", "(1.0, 2.0)");
+
+            var dependency = XmlDependencyConverter.Convert(node);
+
+            Assert.IsNotNull(dependency.MinVersion);
+            Assert.IsNotNull(dependency.MaxVersion);
+
+            Assert.AreEqual(1, dependency.MinVersion);
+            Assert.AreEqual(0, dependency.MinVersion);
+            Assert.AreEqual(0, dependency.MinVersion);
+
+            Assert.AreEqual(2, dependency.MaxVersion);
+            Assert.AreEqual(0, dependency.MaxVersion);
+            Assert.AreEqual(0, dependency.MaxVersion);
+
+            Assert.IsFalse(dependency.MinVersion.Inclusive);
+            Assert.IsFalse(dependency.MaxVersion.Inclusive);
+        }
+
         private static XmlElement CreateXmlNode(string id, string version)
         {
             var doc = new XmlDocument();
