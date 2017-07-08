@@ -27,6 +27,10 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             doc.Load(nuspecFile);
 
             var depdencencyNodes = doc.SelectNodes("package/metadata/dependencies/dependency");
+            if (depdencencyNodes == null)
+            {
+                return;
+            }
 
             foreach (XmlNode depdencencyNode in depdencencyNodes)
             {
