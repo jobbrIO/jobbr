@@ -1,4 +1,4 @@
-﻿namespace Jobbr.Tooling.ReferenceVersionAssetrer.Tests
+﻿namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class NuspecDependency
     {

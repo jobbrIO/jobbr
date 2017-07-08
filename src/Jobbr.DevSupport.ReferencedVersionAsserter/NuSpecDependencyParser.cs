@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace Jobbr.Tooling.ReferenceVersionAssetrer.Tests
+namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class NuSpecDependencyParser
     {

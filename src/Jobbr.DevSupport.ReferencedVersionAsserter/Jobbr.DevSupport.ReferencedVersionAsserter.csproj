@@ -7,8 +7,8 @@
     <ProjectGuid>{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jobbr.Tooling.ReferencedVersionAsserter</RootNamespace>
-    <AssemblyName>Jobbr.Tooling.ReferencedVersionAsserter</AssemblyName>
+    <RootNamespace>Jobbr.DevSupport.ReferencedVersionAsserter</RootNamespace>
+    <AssemblyName>Jobbr.DevSupport.ReferencedVersionAsserter</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

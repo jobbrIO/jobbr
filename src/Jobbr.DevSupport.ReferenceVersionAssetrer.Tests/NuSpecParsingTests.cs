@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Jobbr.Tooling.ReferenceVersionAssetrer.Tests
+namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
     [TestClass]
     public class NuSpecParsingTests

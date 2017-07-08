@@ -6,8 +6,8 @@
     <ProjectGuid>{C51ED810-FBE9-42E6-B9AF-7A6F4BE9DEE6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jobbr.Tooling.ReferenceVersionAssetrer.Tests</RootNamespace>
-    <AssemblyName>Jobbr.Tooling.ReferenceVersionAssetrer.Tests</AssemblyName>
+    <RootNamespace>Jobbr.DevSupport.ReferencedVersionAsserter.Tests</RootNamespace>
+    <AssemblyName>Jobbr.DevSupport.ReferencedVersionAsserter.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
