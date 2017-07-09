@@ -6,9 +6,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
     public class AsserterTests
     {
         [TestMethod]
-        void Asserter_WithExactVersionRule_ValidatesExactVersion()
+        public void Asserter_WithExactVersionRule_ValidatesExactVersion()
         {
-            var asserter = new Asserter("TestFiles/ExactDependency.config", "TextFiles/ExactDependency.nuspec");
+            var asserter = new Asserter("TestFiles/ExactDependency.config", "TestFiles/ExactDependency.nuspec");
 
             var result = asserter.Validate(new ExactVersionMatchRule("ExactDependency"));
 
