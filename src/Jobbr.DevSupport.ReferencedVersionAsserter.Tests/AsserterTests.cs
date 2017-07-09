@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
@@ -11,8 +6,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
     public class AsserterTests
     {
         [TestMethod]
-        void Init()
+        void Asserter_WithExactVersionRule_ValidatesExactVersion()
         {
+            var asserter = new Asserter("TestFiles/ExactDependency.config", "TextFiles/ExactDependency.nuspec");
+
+            var result = asserter.Validate(new ExactVersionMatchRule("ExactDependency"));
+
+            Assert.IsTrue(result.IsSuccessful);
         }
     }
 }

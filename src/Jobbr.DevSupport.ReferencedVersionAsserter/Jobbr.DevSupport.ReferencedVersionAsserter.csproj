@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asserter.cs" />
+    <Compile Include="ExactVersionMatchRule.cs" />
     <Compile Include="PackagesParser.cs" />
     <Compile Include="NuspecDependency.cs" />
     <Compile Include="NuSpecParser.cs" />
