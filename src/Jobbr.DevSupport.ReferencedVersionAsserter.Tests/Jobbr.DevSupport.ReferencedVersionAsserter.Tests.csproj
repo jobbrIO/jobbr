@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AsserterTests.cs" />
     <Compile Include="NuSpecParsingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlDependencyConverterTests.cs" />
@@ -66,7 +67,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Jobbr.DevSupport.ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj">
       <Project>{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}</Project>
-      <Name>Jobbr.Tooling.ReferencedVersionAsserter</Name>
+      <Name>Jobbr.DevSupport.ReferencedVersionAsserter</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
