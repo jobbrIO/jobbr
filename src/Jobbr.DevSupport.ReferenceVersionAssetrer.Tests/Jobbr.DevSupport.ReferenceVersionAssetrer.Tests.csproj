@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="NuSpecParsingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlDependencyConverter.cs" />
+    <Compile Include="XmlDependencyConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NuSpecHttpListenerDependency.nuspec">
