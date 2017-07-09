@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.DevSupport.ReferencedVersionAsserter", "Jobbr.DevSupport.ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj", "{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.DevSupport.ReferenceVersionAssetrer.Tests", "Jobbr.DevSupport.ReferenceVersionAssetrer.Tests\Jobbr.DevSupport.ReferenceVersionAssetrer.Tests.csproj", "{C51ED810-FBE9-42E6-B9AF-7A6F4BE9DEE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.DevSupport.ReferencedVersionAsserter.Tests", "Jobbr.DevSupport.ReferencedVersionAsserter.Tests\Jobbr.DevSupport.ReferencedVersionAsserter.Tests.csproj", "{C51ED810-FBE9-42E6-B9AF-7A6F4BE9DEE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

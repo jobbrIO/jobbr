@@ -5,34 +5,35 @@ using System.Xml;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
-    public class NuSpecDependencyParser
+    public class PackagesParser
     {
         public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
 
-        public NuSpecDependencyParser(string nuspecFile = null)
+        public PackagesParser(string projFile = null)
         {
-            if (!File.Exists(nuspecFile) || nuspecFile == null)
+            if (!File.Exists(projFile) || projFile == null)
             {
-                throw new ArgumentException($"File '{nuspecFile}' does not exist!", nameof(nuspecFile));
+                throw new ArgumentException($"File '{projFile}' does not exist!", nameof(projFile));
             }
 
-            Parse(nuspecFile);
+            Parse(projFile);
         }
 
-        private void Parse(string nuspecFile)
+        private void Parse(string nugetConfigfile)
         {
+
             // Parse dependencies
             var doc = new XmlDocument();
 
-            doc.Load(nuspecFile);
+            doc.Load(nugetConfigfile);
 
-            var depdencencyNodes = doc.SelectNodes("package/metadata/dependencies/dependency");
-            if (depdencencyNodes == null)
+            var packageNodes = doc.SelectNodes("packages/package");
+            if (packageNodes == null)
             {
                 return;
             }
 
-            foreach (XmlNode depdencencyNode in depdencencyNodes)
+            foreach (XmlNode depdencencyNode in packageNodes)
             {
                 var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
 

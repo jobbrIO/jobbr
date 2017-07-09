@@ -54,14 +54,25 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AsserterTests.cs" />
-    <Compile Include="NuSpecParsingTests.cs" />
+    <Compile Include="NuspecParserTests.cs" />
+    <Compile Include="PackagesParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlDependencyConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NuSpecHttpListenerDependency.nuspec">
+    <None Include="TestFiles\ExactDependency.nuspec">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\NuSpecHttpListenerDependency.nuspec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="TestFiles\packagesWithHttpListenerDependency.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ExactDependency.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

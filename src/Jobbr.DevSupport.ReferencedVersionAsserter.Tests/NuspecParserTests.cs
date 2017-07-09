@@ -3,12 +3,14 @@
 namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
     [TestClass]
-    public class NuSpecParsingTests
+    public class NuspecParserTests
     {
+        private string testFilePath = "TestFiles/NuSpecHttpListenerDependency.nuspec";
+
         [TestMethod]
         public void SingleDependency_WhenLoaded_Counted()
         {
-            var loader = new NuSpecDependencyParser("NuSpecHttpListenerDependency.nuspec");
+            var loader = new NuspecParser(testFilePath);
 
             Assert.AreEqual(1, loader.Dependencies.Count);
         }
@@ -16,7 +18,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         [TestMethod]
         public void SingleDependency_WhenLoaded_IdEqualsName()
         {
-            var loader = new NuSpecDependencyParser("NuSpecHttpListenerDependency.nuspec");
+            var loader = new NuspecParser(testFilePath);
 
             Assert.AreEqual(1, loader.Dependencies.Count);
             Assert.AreEqual("Microsoft.Owin.Host.HttpListener", loader.Dependencies[0].Name);
@@ -25,7 +27,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         [TestMethod]
         public void SingleDependency_WhenLoaded_VersionRangeMatches()
         {
-            var loader = new NuSpecDependencyParser("NuSpecHttpListenerDependency.nuspec");
+            var loader = new NuspecParser(testFilePath);
 
             Assert.AreEqual(1, loader.Dependencies.Count);
             Assert.AreEqual("Microsoft.Owin.Host.HttpListener", loader.Dependencies[0].Name);
