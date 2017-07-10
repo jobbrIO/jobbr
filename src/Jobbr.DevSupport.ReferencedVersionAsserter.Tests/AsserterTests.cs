@@ -16,7 +16,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         }
 
         [TestMethod]
-        public void WithExactVersionRule_DifferentVersions_IsSuccessful()
+        public void WithExactVersionRule_DifferentVersions_Fails()
         {
             var asserter = new Asserter("TestFiles/ExactDependencyV2.config", "TestFiles/ExactDependencyV5.nuspec");
 
@@ -25,5 +25,17 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             Assert.AreEqual(1, result.Messages.Count);
             Assert.IsFalse(result.IsSuccessful);
         }
+
+        [TestMethod]
+        public void WithExactVersionRule_WildChar_Sucessful()
+        {
+            var asserter = new Asserter("TestFiles/ExactDependencyV5.config", "TestFiles/ExactDependencyV5.nuspec");
+
+            var result = asserter.Validate(new ExactVersionMatchRule("ExactDepend*"));
+
+            Assert.AreEqual(0, result.Messages.Count);
+            Assert.IsTrue(result.IsSuccessful);
+        }
+
     }
 }
