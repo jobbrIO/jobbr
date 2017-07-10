@@ -117,6 +117,6 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
         public bool IsSuccessful { get; set; }
 
-        public string Message => "Reason(s) below:\n\n" + string.Join("\n", this.Messages) + "\n";
+        public string Message => "Reason(s) below:\n\n" + Join("\n", this.Messages) + "\n";
     }
 }
