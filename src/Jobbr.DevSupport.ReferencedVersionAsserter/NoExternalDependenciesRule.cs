@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Jobbr.DevSupport.ReferencedVersionAsserter;
 
-namespace Jobbr.Server.ForkedExecution.Tests
+namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class NoExternalDependenciesRule : IAssertionRule
     {
