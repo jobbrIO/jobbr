@@ -5,14 +5,26 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class Asserter
     {
-        private readonly string _packagesConfigFile;
-        private readonly string _nuspecDefinitionFile;
+        private readonly string packagesConfigFile;
+        private readonly string nuspecDefinitionFile;
         private readonly List<IAssertionRule> rules = new List<IAssertionRule>();
 
         public Asserter(string packagesConfigFile, string nuspecDefinitionFile)
         {
-            _packagesConfigFile = packagesConfigFile;
-            _nuspecDefinitionFile = nuspecDefinitionFile;
+            this.packagesConfigFile = packagesConfigFile;
+            this.nuspecDefinitionFile = nuspecDefinitionFile;
+        }
+
+        public Asserter Add(IAssertionRule rule)
+        {
+            this.rules.Add(rule);
+
+            return this;
+        }
+
+        public AssertionResult Validate()
+        {
+            return this.Execute();
         }
 
         public AssertionResult Validate(IAssertionRule rule)
@@ -26,8 +38,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         {
             var assertionResult = new AssertionResult();
 
-            var packageDependencies = new PackagesParser(this._packagesConfigFile).Dependencies;
-            var nuspecDependencies = new NuspecParser(this._nuspecDefinitionFile).Dependencies;
+            var packageDependencies = new PackagesParser(this.packagesConfigFile).Dependencies;
+            var nuspecDependencies = new NuspecParser(this.nuspecDefinitionFile).Dependencies;
 
             foreach (var rule in this.rules)
             {
@@ -62,5 +74,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         public List<string> Messages { get; } = new List<string>();
 
         public bool IsSuccessful { get; set; }
+
+        public string Message => "Reason(s) below:\n\n" + string.Join("\n", this.Messages) + "\n";
     }
 }
