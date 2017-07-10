@@ -9,9 +9,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         {
         }
 
-        protected override bool Validate(NuspecDependency nuspecDependencies, NuspecDependency nuConfigPackage, out string message)
+        protected override bool Validate(NuspecDependency nuspecDependency, NuspecDependency nuConfigPackage, out string message)
         {
-            var lowerEnd = nuspecDependencies.MinVersion;
+            var lowerEnd = nuspecDependency.MinVersion;
             var lowVersion = new Version(lowerEnd.Major, lowerEnd.Minor, lowerEnd.Bugfix);
 
             var actualVersion = new Version(nuConfigPackage.MinVersion.Major, nuConfigPackage.MinVersion.Minor, nuConfigPackage.MinVersion.Bugfix);
@@ -29,13 +29,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             bool lowerOrEqualUpperBound;
 
-            if (nuspecDependencies.MaxVersion == null)
+            if (nuspecDependency.MaxVersion == null)
             {
                 lowerOrEqualUpperBound = true;
             }
             else
             {
-                var upperEnd = nuspecDependencies.MaxVersion;
+                var upperEnd = nuspecDependency.MaxVersion;
                 var upVersion = new Version(upperEnd.Major, upperEnd.Minor, upperEnd.Bugfix);
 
                 if (upperEnd.Inclusive)
@@ -54,7 +54,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 return true;
             }
 
-            message = $"Referenced package '{nuConfigPackage.Name}' (Version: {nuConfigPackage.Version} in packages config is not in range of Nuspec version '{nuspecDependencies.Version}'";
+            message = $"Referenced package '{nuConfigPackage.Name}' (Version: {nuConfigPackage.Version} in packages config is not in range of Nuspec version '{nuspecDependency.Version}'";
 
             return false;
         }

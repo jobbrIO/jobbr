@@ -67,6 +67,6 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             return true;
         }
 
-        protected abstract bool Validate(NuspecDependency nuspecDependencies, NuspecDependency nuConfigPackage, out string message);
+        protected abstract bool Validate(NuspecDependency nuspecDependency, NuspecDependency nuConfigPackage, out string message);
     }
 }
