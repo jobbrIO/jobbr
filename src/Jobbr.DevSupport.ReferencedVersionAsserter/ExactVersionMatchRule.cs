@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
+namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class ExactVersionMatchRule : IAssertionRule
     {
