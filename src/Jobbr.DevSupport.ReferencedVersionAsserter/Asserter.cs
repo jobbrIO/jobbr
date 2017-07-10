@@ -45,11 +45,15 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             {
                 string message;
 
-                var validationResult = rule.Validate(packageDependencies, nuspecDependencies, out message);
+                var validationResult = rule.Validate(nuspecDependencies, packageDependencies, out message);
 
                 if (!validationResult)
                 {
-                    assertionResult.AddMessage(rule.GetType().Name, message);
+                    var messages = message.Split('\n');
+                    foreach (var s in messages)
+                    {
+                        assertionResult.AddMessage(rule.GetType().Name, s);
+                    }
                 }
             }
 
@@ -61,7 +65,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
     public interface IAssertionRule
     {
-        bool Validate(List<NuspecDependency> packageDependencies, List<NuspecDependency> nuspecDependencies, out string message);
+        bool Validate(List<NuspecDependency> nuspecDependencies, List<NuspecDependency> packageDependencies, out string message);
     }
 
     public class AssertionResult

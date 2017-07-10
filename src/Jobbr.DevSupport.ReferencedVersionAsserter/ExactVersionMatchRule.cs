@@ -13,7 +13,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             this.dependencyName = dependencyName;
         }
 
-        public virtual bool Validate(List<NuspecDependency> packageDependencies, List<NuspecDependency> nuspecDependencies, out string message)
+        public virtual bool Validate(List<NuspecDependency> nuspecDependencies, List<NuspecDependency> packageDependencies, out string message)
         {
             var packagDep = packageDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
             var nuspecDep = nuspecDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
@@ -48,7 +48,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             this.dependencyName = dependencyName;
         }
 
-        public override bool Validate(List<NuspecDependency> packageDependencies, List<NuspecDependency> nuspecDependencies, out string message)
+        public override bool Validate(List<NuspecDependency> nuspecDependencies, List<NuspecDependency> packageDependencies, out string message)
         {
             message = "";
 
@@ -56,7 +56,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             if (!this.dependencyName.EndsWith("*"))
             {
-                if (!base.Validate(packageDependencies, nuspecDependencies, out message))
+                if (!base.Validate(nuspecDependencies, packageDependencies, out message))
                 {
                     return false;
                 }
@@ -78,12 +78,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 var packagDep = dependency.Item1;
                 var nuspecDep = dependency.Item2;
 
-                if (packagDep.MinVersion.Major == nuspecDep.MinVersion.Major && packagDep.MinVersion.Minor == nuspecDep.MinVersion.Minor && packagDep.MinVersion.Bugfix == nuspecDep.MinVersion.Bugfix)
+                if (packagDep.MinVersion.Major == nuspecDep.MinVersion.Major && packagDep.MinVersion.Minor == nuspecDep.MinVersion.Minor && packagDep.MinVersion.Bugfix == nuspecDep.MinVersion.Bugfix && packagDep.MinVersion.Tag == nuspecDep.MinVersion.Tag)
                 {
                     continue;
                 }
 
-                message = message + (string.IsNullOrWhiteSpace(message) ? "\n" : "") + $"Version of dependency '{this.dependencyName}' in packages (Version: '{packagDep.Version}') does not match the version in NuSpec (Version: '{nuspecDep.Version}')";
+                message = message + (!string.IsNullOrWhiteSpace(message) ? "\n" : "") + $"Version of dependency '{packagDep.Name}' in NuSpec (Version: '{nuspecDep.Version}') does not match the version in packages (Version: '{packagDep.Version}')  ";
             }
 
             return string.IsNullOrWhiteSpace(message);
