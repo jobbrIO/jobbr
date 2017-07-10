@@ -43,11 +43,15 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="Asserter.cs" />
     <Compile Include="ExactVersionMatchRule.cs" />
+    <Compile Include="NoExternalDependenciesRule.cs" />
+    <Compile Include="NoMajorChangesInNuSpec.cs" />
     <Compile Include="PackageExistsInBothRule.cs" />
     <Compile Include="PackagesParser.cs" />
     <Compile Include="NuspecDependency.cs" />
     <Compile Include="NuSpecParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VersionIsIncludedInRange.cs" />
+    <Compile Include="WildCharNuspecRuleBase.cs" />
     <Compile Include="XmlDependencyConverter.cs" />
   </ItemGroup>
   <ItemGroup>
