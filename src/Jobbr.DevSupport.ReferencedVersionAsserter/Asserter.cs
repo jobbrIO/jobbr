@@ -54,12 +54,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
     public class AssertionResult
     {
-        public void AddMessage(string name, string message)
+        internal void AddMessage(string name, string message)
         {
             this.Messages.Add($"[{name}] {message}");
         }
 
         public List<string> Messages { get; } = new List<string>();
+
         public bool IsSuccessful { get; set; }
     }
 }

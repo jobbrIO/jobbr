@@ -60,7 +60,10 @@
     <Compile Include="XmlDependencyConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestFiles\ExactDependency.nuspec">
+    <None Include="TestFiles\ExactDependencyV2.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ExactDependencyV5.nuspec">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -71,7 +74,7 @@
     <None Include="TestFiles\packagesWithHttpListenerDependency.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestFiles\ExactDependency.config">
+    <None Include="TestFiles\ExactDependencyV5.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
