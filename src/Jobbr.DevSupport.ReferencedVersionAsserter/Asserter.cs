@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using static System.String;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
@@ -60,6 +62,42 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             assertionResult.IsSuccessful = !assertionResult.Messages.Any();
 
             return assertionResult;
+        }
+
+
+        public static string ResolvePackagesConfig(string projectName, string fileName = "packages.config")
+        {
+            return Path.Combine(GetSolutionDirectory(), $"{projectName}/{fileName}");
+        }
+
+        public static string ResolveRootFile(string fileName)
+        {
+            return Path.Combine(GetSolutionDirectory(), $"{fileName}");
+        }
+
+        public static string ResolveProjectFile(string projectName, string fileName)
+        {
+            return Path.Combine(GetSolutionDirectory(), $"{projectName}/{fileName}");
+        }
+
+        public static string GetSolutionDirectory()
+        {
+            var slnFile = Empty;
+            var currentPath = Directory.GetCurrentDirectory();
+
+            while (IsNullOrWhiteSpace(slnFile) && currentPath.Length > 3)
+            {
+                if (Directory.EnumerateFiles(currentPath, "*.sln").Any())
+                {
+                    return currentPath;
+                }
+                else
+                {
+                    currentPath = Directory.GetParent(currentPath).FullName;
+                }
+            }
+
+            return null;
         }
     }
 
