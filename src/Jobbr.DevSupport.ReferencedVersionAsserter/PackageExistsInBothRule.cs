@@ -26,7 +26,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             }
             if (nuspecDep == null)
             {
-                message = (string.IsNullOrWhiteSpace(message) ? String.Empty : "\n") + $"Dependency '{this.dependencyName}' is not specified in NuGet Package specification.";
+                message = message + (string.IsNullOrWhiteSpace(message) ? String.Empty : "\n") + $"Dependency '{this.dependencyName}' is not specified in NuGet Package specification.";
             }
 
             if (string.IsNullOrWhiteSpace(message))
