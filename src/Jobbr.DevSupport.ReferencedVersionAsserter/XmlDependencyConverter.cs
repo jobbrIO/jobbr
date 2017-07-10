@@ -84,7 +84,10 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
         private static NuspecVersion CreateVersion(string versionStringValue)
         {
-            var versionParts = versionStringValue.Split(new[] {"."}, StringSplitOptions.RemoveEmptyEntries);
+            // Filter PreTags
+            var tagSplitted = versionStringValue.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
+
+            var versionParts = tagSplitted[0].Split(new[] {"."}, StringSplitOptions.RemoveEmptyEntries);
 
             try
             {
@@ -93,6 +96,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 var bugix = versionParts.Length == 3 ? Int32.Parse(versionParts[2]) : 0;
 
                 var exactVersion = new NuspecVersion() { Major = major, Minor = minor, Bugfix = bugix };
+
+                if (tagSplitted.Length == 2)
+                {
+                    exactVersion.Tag = tagSplitted[1];
+                }
+
                 return exactVersion;
             }
             catch (Exception)

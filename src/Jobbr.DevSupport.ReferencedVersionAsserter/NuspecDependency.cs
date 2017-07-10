@@ -20,5 +20,6 @@
         public int Bugfix { get; set; }
 
         public bool Inclusive { get; set; }
+        public string Tag { get; set; }
     }
 }

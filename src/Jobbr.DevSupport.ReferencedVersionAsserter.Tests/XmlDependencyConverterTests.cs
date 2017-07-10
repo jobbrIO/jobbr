@@ -49,6 +49,21 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         }
 
         [TestMethod]
+        public void Input_WithVersionPreTag_ReturnsCorrectVersion()
+        {
+            var node = CreateXmlNode("id", "1.2.3-pre12");
+
+            var value = XmlDependencyConverter.Convert(node);
+
+            Assert.IsNotNull(value);
+            Assert.AreEqual(1, value.MinVersion.Major);
+            Assert.AreEqual(2, value.MinVersion.Minor);
+            Assert.AreEqual(3, value.MinVersion.Bugfix);
+
+            Assert.AreEqual("pre12", value.MinVersion.Tag);
+        }
+
+        [TestMethod]
         public void Conversion_ForId_AsExpected()
         {
             var node = CreateXmlNode("packageX", "1.2");
