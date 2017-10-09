@@ -26,17 +26,29 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             doc.Load(nuspecFile);
 
-            var depdencencyNodes = doc.SelectNodes("package/metadata/dependencies/dependency");
-            if (depdencencyNodes == null)
+            var mgr = new XmlNamespaceManager(doc.NameTable);
+            mgr.AddNamespace("nu", "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd");
+            var namespaceNodes = doc.SelectNodes("nu:package/nu:metadata/nu:dependencies/nu:dependency", mgr);
+            var noNameSpaceNodes = doc.SelectNodes("package/metadata/dependencies/dependency");
+
+            if (namespaceNodes != null)
             {
-                return;
+                foreach (XmlNode depdencencyNode in namespaceNodes)
+                {
+                    var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
+
+                    this.Dependencies.Add(nuspecDependency);
+                }
             }
 
-            foreach (XmlNode depdencencyNode in depdencencyNodes)
+            if (noNameSpaceNodes != null)
             {
-                var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
+                foreach (XmlNode depdencencyNode in noNameSpaceNodes)
+                {
+                    var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
 
-                this.Dependencies.Add(nuspecDependency);
+                    this.Dependencies.Add(nuspecDependency);
+                }
             }
         }
     }
