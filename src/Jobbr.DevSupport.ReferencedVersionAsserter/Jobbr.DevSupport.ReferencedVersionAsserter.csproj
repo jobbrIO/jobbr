@@ -46,6 +46,7 @@
     <Compile Include="ExactVersionMatchRule.cs" />
     <Compile Include="NoExternalDependenciesRule.cs" />
     <Compile Include="NoMajorChangesInNuSpec.cs" />
+    <Compile Include="OnlyAllowBugfixesRule.cs" />
     <Compile Include="PackageExistsInBothRule.cs" />
     <Compile Include="PackagesParser.cs" />
     <Compile Include="NuspecDependency.cs" />
