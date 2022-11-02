@@ -40,15 +40,15 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             foreach (var dependency in existingInBoth)
             {
-                var packagDep = dependency.Item1;
+                var packageDep = dependency.Item1;
                 var nuspecDep = dependency.Item2;
 
-                if (packagDep.MinVersion.Major == nuspecDep.MinVersion.Major && packagDep.MinVersion.Minor == nuspecDep.MinVersion.Minor && packagDep.MinVersion.Bugfix == nuspecDep.MinVersion.Bugfix && packagDep.MinVersion.Tag == nuspecDep.MinVersion.Tag)
+                if (packageDep.MinVersion.Major == nuspecDep.MinVersion.Major && packageDep.MinVersion.Minor == nuspecDep.MinVersion.Minor && packageDep.MinVersion.Bugfix == nuspecDep.MinVersion.Bugfix && packageDep.MinVersion.Tag == nuspecDep.MinVersion.Tag)
                 {
                     continue;
                 }
 
-                message = message + (!string.IsNullOrWhiteSpace(message) ? "\n" : "") + $"Version of dependency '{packagDep.Name}' in NuSpec (Version: '{nuspecDep.Version}') does not match the version in packages (Version: '{packagDep.Version}')  ";
+                message = message + (!string.IsNullOrWhiteSpace(message) ? "\n" : "") + $"Version of dependency '{packageDep.Name}' in NuSpec (Version: '{nuspecDep.Version}') does not match the version in packages (Version: '{packageDep.Version}')  ";
             }
 
             return string.IsNullOrWhiteSpace(message);

@@ -15,12 +15,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
         public virtual bool Validate(List<NuspecDependency> nuspecDependencies, List<NuspecDependency> packageDependencies, out string message)
         {
-            var packagDep = packageDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
+            var packageDep = packageDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
             var nuspecDep = nuspecDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
 
             message = String.Empty;
 
-            if (packagDep == null)
+            if (packageDep == null)
             {
                 message = $"Dependency '{this.dependencyName}' is not referenced in packages config.";
             }

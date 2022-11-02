@@ -15,15 +15,15 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             var actualVersion = new Version(nuConfigPackage.MinVersion.Major, nuConfigPackage.MinVersion.Minor, nuConfigPackage.MinVersion.Bugfix);
 
-            bool greateOrEqualLowBound;
+            bool greaterOrEqualLowBound;
 
             if (lowerEnd.Inclusive)
             {
-                greateOrEqualLowBound = actualVersion >= lowVersion;
+                greaterOrEqualLowBound = actualVersion >= lowVersion;
             }
             else
             {
-                greateOrEqualLowBound = actualVersion > lowVersion;
+                greaterOrEqualLowBound = actualVersion > lowVersion;
             }
 
             bool lowerOrEqualUpperBound;
@@ -47,7 +47,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 }
             }
 
-            if (greateOrEqualLowBound && lowerOrEqualUpperBound)
+            if (greaterOrEqualLowBound && lowerOrEqualUpperBound)
             {
                 message = null;
                 return true;

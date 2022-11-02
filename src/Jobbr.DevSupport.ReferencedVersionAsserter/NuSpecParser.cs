@@ -33,9 +33,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             if (namespaceNodes != null)
             {
-                foreach (XmlNode depdencencyNode in namespaceNodes)
+                foreach (XmlNode dependencyNode in namespaceNodes)
                 {
-                    var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
+                    var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
                     this.Dependencies.Add(nuspecDependency);
                 }
@@ -43,9 +43,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             if (noNameSpaceNodes != null)
             {
-                foreach (XmlNode depdencencyNode in noNameSpaceNodes)
+                foreach (XmlNode dependencyNode in noNameSpaceNodes)
                 {
-                    var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
+                    var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
                     this.Dependencies.Add(nuspecDependency);
                 }

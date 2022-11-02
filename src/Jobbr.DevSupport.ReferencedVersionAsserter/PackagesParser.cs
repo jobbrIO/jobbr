@@ -19,13 +19,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             Parse(projFile);
         }
 
-        private void Parse(string nugetConfigfile)
+        private void Parse(string nugetConfigFile)
         {
 
             // Parse dependencies
             var doc = new XmlDocument();
 
-            doc.Load(nugetConfigfile);
+            doc.Load(nugetConfigFile);
 
             var packageNodes = doc.SelectNodes("packages/package");
             if (packageNodes == null)
@@ -33,9 +33,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 return;
             }
 
-            foreach (XmlNode depdencencyNode in packageNodes)
+            foreach (XmlNode dependencyNode in packageNodes)
             {
-                var nuspecDependency = XmlDependencyConverter.Convert(depdencencyNode);
+                var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
                 this.Dependencies.Add(nuspecDependency);
             }

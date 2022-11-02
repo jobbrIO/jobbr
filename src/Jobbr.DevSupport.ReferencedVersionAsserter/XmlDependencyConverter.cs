@@ -5,20 +5,20 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class XmlDependencyConverter
     {
-        public static NuspecDependency Convert(XmlNode depdencencyNode)
+        public static NuspecDependency Convert(XmlNode dependencyNode)
         {
-            if (depdencencyNode == null)
+            if (dependencyNode == null)
             {
-                throw new ArgumentNullException(nameof(depdencencyNode));
+                throw new ArgumentNullException(nameof(dependencyNode));
             }
 
-            if (depdencencyNode.Attributes == null)
+            if (dependencyNode.Attributes == null)
             {
                 return null;
             }
 
-            var id = depdencencyNode.Attributes["id"];
-            var versionString = depdencencyNode.Attributes["version"];
+            var id = dependencyNode.Attributes["id"];
+            var versionString = dependencyNode.Attributes["version"];
 
             if (id == null || versionString == null)
             {
@@ -85,21 +85,21 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         private static NuspecVersion CreateVersion(string versionStringValue)
         {
             // Filter PreTags
-            var tagSplitted = versionStringValue.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
+            var tagSplit = versionStringValue.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
 
-            var versionParts = tagSplitted[0].Split(new[] {"."}, StringSplitOptions.RemoveEmptyEntries);
+            var versionParts = tagSplit[0].Split(new[] {"."}, StringSplitOptions.RemoveEmptyEntries);
 
             try
             {
                 var major = versionParts.Length >= 1 ? Int32.Parse(versionParts[0]) : 0;
                 var minor = versionParts.Length >= 2 ? Int32.Parse(versionParts[1]) : 0;
-                var bugix = versionParts.Length == 3 ? Int32.Parse(versionParts[2]) : 0;
+                var bugfix = versionParts.Length == 3 ? Int32.Parse(versionParts[2]) : 0;
 
-                var exactVersion = new NuspecVersion() { Major = major, Minor = minor, Bugfix = bugix };
+                var exactVersion = new NuspecVersion() { Major = major, Minor = minor, Bugfix = bugfix };
 
-                if (tagSplitted.Length == 2)
+                if (tagSplit.Length == 2)
                 {
-                    exactVersion.Tag = tagSplitted[1];
+                    exactVersion.Tag = tagSplit[1];
                 }
 
                 return exactVersion;
