@@ -30,6 +30,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             mgr.AddNamespace("nu", "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd");
             var namespaceNodes = doc.SelectNodes("nu:package/nu:metadata/nu:dependencies/nu:dependency", mgr);
             var noNameSpaceNodes = doc.SelectNodes("package/metadata/dependencies/dependency");
+            var groupNameSpaceNodes = doc.SelectNodes("package/metadata/dependencies/group/dependency");
 
             if (namespaceNodes != null)
             {
@@ -44,6 +45,16 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             if (noNameSpaceNodes != null)
             {
                 foreach (XmlNode dependencyNode in noNameSpaceNodes)
+                {
+                    var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
+
+                    this.Dependencies.Add(nuspecDependency);
+                }
+            }
+
+            if (groupNameSpaceNodes != null)
+            {
+                foreach (XmlNode dependencyNode in groupNameSpaceNodes)
                 {
                     var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 

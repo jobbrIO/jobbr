@@ -56,6 +56,7 @@
     <Compile Include="AsserterTests.cs" />
     <Compile Include="NuspecParserTests.cs" />
     <Compile Include="PackagesParserTests.cs" />
+    <Compile Include="ProjectParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlDependencyConverterTests.cs" />
   </ItemGroup>
@@ -71,6 +72,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="TestFiles\NuSpecHttpListenerGroupedDependency.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TestFiles\packagesWithHttpListenerDependency.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -83,6 +88,11 @@
       <Project>{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}</Project>
       <Name>Jobbr.DevSupport.ReferencedVersionAsserter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\ProjectSDK.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

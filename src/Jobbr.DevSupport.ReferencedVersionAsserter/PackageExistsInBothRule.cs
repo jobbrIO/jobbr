@@ -18,7 +18,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             var packageDep = packageDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
             var nuspecDep = nuspecDependencies.SingleOrDefault(pd => pd.Name.Equals(this.dependencyName, StringComparison.InvariantCultureIgnoreCase));
 
-            message = String.Empty;
+            message = string.Empty;
 
             if (packageDep == null)
             {
@@ -26,7 +26,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             }
             if (nuspecDep == null)
             {
-                message = message + (string.IsNullOrWhiteSpace(message) ? String.Empty : "\n") + $"Dependency '{this.dependencyName}' is not specified in NuGet Package specification.";
+                message = message + (string.IsNullOrWhiteSpace(message) ? string.Empty : "\n") + $"Dependency '{this.dependencyName}' is not specified in NuGet Package specification.";
             }
 
             if (string.IsNullOrWhiteSpace(message))

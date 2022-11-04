@@ -35,6 +35,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             Assert.AreEqual(3, loader.Dependencies[0].MinVersion.Major);
             Assert.AreEqual(4, loader.Dependencies[0].MaxVersion.Major);
         }
+        
+        [TestMethod]
+        public void SingleGroupedDependency_WhenLoaded_Counted()
+        {
+            var loader = new NuspecParser("TestFiles/NuSpecHttpListenerGroupedDependency.nuspec");
 
+            Assert.AreEqual(1, loader.Dependencies.Count);
+        }
     }
 }

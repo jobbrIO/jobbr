@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
@@ -27,7 +30,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         }
 
         [TestMethod]
-        public void WithExactVersionRule_WildChar_Sucessful()
+        public void WithExactVersionRule_WildChar_Successful()
         {
             var asserter = new Asserter("TestFiles/ExactDependencyV5.config", "TestFiles/ExactDependencyV5.nuspec");
 
@@ -36,6 +39,5 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             Assert.AreEqual(0, result.Messages.Count);
             Assert.IsTrue(result.IsSuccessful);
         }
-
     }
 }

@@ -7,13 +7,13 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
     public class Asserter
     {
-        private readonly string packagesConfigFile;
+        private readonly string packagesFile;
         private readonly string nuspecDefinitionFile;
         private readonly List<IAssertionRule> rules = new List<IAssertionRule>();
 
-        public Asserter(string packagesConfigFile, string nuspecDefinitionFile)
+        public Asserter(string packagesFile, string nuspecDefinitionFile)
         {
-            this.packagesConfigFile = packagesConfigFile;
+            this.packagesFile = packagesFile;
             this.nuspecDefinitionFile = nuspecDefinitionFile;
         }
 
@@ -40,14 +40,23 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         {
             var assertionResult = new AssertionResult();
 
-            var packageDependencies = new PackagesParser(this.packagesConfigFile).Dependencies;
+            List<NuspecDependency> packageDependencies;
+            var extension = Path.GetExtension(this.packagesFile);
+
+            if (extension == ".csproj")
+            {
+                packageDependencies = new ProjectParser(this.packagesFile).Dependencies;
+            }
+            else
+            {
+                packageDependencies = new PackagesParser(this.packagesFile).Dependencies;
+            }
+             
             var nuspecDependencies = new NuspecParser(this.nuspecDefinitionFile).Dependencies;
 
             foreach (var rule in this.rules)
             {
-                string message;
-
-                var validationResult = rule.Validate(nuspecDependencies, packageDependencies, out message);
+                var validationResult = rule.Validate(nuspecDependencies, packageDependencies, out var message);
 
                 if (!validationResult)
                 {
@@ -64,20 +73,19 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             return assertionResult;
         }
 
-
         public static string ResolvePackagesConfig(string projectName, string fileName = "packages.config")
         {
-            return Path.Combine(GetSolutionDirectory(), $"{projectName}/{fileName}");
+            return Path.Combine(GetSolutionDirectory(), projectName, fileName);
         }
 
         public static string ResolveRootFile(string fileName)
         {
-            return Path.Combine(GetSolutionDirectory(), $"{fileName}");
+            return Path.Combine(GetSolutionDirectory(), fileName);
         }
 
         public static string ResolveProjectFile(string projectName, string fileName)
         {
-            return Path.Combine(GetSolutionDirectory(), $"{projectName}/{fileName}");
+            return Path.Combine(GetSolutionDirectory(), projectName, fileName);
         }
 
         public static string GetSolutionDirectory()
@@ -91,10 +99,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 {
                     return currentPath;
                 }
-                else
-                {
-                    currentPath = Directory.GetParent(currentPath).FullName;
-                }
+
+                currentPath = Directory.GetParent(currentPath).FullName;
             }
 
             return null;

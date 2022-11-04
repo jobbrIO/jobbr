@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
-    public static class XmlDependencyConverter
+    public static class ProjectDependencyConverter
     {
         public static NuspecDependency Convert(XmlNode dependencyNode)
         {
@@ -17,16 +17,16 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 return null;
             }
 
-            var id = dependencyNode.Attributes["id"];
-            var versionString = dependencyNode.Attributes["version"];
+            var include = dependencyNode.Attributes["Include"];
+            var versionString = dependencyNode.Attributes["Version"];
 
-            if (id == null || versionString == null)
+            if (include == null || versionString == null)
             {
                 return null;
             }
 
             var versionStringValue = versionString.Value;
-            var nuspecDependency = new NuspecDependency { Name = id.Value, Version = versionStringValue };
+            var nuspecDependency = new NuspecDependency { Name = include.Value, Version = versionStringValue };
 
             return NuspecVersionParser.Parse(nuspecDependency, versionStringValue);
         }

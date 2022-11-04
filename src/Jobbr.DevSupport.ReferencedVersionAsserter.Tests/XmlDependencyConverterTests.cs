@@ -125,7 +125,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         }
 
         [TestMethod]
-        public void VersionConversion_Ranges_MinExlusive_NoMax()
+        public void VersionConversion_Ranges_MinExclusive_NoMax()
         {
             var node = CreateXmlNode("packageX", "(1.0,)");
 
@@ -155,7 +155,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
         }
 
         [TestMethod]
-        public void VersionConversion_Ranges_NoMin_ExlusiveMax()
+        public void VersionConversion_Ranges_NoMin_ExclusiveMax()
         {
             var node = CreateXmlNode("packageX", "(,1.0)");
 
@@ -193,7 +193,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void VersionConversion_Ranges_MissingBracesAtBeginning_ThrowsExecption()
+        public void VersionConversion_Ranges_MissingBracesAtBeginning_ThrowsException()
         {
             var node = CreateXmlNode("packageX", "1.0, 2.0)");
 
@@ -202,7 +202,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void VersionConversion_Ranges_MissingBracesOnEnd_ThrowsExecption()
+        public void VersionConversion_Ranges_MissingBracesOnEnd_ThrowsException()
         {
             var node = CreateXmlNode("packageX", "(1.0, 2.0");
 
