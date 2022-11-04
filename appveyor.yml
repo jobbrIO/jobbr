@@ -1,0 +1,25 @@
+image: Visual Studio 2019
+
+branches:
+  only:
+    - master
+
+environment:
+  IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+
+assembly_info:
+  patch: false
+
+before_build:
+  - nuget restore src/Jobbr.DevSupport.sln
+
+platform: Any CPU
+configuration: Release
+
+build:
+  parallel: true 
+  project: src/Jobbr.DevSupport.sln
+
+test:
+  assemblies:
+    - '**\bin\Release\Jobbr.DevSupport.ReferencedVersionAsserter.Tests.dll'
