@@ -32,9 +32,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             Assert.AreEqual(1, parser.Dependencies.Count);
             Assert.AreEqual("Microsoft.Owin.Host.HttpListener", parser.Dependencies[0].Name);
 
-            Assert.AreEqual(3, parser.Dependencies[0].MinVersion.Major);
-            Assert.AreEqual(0, parser.Dependencies[0].MinVersion.Minor);
-            Assert.AreEqual(1, parser.Dependencies[0].MinVersion.Bugfix);
+            Assert.AreEqual(4, parser.Dependencies[0].MinVersion.Major);
+            Assert.AreEqual(2, parser.Dependencies[0].MinVersion.Minor);
+            Assert.AreEqual(2, parser.Dependencies[0].MinVersion.Bugfix);
         }
     }
 }
