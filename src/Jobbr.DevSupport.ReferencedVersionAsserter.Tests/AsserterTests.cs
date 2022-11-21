@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
@@ -12,7 +13,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var result = asserter.Validate(new ExactVersionMatchRule("ExactDependency"));
 
-            Assert.IsTrue(result.IsSuccessful);
+            result.IsSuccessful.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -22,8 +23,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var result = asserter.Validate(new ExactVersionMatchRule("ExactDependency"));
 
-            Assert.AreEqual(1, result.Messages.Count);
-            Assert.IsFalse(result.IsSuccessful);
+            result.Messages.Count.ShouldBe(1);
+            result.IsSuccessful.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -33,8 +34,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var result = asserter.Validate(new ExactVersionMatchRule("ExactDepend*"));
 
-            Assert.AreEqual(0, result.Messages.Count);
-            Assert.IsTrue(result.IsSuccessful);
+            result.Messages.Count.ShouldBe(0);
+            result.IsSuccessful.ShouldBeTrue();
         }
     }
 }

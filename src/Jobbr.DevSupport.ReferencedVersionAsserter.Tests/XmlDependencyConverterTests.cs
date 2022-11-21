@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 {
@@ -8,10 +9,9 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
     public class XmlDependencyConverterTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Input_WithNullNode_RaisesException()
         {
-            XmlDependencyConverter.Convert(null);
+            Should.Throw<ArgumentNullException>(() => XmlDependencyConverter.Convert(null));
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var value = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNull(value);
+            value.ShouldBeNull();
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var value = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNull(value);
+            value.ShouldBeNull();
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var value = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNotNull(value);
+            value.ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -55,12 +55,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var value = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNotNull(value);
-            Assert.AreEqual(1, value.MinVersion.Major);
-            Assert.AreEqual(2, value.MinVersion.Minor);
-            Assert.AreEqual(3, value.MinVersion.Bugfix);
+            value.ShouldNotBeNull();
+            value.MinVersion.Major.ShouldBe(1);
+            value.MinVersion.Minor.ShouldBe(2);
+            value.MinVersion.Bugfix.ShouldBe(3);
 
-            Assert.AreEqual("pre12", value.MinVersion.Tag);
+            value.MinVersion.Tag.ShouldBe("pre12");
         }
 
         [TestMethod]
@@ -70,10 +70,10 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.AreEqual("packageX", dependency.Name);
-            Assert.AreEqual("1.2", dependency.Version);
+            dependency.Name.ShouldBe("packageX");
+            dependency.Version.ShouldBe("1.2");
 
-            Assert.IsNotNull(dependency);
+            dependency.ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -83,15 +83,15 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.AreEqual(1, dependency.MinVersion.Major);
-            Assert.AreEqual(2, dependency.MinVersion.Minor);
-            Assert.AreEqual(3, dependency.MinVersion.Bugfix);
-            Assert.IsTrue(dependency.MinVersion.Inclusive);
+            dependency.MinVersion.Major.ShouldBe(1);
+            dependency.MinVersion.Minor.ShouldBe(2);
+            dependency.MinVersion.Bugfix.ShouldBe(3);
+            dependency.MinVersion.Inclusive.ShouldBeTrue();
 
-            Assert.AreEqual(1, dependency.MaxVersion.Major);
-            Assert.AreEqual(2, dependency.MaxVersion.Minor);
-            Assert.AreEqual(3, dependency.MaxVersion.Bugfix);
-            Assert.IsTrue(dependency.MaxVersion.Inclusive);
+            dependency.MaxVersion.Major.ShouldBe(1);
+            dependency.MaxVersion.Minor.ShouldBe(2);
+            dependency.MaxVersion.Bugfix.ShouldBe(3);
+            dependency.MaxVersion.Inclusive.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -101,12 +101,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.AreEqual(1, dependency.MinVersion.Major);
-            Assert.AreEqual(2, dependency.MinVersion.Minor);
-            Assert.AreEqual(3, dependency.MinVersion.Bugfix);
-            Assert.IsTrue(dependency.MinVersion.Inclusive);
+            dependency.MinVersion.Major.ShouldBe(1);
+            dependency.MinVersion.Minor.ShouldBe(2);
+            dependency.MinVersion.Bugfix.ShouldBe(3);
+            dependency.MinVersion.Inclusive.ShouldBeTrue();
 
-            Assert.IsNull(dependency.MaxVersion);
+            dependency.MaxVersion.ShouldBeNull();
         }
 
         [TestMethod]
@@ -116,12 +116,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.AreEqual(1, dependency.MinVersion.Major);
-            Assert.AreEqual(0, dependency.MinVersion.Minor);
-            Assert.AreEqual(0, dependency.MinVersion.Bugfix);
-            Assert.IsTrue(dependency.MinVersion.Inclusive);
+            dependency.MinVersion.Major.ShouldBe(1);
+            dependency.MinVersion.Minor.ShouldBe(0);
+            dependency.MinVersion.Bugfix.ShouldBe(0);
+            dependency.MinVersion.Inclusive.ShouldBeTrue();
 
-            Assert.IsNull(dependency.MaxVersion);
+            dependency.MaxVersion.ShouldBeNull();
         }
 
         [TestMethod]
@@ -131,12 +131,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.AreEqual(1, dependency.MinVersion.Major);
-            Assert.AreEqual(0, dependency.MinVersion.Minor);
-            Assert.AreEqual(0, dependency.MinVersion.Bugfix);
-            Assert.AreEqual(false, dependency.MinVersion.Inclusive);
+            dependency.MinVersion.Major.ShouldBe(1);
+            dependency.MinVersion.Minor.ShouldBe(0);
+            dependency.MinVersion.Bugfix.ShouldBe(0);
+            dependency.MinVersion.Inclusive.ShouldBeFalse();
 
-            Assert.IsNull(dependency.MaxVersion);
+            dependency.MaxVersion.ShouldBeNull();
         }
 
         [TestMethod]
@@ -146,12 +146,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNull(dependency.MinVersion);
+            dependency.MinVersion.ShouldBeNull();
 
-            Assert.AreEqual(1, dependency.MaxVersion.Major);
-            Assert.AreEqual(0, dependency.MaxVersion.Minor);
-            Assert.AreEqual(0, dependency.MaxVersion.Bugfix);
-            Assert.AreEqual(true, dependency.MaxVersion.Inclusive);
+            dependency.MaxVersion.Major.ShouldBe(1);
+            dependency.MaxVersion.Minor.ShouldBe(0);
+            dependency.MaxVersion.Bugfix.ShouldBe(0);
+            dependency.MaxVersion.Inclusive.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -161,12 +161,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNull(dependency.MinVersion);
+            dependency.MinVersion.ShouldBeNull();
 
-            Assert.AreEqual(1, dependency.MaxVersion.Major);
-            Assert.AreEqual(0, dependency.MaxVersion.Minor);
-            Assert.AreEqual(0, dependency.MaxVersion.Bugfix);
-            Assert.AreEqual(false, dependency.MaxVersion.Inclusive);
+            dependency.MaxVersion.Major.ShouldBe(1);
+            dependency.MaxVersion.Minor.ShouldBe(0);
+            dependency.MaxVersion.Bugfix.ShouldBe(0);
+            dependency.MaxVersion.Inclusive.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -176,37 +176,35 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
 
             var dependency = XmlDependencyConverter.Convert(node);
 
-            Assert.IsNotNull(dependency.MinVersion);
-            Assert.IsNotNull(dependency.MaxVersion);
+            dependency.MinVersion.ShouldNotBeNull();
+            dependency.MaxVersion.ShouldNotBeNull();
 
-            Assert.AreEqual(1, dependency.MinVersion.Major);
-            Assert.AreEqual(0, dependency.MinVersion.Minor);
-            Assert.AreEqual(0, dependency.MinVersion.Bugfix);
+            dependency.MinVersion.Major.ShouldBe(1);
+            dependency.MinVersion.Minor.ShouldBe(0);
+            dependency.MinVersion.Bugfix.ShouldBe(0);
 
-            Assert.AreEqual(2, dependency.MaxVersion.Major);
-            Assert.AreEqual(0, dependency.MaxVersion.Minor);
-            Assert.AreEqual(0, dependency.MaxVersion.Bugfix);
+            dependency.MaxVersion.Major.ShouldBe(2);
+            dependency.MaxVersion.Minor.ShouldBe(0);
+            dependency.MaxVersion.Bugfix.ShouldBe(0);
 
-            Assert.IsFalse(dependency.MinVersion.Inclusive);
-            Assert.IsFalse(dependency.MaxVersion.Inclusive);
+            dependency.MinVersion.Inclusive.ShouldBeFalse();
+            dependency.MaxVersion.Inclusive.ShouldBeFalse();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void VersionConversion_Ranges_MissingBracesAtBeginning_ThrowsException()
         {
             var node = CreateXmlNode("packageX", "1.0, 2.0)");
 
-            XmlDependencyConverter.Convert(node);
+            Should.Throw<ArgumentException>(() => XmlDependencyConverter.Convert(node));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void VersionConversion_Ranges_MissingBracesOnEnd_ThrowsException()
         {
             var node = CreateXmlNode("packageX", "(1.0, 2.0");
 
-            XmlDependencyConverter.Convert(node);
+            Should.Throw<ArgumentException>(() => XmlDependencyConverter.Convert(node));
         }
 
         private static XmlElement CreateXmlNode(string id, string version)
