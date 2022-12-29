@@ -2,8 +2,18 @@
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Parser for the .nuspec dependency versions.
+    /// </summary>
     public static class NuspecVersionParser
     {
+        /// <summary>
+        /// Parses the <see cref="NuspecDependency"/> version.
+        /// </summary>
+        /// <param name="nuspecDependency">Target <see cref="NuspecDependency"/>.</param>
+        /// <param name="versionStringValue">Target version as <see cref="string"/>.</param>
+        /// <returns><see cref="NuspecDependency"/> with version information.</returns>
+        /// <exception cref="ArgumentException">Formatting error in the target version <see cref="string"/>"/>.</exception>
         public static NuspecDependency Parse(NuspecDependency nuspecDependency, string versionStringValue)
         {
             // Parse Version
@@ -13,7 +23,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 {
                     throw new ArgumentException();
                 }
-      
+
                 var rangeParts = versionStringValue.Split(new[] {","}, StringSplitOptions.None);
 
                 // Left Part

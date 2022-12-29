@@ -5,10 +5,16 @@ using System.Xml;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Parser for the package reference file.
+    /// </summary>
     public class PackagesParser
     {
-        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PackagesParser"/> class.
+        /// </summary>
+        /// <param name="packageConfigFile">Optional parameter for the package configuration file path.</param>
+        /// <exception cref="ArgumentException">Package configuration file not found.</exception>
         public PackagesParser(string packageConfigFile = null)
         {
             if (!File.Exists(packageConfigFile) || packageConfigFile == null)
@@ -18,6 +24,11 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             Parse(packageConfigFile);
         }
+
+        /// <summary>
+        /// List of package dependencies.
+        /// </summary>
+        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
 
         private void Parse(string packageConfigFile)
         {
@@ -36,7 +47,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             {
                 var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
-                this.Dependencies.Add(nuspecDependency);
+                Dependencies.Add(nuspecDependency);
             }
         }
     }

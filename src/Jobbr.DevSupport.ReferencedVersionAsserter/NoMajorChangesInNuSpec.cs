@@ -1,11 +1,19 @@
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Rule for disallowing major version changes.
+    /// </summary>
     public class NoMajorChangesInNuSpec : WildCharNuspecRuleBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NoMajorChangesInNuSpec"/> class.
+        /// </summary>
+        /// <param name="packageName">Target package name.</param>
         public NoMajorChangesInNuSpec(string packageName) : base(packageName)
         {
         }
 
+        /// <inheritdoc/>
         protected override bool Validate(NuspecDependency nuspecDependency, NuspecDependency packageDependency, out string message)
         {
             // No Max => major updates are allowed

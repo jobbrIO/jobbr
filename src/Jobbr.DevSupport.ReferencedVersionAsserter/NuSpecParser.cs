@@ -5,10 +5,16 @@ using System.Xml;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Parser for the .nuspec file.
+    /// </summary>
     public class NuspecParser
     {
-        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NuspecParser"/> class.
+        /// </summary>
+        /// <param name="nuspecFile">Optional parameter for specifying the name of the .nuspec file.</param>
+        /// <exception cref="ArgumentException">.nuspec file not found.</exception>
         public NuspecParser(string nuspecFile = null)
         {
             if (!File.Exists(nuspecFile) || nuspecFile == null)
@@ -18,6 +24,11 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             Parse(nuspecFile);
         }
+
+        /// <summary>
+        /// List of dependencies parsed from the file.
+        /// </summary>
+        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
 
         private void Parse(string nuspecFile)
         {
@@ -38,7 +49,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 {
                     var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
-                    this.Dependencies.Add(nuspecDependency);
+                    Dependencies.Add(nuspecDependency);
                 }
             }
 
@@ -48,7 +59,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 {
                     var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
-                    this.Dependencies.Add(nuspecDependency);
+                    Dependencies.Add(nuspecDependency);
                 }
             }
 
@@ -58,7 +69,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
                 {
                     var nuspecDependency = XmlDependencyConverter.Convert(dependencyNode);
 
-                    this.Dependencies.Add(nuspecDependency);
+                    Dependencies.Add(nuspecDependency);
                 }
             }
         }

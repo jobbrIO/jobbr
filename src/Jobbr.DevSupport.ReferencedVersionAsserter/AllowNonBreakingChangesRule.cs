@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Jobbr.DevSupport.ReferencedVersionAsserter
+﻿namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Rule for allowing non-breaking changes.
+    /// </summary>
     public class AllowNonBreakingChangesRule : WildCharNuspecRuleBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AllowNonBreakingChangesRule"/> class.
+        /// </summary>
+        /// <param name="packageName">Name of the validation target package.</param>
         public AllowNonBreakingChangesRule(string packageName) : base(packageName)
         {
         }
 
+        /// <inheritdoc/>
         protected override bool Validate(NuspecDependency nuspecDependency, NuspecDependency nuConfigPackage, out string message)
         {
             var specMin = nuspecDependency.MinVersion;

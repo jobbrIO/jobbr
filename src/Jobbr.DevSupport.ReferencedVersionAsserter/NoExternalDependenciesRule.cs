@@ -3,8 +3,12 @@ using System.Linq;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Rule for disallowing external dependencies.
+    /// </summary>
     public class NoExternalDependenciesRule : IAssertionRule
     {
+        /// <inheritdoc/>
         public bool Validate(List<NuspecDependency> nuspecDependencies, List<NuspecDependency> packageDependencies, out string message)
         {
             if (nuspecDependencies == null || !nuspecDependencies.Any())

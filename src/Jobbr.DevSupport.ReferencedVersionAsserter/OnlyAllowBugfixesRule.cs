@@ -1,15 +1,19 @@
 ﻿namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Rule for making sure that dependencies to component models only allow bugfix releases that are considered as MSIL compliant.
+    /// </summary>
     public class OnlyAllowBugfixesRule : WildCharNuspecRuleBase
     {
         /// <summary>
-        /// This rule makes sure that dependencies to Component models only allow BugFix releases that are considered as MSIL compilant
+        /// Initializes a new instance of the <see cref="OnlyAllowBugfixesRule"/> class.
         /// </summary>
-        /// <param name="packageName"></param>
+        /// <param name="packageName">Target package name.</param>
         public OnlyAllowBugfixesRule(string packageName) : base (packageName)
         {
         }
 
+        /// <inheritdoc/>
         protected override bool Validate(NuspecDependency nuspecDependency, NuspecDependency nuConfigPackage, out string message)
         {
             var specMin = nuspecDependency.MinVersion;
