@@ -19,12 +19,12 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             // Parse Version
             if (versionStringValue.Contains(","))
             {
-                if(!((versionStringValue.StartsWith("[") || versionStringValue.StartsWith("(")) && (versionStringValue.EndsWith("]") || versionStringValue.EndsWith(")"))))
+                if (!((versionStringValue.StartsWith("[") || versionStringValue.StartsWith("(")) && (versionStringValue.EndsWith("]") || versionStringValue.EndsWith(")"))))
                 {
                     throw new ArgumentException();
                 }
 
-                var rangeParts = versionStringValue.Split(new[] {","}, StringSplitOptions.None);
+                var rangeParts = versionStringValue.Split(new[] { "," }, StringSplitOptions.None);
 
                 // Left Part
                 if (!string.IsNullOrWhiteSpace(rangeParts[0]) && rangeParts[0].Length > 1)
@@ -46,7 +46,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             }
             else
             {
-                // [1.0]	x == 1.0	Exact version match
+                // [1.0]   x == 1.0   Exact version match
                 if (versionStringValue.StartsWith("[") && versionStringValue.EndsWith("]"))
                 {
                     var exactVersion = CreateVersion(versionStringValue.Substring(1, versionStringValue.Length - 2));
@@ -72,15 +72,15 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         private static NuspecVersion CreateVersion(string versionStringValue)
         {
             // Filter PreTags
-            var tagSplit = versionStringValue.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
+            var tagSplit = versionStringValue.Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
 
-            var versionParts = tagSplit[0].Split(new[] {"."}, StringSplitOptions.RemoveEmptyEntries);
+            var versionParts = tagSplit[0].Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
 
             try
             {
-                var major = versionParts.Length >= 1 ? Int32.Parse(versionParts[0]) : 0;
-                var minor = versionParts.Length >= 2 ? Int32.Parse(versionParts[1]) : 0;
-                var bugfix = versionParts.Length == 3 ? Int32.Parse(versionParts[2]) : 0;
+                var major = versionParts.Length >= 1 ? int.Parse(versionParts[0]) : 0;
+                var minor = versionParts.Length >= 2 ? int.Parse(versionParts[1]) : 0;
+                var bugfix = versionParts.Length == 3 ? int.Parse(versionParts[2]) : 0;
 
                 var exactVersion = new NuspecVersion() { Major = major, Minor = minor, Bugfix = bugfix };
 

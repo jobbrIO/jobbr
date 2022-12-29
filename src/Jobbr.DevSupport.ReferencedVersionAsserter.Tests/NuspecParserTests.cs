@@ -36,7 +36,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter.Tests
             loader.Dependencies[0].MinVersion.Major.ShouldBe(3);
             loader.Dependencies[0].MaxVersion.Major.ShouldBe(4);
         }
-        
+
         [TestMethod]
         public void SingleGroupedDependency_WhenLoaded_Counted()
         {

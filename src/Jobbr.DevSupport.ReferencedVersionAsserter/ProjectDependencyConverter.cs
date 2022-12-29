@@ -35,7 +35,11 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             }
 
             var versionStringValue = versionString.Value;
-            var nuspecDependency = new NuspecDependency { Name = include.Value, Version = versionStringValue };
+            var nuspecDependency = new NuspecDependency
+            {
+                Name = include.Value,
+                Version = versionStringValue
+            };
 
             return NuspecVersionParser.Parse(nuspecDependency, versionStringValue);
         }

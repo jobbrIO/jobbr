@@ -9,7 +9,7 @@
         /// Initializes a new instance of the <see cref="OnlyAllowBugfixesRule"/> class.
         /// </summary>
         /// <param name="packageName">Target package name.</param>
-        public OnlyAllowBugfixesRule(string packageName) : base (packageName)
+        public OnlyAllowBugfixesRule(string packageName) : base(packageName)
         {
         }
 

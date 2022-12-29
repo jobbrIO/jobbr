@@ -33,6 +33,5 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             message = null;
             return true;
         }
-
     }
 }

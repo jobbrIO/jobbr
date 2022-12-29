@@ -5,10 +5,16 @@ using System.Xml;
 
 namespace Jobbr.DevSupport.ReferencedVersionAsserter
 {
+    /// <summary>
+    /// Project file parser.
+    /// </summary>
     public class ProjectParser
     {
-        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectParser"/> class.
+        /// </summary>
+        /// <param name="projectFile">Optional parameter for the project file filepath.</param>
+        /// <exception cref="ArgumentException">Project file not found.</exception>
         public ProjectParser(string projectFile = null)
         {
             if (!File.Exists(projectFile) || projectFile == null)
@@ -18,6 +24,11 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
 
             Parse(projectFile);
         }
+
+        /// <summary>
+        /// List of package dependencies.
+        /// </summary>
+        public List<NuspecDependency> Dependencies { get; set; } = new List<NuspecDependency>();
 
         private void Parse(string projectFile)
         {
@@ -36,7 +47,7 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
             {
                 var nuspecDependency = ProjectDependencyConverter.Convert(dependencyNode);
 
-                this.Dependencies.Add(nuspecDependency);
+                Dependencies.Add(nuspecDependency);
             }
         }
     }
