@@ -3,15 +3,12 @@
     <ProjectGuid>{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <CodeAnalysisRuleSet>..\Jobbr.DevSupport.StyleCopAnalyzer\JobbrRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!--<CodeAnalysisRuleSet>$(SolutionDir)JobbrRuleSet.ruleset</CodeAnalysisRuleSet>-->
   </PropertyGroup>
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+  <ImportGroup>
+    <Import Project="..\Jobbr.DevSupport.StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
+  </ImportGroup>
 </Project>

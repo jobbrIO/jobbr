@@ -1,20 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project>
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
-    <CodeAnalysisRuleSet>JobbrRuleSet.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)JobbrRuleSet.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
@@ -22,5 +14,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>
