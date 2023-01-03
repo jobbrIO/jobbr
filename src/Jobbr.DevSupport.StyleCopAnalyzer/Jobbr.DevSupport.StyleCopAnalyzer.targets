@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)JobbrRuleSet.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
