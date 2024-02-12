@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.ComponentModel.ArtefactStorage", "Jobbr.ComponentModel.ArtefactStorage\Jobbr.ComponentModel.ArtefactStorage.csproj", "{183F7730-D805-405C-92B4-84BB151C2371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{587402B3-DF04-4CE9-BEE1-9B214267FA83}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\GitVersion.yml = ..\GitVersion.yml
+		Jobbr.ComponentModel.ArtefactStorage.nuspec = Jobbr.ComponentModel.ArtefactStorage.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{183F7730-D805-405C-92B4-84BB151C2371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183F7730-D805-405C-92B4-84BB151C2371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183F7730-D805-405C-92B4-84BB151C2371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183F7730-D805-405C-92B4-84BB151C2371}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
