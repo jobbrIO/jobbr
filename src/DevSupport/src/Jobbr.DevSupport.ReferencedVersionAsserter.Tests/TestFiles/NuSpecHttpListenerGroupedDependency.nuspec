@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Jobbr.Execution.Forked</id>
+    <version>$version$</version>
+    <authors>Jobbr</authors>
+    <owners>Jobbr</owners>
+    <projectUrl>http://github.com/jobbrIO/jobbr-execution-forked</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/jobbrIO/jobbr-execution-forked/develop/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Jobbr is a .NET JobServer</description>
+    <copyright>Copyright 2017</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="Microsoft.Owin.Host.HttpListener" version="[3,4]"/>
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\ilmerged\Jobbr.Server.ForkedExecution.dll" target="lib\net45"/>
+    <file src="..\ilmerged\Jobbr.Server.ForkedExecution.pdb" target="lib\net45"/>
+  </files>
+</package>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <dependencies>
+      <dependency id="ExactDependency" version="5.0.0"/>
+    </dependencies>
+  </metadata>
+</package>

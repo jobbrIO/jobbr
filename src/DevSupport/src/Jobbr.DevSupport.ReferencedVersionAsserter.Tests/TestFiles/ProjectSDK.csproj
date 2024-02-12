@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.0.1" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ImportGroup>
+    <Import Project="..\Jobbr.DevSupport.StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
+  </ImportGroup>
+</Project>
