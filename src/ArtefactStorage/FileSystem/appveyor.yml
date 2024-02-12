@@ -1,0 +1,47 @@
+image: Visual Studio 2022
+
+branches:
+  only:
+    - master
+    - develop
+    - /release/.*/
+    - /hotfix/.*/
+    - /feature/.*/
+    - /bugfix/.*/
+
+environment:
+  IGNORE_NORMALISATION_GIT_HEAD_MOVE: 1
+
+install:
+  - git submodule update --init --recursive
+  - choco install gitversion.portable --version 5.10.3 -y
+
+assembly_info:
+  patch: false
+
+before_build:
+  - nuget restore source/Jobbr.ArtefactStorage.FileSystem.sln
+  - ps: C:\ProgramData\chocolatey\lib\GitVersion.Portable\tools\GitVersion.exe /l console /output buildserver /updateAssemblyInfo
+
+platform: Any CPU
+configuration: Release
+
+build:
+  parallel: true
+  project: source/Jobbr.ArtefactStorage.FileSystem.sln
+
+after_build:
+  - cmd: nuget pack source\Jobbr.ArtefactStorage.FileSystem.nuspec -version "%GitVersion_SemVer%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Jobbr.ArtefactStorage.FileSystem.%GitVersion_SemVer%.nupkg"
+
+test:
+  assemblies:
+    - '**\bin\Release\Jobbr.ArtefactStorage.FileSystem.Tests.dll'
+
+deploy:
+  - provider: NuGet
+    server: https://nuget.org
+    api_key:
+      secure: 60SMVZkhtzWAeH6Mp7DT1YZlZGGG8jwOEXMH0oRhX1iQLBejg1TpaDxgN6i0RisX
+    on:
+      appveyor_repo_tag: true
