@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{C5A06ECA-ED05-42D8-986E-6709E67237EA}</ProjectGuid>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyTitle>Jobbr.Server.RavenDB</AssemblyTitle>
+    <Product>Jobbr.Server.RavenDB</Product>
+    <Copyright>Copyright © 2022</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Jobbr.ComponentModel.JobStorage" Version="1.0.1" />
+    <PackageReference Include="Jobbr.ComponentModel.Registration" Version="1.0.1" />
+    <PackageReference Include="RavenDB.Client" Version="3.5.9" />
+  </ItemGroup>
+</Project>

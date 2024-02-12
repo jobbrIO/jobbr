@@ -1,0 +1,9 @@
+next-version: 1.0.0
+legacy-semver-padding: 0
+build-metadata-padding: 0
+branches:
+  develop:
+    tag: unstable
+    mode: ContinuousDelivery
+ignore:
+  sha: []
