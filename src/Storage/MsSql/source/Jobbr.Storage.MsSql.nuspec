@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Jobbr.Storage.MsSql</id>
+    <version>$version$</version>
+    <authors>Jobbr</authors>
+    <owners>Jobbr</owners>
+    <projectUrl>https://github.com/jobbrIO/jobbr-storage-mssql</projectUrl>
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This is a storage adapter implementation for the Jobbr .NET job server to store job related information on MS SQL Servers.</description>
+    <copyright>Copyright 2023</copyright>
+    <icon>images\icon.png</icon>
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+        <dependency id="ServiceStack.OrmLite.SqlServer" version="[6.5,6.6)"/>
+        <dependency id="Jobbr.ComponentModel.Registration" version="[2.9,3.1)"/>
+        <dependency id="Jobbr.ComponentModel.JobStorage" version="[2.9,3.1)"/>
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="[6.0,6.1)" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Jobbr.Storage.MsSql\bin\$target$\netstandard2.0\Jobbr.Storage.MsSql.dll" target="lib\netstandard2.0"/>
+    <file src="Jobbr.Storage.MsSql\bin\$target$\netstandard2.0\Jobbr.Storage.MsSql.pdb" target="lib\netstandard2.0"/>
+    <file src="Jobbr.Storage.MsSql\CreateTables.sql" target=""/>
+    <file src="icon.png" target="images/"/>
+  </files>
+</package>
