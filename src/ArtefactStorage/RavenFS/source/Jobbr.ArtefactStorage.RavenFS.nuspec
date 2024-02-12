@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Jobbr.ArtefactStorage.RavenFS</id>
+    <version>$version$</version>
+    <authors>Jobbr</authors>
+    <owners>Jobbr</owners>
+    <projectUrl>https://github.com/jobbrIO/jobbr-artefactstorage-ravenfs</projectUrl>
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Stores Jobbr Artefacts in RavenDB (RavenFS).</description>
+    <copyright>Copyright 2022</copyright>
+    <icon>images\icon.png</icon>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="RavenDB.Client" version="[3.5.4,4.0.0)" />
+        <dependency id="Jobbr.ComponentModel.ArtefactStorage" version="[1,1.1)" />
+        <dependency id="Jobbr.ComponentModel.Registration" version="[1,1.1)" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Jobbr.ArtefactStorage.RavenFS/bin/Release/net462/Jobbr.ArtefactStorage.RavenFS.dll" target="lib\net462"/>
+    <file src="Jobbr.ArtefactStorage.RavenFS/bin/Release/net462/Jobbr.ArtefactStorage.RavenFS.pdb" target="lib\net462"/>
+    <file src="icon.png" target="images/"/>
+  </files>
+</package>
