@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+    <ItemGroup>
+    <PackageReference Include="Jobbr.Server" Version="3.0.0" />
+    <PackageReference Include="Jobbr.Execution.Forked" Version="3.0.0" />
+    <PackageReference Include="Jobbr.Storage.MsSql" Version="3.0.0" />
+    <PackageReference Include="Jobbr.ComponentModel.JobStorage" Version="3.0.0" />
+    <PackageReference Include="Jobbr.ComponentModel.ArtefactStorage" Version="3.0.0" />
+    <PackageReference Include="Jobbr.ComponentModel.Execution" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jobbr.Server.WebAPI\Jobbr.Server.WebAPI.csproj" />
+    <ProjectReference Include="..\Sandbox.JobRunner\Sandbox.JobRunner.csproj" />
+  </ItemGroup>
+</Project>
