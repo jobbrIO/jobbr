@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{446271F7-7880-4C71-8871-2082FB90CE86}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyTitle>Jobbr.Runtime.ForkedExecution</AssemblyTitle>
+    <Product>Jobbr.Runtime.ForkedExecution</Product>
+    <Copyright>Copyright © 2022</Copyright>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\submodules\jobbr-runtime\source\Jobbr.Runtime\Jobbr.Runtime.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="System.Text.Json" Version="6.0.7" />
+  </ItemGroup>
+  <ImportGroup>
+    <Import Project="..\submodules\devsupport\src\Jobbr.DevSupport.StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
+  </ImportGroup>
+</Project>

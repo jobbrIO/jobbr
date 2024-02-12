@@ -1,0 +1,7 @@
+[submodule "source/submodules/devsupport"]
+	path = source/submodules/devsupport
+	url = https://github.com/jobbrIO/devsupport.git
+[submodule "source/submodules/jobbr-runtime"]
+	path = source/submodules/jobbr-runtime
+	url = https://github.com/jobbrIO/jobbr-runtime
+	branch = develop
