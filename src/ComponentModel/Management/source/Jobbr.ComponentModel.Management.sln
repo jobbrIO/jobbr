@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.ComponentModel.Management", "Jobbr.ComponentModel.Management\Jobbr.ComponentModel.Management.csproj", "{44C1E5B0-5802-48FA-910E-17665587979D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{61905123-665A-40D9-A820-C0C91C6F4134}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\GitVersion.yml = ..\GitVersion.yml
+		Jobbr.ComponentModel.Management.nuspec = Jobbr.ComponentModel.Management.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44C1E5B0-5802-48FA-910E-17665587979D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C1E5B0-5802-48FA-910E-17665587979D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C1E5B0-5802-48FA-910E-17665587979D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C1E5B0-5802-48FA-910E-17665587979D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
