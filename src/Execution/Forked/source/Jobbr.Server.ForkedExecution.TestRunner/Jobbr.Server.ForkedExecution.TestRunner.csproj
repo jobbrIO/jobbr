@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{1D9A0A7D-0752-4A66-B3EF-7FC33E4AA1B6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AssemblyTitle>Jobbr.Server.ForkedExecution.TestRunner</AssemblyTitle>
+    <Company>Zuehlke Engineering</Company>
+    <Product>Jobbr.Server.ForkedExecution.TestRunner</Product>
+    <Copyright>Copyright © Zuehlke Engineering 2022</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jobbr.Runtime.ForkedExecution\Jobbr.Runtime.ForkedExecution.csproj" />
+    <ProjectReference Include="..\submodules\jobbr-runtime\source\Jobbr.Runtime\Jobbr.Runtime.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ImportGroup>
+    <Import Project="..\submodules\devsupport\src\Jobbr.DevSupport.StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
+  </ImportGroup>
+</Project>
