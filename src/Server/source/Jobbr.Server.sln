@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{3B0F0067-E652-4915-86BA-0B6595ABF789}"
+	ProjectSection(SolutionItems) = preProject
+		CustomDictionary.xml = CustomDictionary.xml
+		JobbrRuleSet.ruleset = JobbrRuleSet.ruleset
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.Server", "Jobbr.Server\Jobbr.Server.csproj", "{A45F729D-8629-4C7A-96B8-29EAA8D52919}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.Server.IntegrationTests", "Jobbr.Server.IntegrationTests\Jobbr.Server.IntegrationTests.csproj", "{304D07A5-D6D1-4F48-819E-5D28ED8755AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{13B2F939-2E3C-4145-A00B-6B6D42680598}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\GitVersion.yml = ..\GitVersion.yml
+		..\internalize_exclude.txt = ..\internalize_exclude.txt
+		Jobbr.Server.nuspec = Jobbr.Server.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{256FF5EC-6208-4EEA-8FB1-1F9E131F9644}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.DevSupport.ReferencedVersionAsserter", "submodules\devsupport\src\Jobbr.DevSupport.ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj", "{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F17D736E-BFAE-4D06-A6FA-2F61EFCF458C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.Server.UnitTests", "Jobbr.Server.UnitTests\Jobbr.Server.UnitTests.csproj", "{73B0ED2D-F2BE-4EF2-B10E-BA16CCF392EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A45F729D-8629-4C7A-96B8-29EAA8D52919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45F729D-8629-4C7A-96B8-29EAA8D52919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45F729D-8629-4C7A-96B8-29EAA8D52919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45F729D-8629-4C7A-96B8-29EAA8D52919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304D07A5-D6D1-4F48-819E-5D28ED8755AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304D07A5-D6D1-4F48-819E-5D28ED8755AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304D07A5-D6D1-4F48-819E-5D28ED8755AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304D07A5-D6D1-4F48-819E-5D28ED8755AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B0ED2D-F2BE-4EF2-B10E-BA16CCF392EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B0ED2D-F2BE-4EF2-B10E-BA16CCF392EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B0ED2D-F2BE-4EF2-B10E-BA16CCF392EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B0ED2D-F2BE-4EF2-B10E-BA16CCF392EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A} = {256FF5EC-6208-4EEA-8FB1-1F9E131F9644}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {566C76B3-8585-43FA-B324-A040A569B548}
+	EndGlobalSection
+EndGlobal
