@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.Server.WebAPI", "Jobbr.Server.WebAPI\Jobbr.Server.WebAPI.csproj", "{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.Client", "Jobbr.Client\Jobbr.Client.csproj", "{79CF40B0-F063-4CA7-826B-7C92C0BE8232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.WebAPI.Tests", "Jobbr.WebAPI.Tests\Jobbr.WebAPI.Tests.csproj", "{CB3FE911-7034-471C-A2D7-CB89842423FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DE622AEC-8921-456F-8E2E-0A459F9BDA28}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\GitVersion.yml = ..\GitVersion.yml
+		..\internalize_exclude.txt = ..\internalize_exclude.txt
+		Jobbr.Client.nuspec = Jobbr.Client.nuspec
+		Jobbr.Server.WebAPI.nuspec = Jobbr.Server.WebAPI.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.Server.WebAPI.Model", "Jobbr.Server.WebAPI.Model\Jobbr.Server.WebAPI.Model.csproj", "{A2477520-351E-4429-8F75-BE728382C2A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{7C48FCEE-D52F-40FA-B545-4A6B7794CB78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.DevSupport.ReferencedVersionAsserter", "submodules\devsupport\src\Jobbr.DevSupport.ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj", "{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sandbox", "sandbox", "{38104557-90A9-427F-9066-97BDAFF6160B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.JobServer", "Sandbox.JobServer\Sandbox.JobServer.csproj", "{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.JobRunner", "Sandbox.JobRunner\Sandbox.JobRunner.csproj", "{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CF40B0-F063-4CA7-826B-7C92C0BE8232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CF40B0-F063-4CA7-826B-7C92C0BE8232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CF40B0-F063-4CA7-826B-7C92C0BE8232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CF40B0-F063-4CA7-826B-7C92C0BE8232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3FE911-7034-471C-A2D7-CB89842423FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3FE911-7034-471C-A2D7-CB89842423FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3FE911-7034-471C-A2D7-CB89842423FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3FE911-7034-471C-A2D7-CB89842423FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2477520-351E-4429-8F75-BE728382C2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2477520-351E-4429-8F75-BE728382C2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2477520-351E-4429-8F75-BE728382C2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2477520-351E-4429-8F75-BE728382C2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A} = {7C48FCEE-D52F-40FA-B545-4A6B7794CB78}
+		{28B3BFFA-26E2-4A0E-A329-B6FD729FB981} = {38104557-90A9-427F-9066-97BDAFF6160B}
+		{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157} = {38104557-90A9-427F-9066-97BDAFF6160B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04ED53DB-99A4-4A58-95BC-1D3828CBC201}
+	EndGlobalSection
+EndGlobal
