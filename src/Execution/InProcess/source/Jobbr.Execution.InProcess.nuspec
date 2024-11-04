@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Jobbr.Execution.InProcess</id>
+    <version>$version$</version>
+    <authors>Jobbr</authors>
+    <owners>Jobbr</owners>
+    <projectUrl>http://github.com/jobbrIO/jobbr-execution-inprocess</projectUrl>
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Jobbr is a .NET JobServer</description>
+    <copyright>Copyright 2022</copyright>
+    <icon>images\icon.png</icon>
+    <dependencies>
+      <dependency id="Jobbr.ComponentModel.Registration" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Jobbr.Execution.InProcess/bin/Release/net462/Jobbr.Execution.InProcess.dll" target="lib\net45"/>
+    <file src="Jobbr.Execution.InProcess/bin/Release/net462/Jobbr.Execution.InProcess.pdb" target="lib\net45"/>
+    <file src="icon.png" target="images/"/>
+  </files>
+</package>
