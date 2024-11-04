@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jobbr.ComponentModel.Execution</id>
+    <version>$version$</version>
+    <authors>Jobbr</authors>
+    <owners>Jobbr</owners>
+    <projectUrl>http://github.com/jobbrIO/jobbr-cm-execution</projectUrl>
+    <license type="expression">GPL-3.0-only</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Component Models for Job Execution Implementations</description>
+    <copyright>Copyright 2022</copyright>
+    <icon>images\icon.png</icon>
+  </metadata>
+  <files>
+    <file src="Jobbr.ComponentModel.Execution/bin/Release/netstandard2.0/Jobbr.ComponentModel.Execution.dll" target="lib\netstandard20"/>
+    <file src="Jobbr.ComponentModel.Execution/bin/Release/netstandard2.0/Jobbr.ComponentModel.Execution.pdb" target="lib\netstandard20"/>
+    <file src="icon.png" target="images/"/>
+  </files>
+</package>
