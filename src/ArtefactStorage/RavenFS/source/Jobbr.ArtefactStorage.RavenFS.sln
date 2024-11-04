@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{CDD62573-7BA1-44C8-9EFC-7B68D886CA5B}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\GitVersion.yml = ..\GitVersion.yml
+		..\internalize_exclude.txt = ..\internalize_exclude.txt
+		Jobbr.ArtefactStorage.RavenFS.nuspec = Jobbr.ArtefactStorage.RavenFS.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.ArtefactStorage.RavenFS", "Jobbr.ArtefactStorage.RavenFS\Jobbr.ArtefactStorage.RavenFS.csproj", "{A0B35BE9-E134-4C81-9976-AC08850218D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.ArtefactStorage.RavenFS.Tests", "Jobbr.ArtefactStorage.RavenFS.Tests\Jobbr.ArtefactStorage.RavenFS.Tests.csproj", "{7E460E5D-41F8-463A-A139-38F3F5D1C1B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{88847B62-C9AE-479F-8F6A-63775BF2FF2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobbr.DevSupport.ReferencedVersionAsserter", "submodules\devsupport\src\Jobbr.DevSupport.ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj", "{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0B35BE9-E134-4C81-9976-AC08850218D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B35BE9-E134-4C81-9976-AC08850218D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B35BE9-E134-4C81-9976-AC08850218D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B35BE9-E134-4C81-9976-AC08850218D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E460E5D-41F8-463A-A139-38F3F5D1C1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E460E5D-41F8-463A-A139-38F3F5D1C1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E460E5D-41F8-463A-A139-38F3F5D1C1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E460E5D-41F8-463A-A139-38F3F5D1C1B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88847B62-C9AE-479F-8F6A-63775BF2FF2C} = {CDD62573-7BA1-44C8-9EFC-7B68D886CA5B}
+		{D7C78DBD-D440-4D0C-B9A9-AD8B7473364A} = {88847B62-C9AE-479F-8F6A-63775BF2FF2C}
+	EndGlobalSection
+EndGlobal
