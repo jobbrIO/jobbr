@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{A0B35BE9-E134-4C81-9976-AC08850218D1}</ProjectGuid>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyTitle>Jobbr.ArtefactStorage.RavenFS</AssemblyTitle>
     <Company>Zuehlke Engineering</Company>
     <Product>Jobbr.ArtefactStorage.RavenFS</Product>
@@ -18,13 +18,7 @@
     <PreBuildEvent />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="RavenDB.Client" Version="3.5.9" />
+    <PackageReference Include="RavenDB.Client" Version="4.0.11" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ComponentModel\ArtefactStorage\Jobbr.ComponentModel.ArtefactStorage.csproj" />

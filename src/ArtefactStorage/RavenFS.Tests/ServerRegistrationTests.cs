@@ -1,6 +1,8 @@
 ﻿using Jobbr.ComponentModel.Registration;
 using Jobbr.Server;
 using Jobbr.Server.Builder;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jobbr.ArtefactStorage.RavenFS.Tests
@@ -12,7 +14,7 @@ namespace Jobbr.ArtefactStorage.RavenFS.Tests
         public void RegisteredAsComponent_JobbrIsStarted_ProviderHasCorrectType()
         {
             GivenRavenFs();
-            var builder = new JobbrBuilder();
+            var builder = new JobbrBuilder(NullLoggerFactory.Instance);
             builder.Register<IJobbrComponent>(typeof(ExposeArtefactStorageProvider));
 
             builder.AddRavenFsArtefactStorage(config =>
@@ -31,7 +33,7 @@ namespace Jobbr.ArtefactStorage.RavenFS.Tests
         {
             GivenRavenFs();
 
-            var builder = new JobbrBuilder();
+            var builder = new JobbrBuilder(NullLoggerFactory.Instance);
             builder.Register<IJobbrComponent>(typeof(ExposeArtefactStorageProvider));
 
             builder.AddRavenFsArtefactStorage(config =>
@@ -39,8 +41,7 @@ namespace Jobbr.ArtefactStorage.RavenFS.Tests
                 config.FileSystem = Store.DefaultDatabase;
                 config.Url = Store.Url;
             });
-
-
+            
             using (var server = builder.Create())
             {
                 server.Start();

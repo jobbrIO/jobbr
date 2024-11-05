@@ -4,24 +4,24 @@ using System.Threading.Tasks;
 using Jobbr.ComponentModel.ArtefactStorage;
 using Jobbr.ComponentModel.ArtefactStorage.Model;
 using MimeTypes;
-using Raven.Client.FileSystem;
+using Raven.Client.Documents;
 using Raven.Json.Linq;
 
 namespace Jobbr.ArtefactStorage.RavenFS
 {
     public class RavenFsArtefactStorageProvider : IArtefactsStorageProvider
     {
-        private readonly FilesStore _filesStore;
+        private readonly DocumentStore _documentStore;
 
         public RavenFsArtefactStorageProvider(RavenFsConfiguration configuration)
         {
-            _filesStore = new FilesStore
+            _documentStore = new DocumentStore
             {
-                Url = configuration.Url,
+                Urls = new [] { configuration.Url },
                 DefaultFileSystem = configuration.FileSystem
             };
 
-            _filesStore.Initialize();
+            _documentStore.Initialize();
         }
 
         public void Save(string container, string fileName, Stream content)
@@ -31,7 +31,7 @@ namespace Jobbr.ArtefactStorage.RavenFS
 
         public async Task SaveAsync(string container, string fileName, Stream content)
         {
-            using (var session = _filesStore.OpenAsyncSession())
+            using (var session = _documentStore.OpenAsyncSession())
             {
                 var metadata = new RavenJObject
                 {
@@ -46,7 +46,7 @@ namespace Jobbr.ArtefactStorage.RavenFS
 
         public async Task<Stream> LoadAsync(string container, string fileName)
         {
-            using (var session = _filesStore.OpenAsyncSession())
+            using (var session = _documentStore.OpenAsyncSession())
             {
                 var file = await session.Query()
                     .WhereEquals("Container", container)
@@ -66,7 +66,7 @@ namespace Jobbr.ArtefactStorage.RavenFS
 
         public async Task<List<JobbrArtefact>> GetArtefactsAsync(string container)
         {
-            using (var session = _filesStore.OpenAsyncSession())
+            using (var session = _documentStore.OpenAsyncSession())
             {
                 var files = await session.Query()
                     .WhereEquals("Container", container)
