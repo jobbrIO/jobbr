@@ -34,6 +34,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.Runtime.Tests", "src\Runtime.Tests\Jobbr.Runtime.Tests.csproj", "{B06CC3DA-0547-4319-86AB-EADB45D750E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D50D4F61-5559-4762-BEBA-30E2D4169A76}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Directory.Build.props = samples\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.SampleTaskLibrary", "samples\Jobbr.SampleTaskLibrary\Jobbr.SampleTaskLibrary.csproj", "{8504FF9B-E628-412B-B8FB-AF21C0D69F5F}"
 EndProject
@@ -90,6 +93,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.JobRunner", "samples\Sandbox.JobRunner\Sandbox.JobRunner.csproj", "{C75CE4B3-EF65-45B8-A1D2-E5D5CA6F1157}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.JobServer", "samples\Sandbox.JobServer\Sandbox.JobServer.csproj", "{28B3BFFA-26E2-4A0E-A329-B6FD729FB981}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{B8555B63-D4A8-428A-9305-1BFCFFD7E78B}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		src\version.json = src\version.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
