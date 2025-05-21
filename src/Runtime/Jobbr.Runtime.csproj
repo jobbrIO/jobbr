@@ -2,11 +2,19 @@
   <PropertyGroup>
     <ProjectGuid>{237C7A31-A97F-4473-9B6A-6B5724DE35E3}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyTitle>Jobbr.Runtime</AssemblyTitle>
-    <Product>Jobbr.Runtime</Product>
-    <Copyright>Copyright © 2022</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyTitle>Jobbr.Runtime</AssemblyTitle>
+    <Product>Jobbr.Runtime</Product>
+    <PackageId>Jobbr.Runtime</PackageId>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <Copyright>Copyright © 2022-2025</Copyright>
+    <Description>Core execution engine to run Jobbr jobs</Description>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -16,17 +24,20 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.4,)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Text.Json" Version="6.0.7" />
+    <PackageReference Include="System.Text.Json" Version="[6.0.11,)" />
   </ItemGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>Jobbr.Runtime.Tests</_Parameter1>
     </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

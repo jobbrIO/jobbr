@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{9B30197B-7ABF-4C74-9733-6F4594683761}</ProjectGuid>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyTitle>Jobbr.Server.ForkedExecution</AssemblyTitle>
-    <Product>Jobbr.Server.ForkedExecution</Product>
-    <Copyright>Copyright © 2022</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Product>Jobbr.Server.ForkedExecution</Product>
+    <PackageId>Jobbr.Execution.Forked</PackageId>
+    <Description>Component to execute jobs in forked processes</Description>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <Copyright>Copyright © 2023-2025</Copyright>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -19,13 +23,16 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.4,)" />
+    <PackageReference Include="SimpleInjector" Version="[5.5.0,)" />
+    <PackageReference Include="System.Text.Json" Version="[6.0.11,)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SimpleInjector" Version="5.4.1" />
-    <PackageReference Include="System.Text.Json" Version="6.0.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ComponentModel\Execution\Jobbr.ComponentModel.Execution.csproj" />

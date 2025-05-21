@@ -1,28 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{B158F9AD-5480-4415-9BCE-8D8663C3F3C0}</ProjectGuid>
     <TargetFramework>net6.0</TargetFramework>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Product>Jobbr.Server.WebAPI</Product>
+    <PackageId>Jobbr.Server.WebAPI</PackageId>
+    <Description>Adds Rest-style API to a Jobbr-Server</Description>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <Copyright>Copyright © 2023-2025</Copyright>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <ProjectCapability Include="AspNetCore" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.4,)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SimpleInjector" Version="5.4.1" />
+    <PackageReference Include="SimpleInjector" Version="[5.5.0,)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComponentModel\Management\Jobbr.ComponentModel.Management.csproj" />
     <ProjectReference Include="..\ComponentModel\Registration\Jobbr.ComponentModel.Registration.csproj" />
     <ProjectReference Include="..\WebAPI.Model\Jobbr.Server.WebAPI.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

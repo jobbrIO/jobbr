@@ -1,16 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-        <AssemblyTitle>Jobbr.Server.UnitTests</AssemblyTitle>
-        <Company>Zuehlke Technology Group</Company>
-        <Copyright>Copyright © Zuehlke Technology Group 2022</Copyright>
-        <Product>Jobbr.Server.UnitTests</Product>
-        <Version>1.0.0.0-pre</Version>
         <OutputPath>bin\$(Configuration)\</OutputPath>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <DebugType>full</DebugType>
@@ -26,7 +18,7 @@
         <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
         <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
         <PackageReference Include="Moq" Version="4.18.4" />
-        <PackageReference Include="Shouldly" Version="4.2.1" />
+        <PackageReference Include="Shouldly" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,11 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{25384113-CD8A-4040-B079-74FFB33864BC}</ProjectGuid>
     <TargetFramework>net462</TargetFramework>
-    <AssemblyTitle>Jobbr.Execution.InMemory</AssemblyTitle>
-    <Product>Jobbr.Execution.InMemory</Product>
-    <Copyright>Copyright ©  2017</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Product>Jobbr.Execution.InMemory</Product>
+    <PackageId>Jobbr.Execution.InProcess</PackageId>
+    <Description>Jobbr is a .NET JobServer</Description>
+    <Copyright>Copyright © 2017-2025</Copyright>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -26,5 +32,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
 </Project>

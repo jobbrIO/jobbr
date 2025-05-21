@@ -1,15 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{DEA0DA38-DB0F-4EE5-9A22-A47FD338FDED}</ProjectGuid>
     <TargetFramework>net6.0</TargetFramework>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <AssemblyTitle>Jobbr.Dashboard.Backend</AssemblyTitle>
-    <Product>Jobbr.Dashboard.Backend</Product>
-    <Copyright>Copyright © 2023</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <Product>Jobbr.Dashboard.Backend</Product>
+    <PackageId>Jobbr.Dashboard</PackageId>
+    <Description>Dashboard for Jobbr</Description>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <Copyright>Copyright © 2023-2025</Copyright>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -21,13 +23,19 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NCrontab" Version="3.3.1" />
+    <PackageReference Include="Jobbr.Server.WebAPI" Version="[3.0,3.1)" />
+    <PackageReference Include="NCrontab" Version="[3.3.3,)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SharpCoreFileSystem" Version="1.0.7" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.1" />
+    <PackageReference Include="SharpCoreFileSystem" Version="[1.0.7,)" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="[6.0.2,)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dashboard-app.zip" Pack="true" PackagePath="Build" />
+    <Content Include="Jobbr.Dashboard.targets" Pack="true" PackagePath="Build" />
+    <None Include="..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComponentModel\ArtefactStorage\Jobbr.ComponentModel.ArtefactStorage.csproj" />
@@ -36,8 +44,4 @@
     <ProjectReference Include="..\ComponentModel\Registration\Jobbr.ComponentModel.Registration.csproj" />
     <ProjectReference Include="..\WebAPI\Jobbr.Server.WebAPI.csproj" />
   </ItemGroup>
-  <ImportGroup>
-    <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
-  </ImportGroup>
-  <Import Project="Jobbr.Dashboard.targets" />
 </Project>

@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{446271F7-7880-4C71-8871-2082FB90CE86}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyTitle>Jobbr.Runtime.ForkedExecution</AssemblyTitle>
-    <Product>Jobbr.Runtime.ForkedExecution</Product>
-    <Copyright>Copyright © 2022</Copyright>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Product>Jobbr.Runtime.ForkedExecution</Product>
+    <PackageId>Jobbr.Runtime.ForkedExecution</PackageId>
+    <Description>Component to execute jobs in forked processes</Description>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <Copyright>Copyright © 2022-2025</Copyright>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -19,13 +23,16 @@
     <ProjectReference Include="..\..\..\Runtime\Jobbr.Runtime.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="CommandLineParser" Version="[2.9.1,)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.4,)" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Text.Json" Version="6.0.7" />
+    <PackageReference Include="System.Text.Json" Version="[6.0.11,)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\..\..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

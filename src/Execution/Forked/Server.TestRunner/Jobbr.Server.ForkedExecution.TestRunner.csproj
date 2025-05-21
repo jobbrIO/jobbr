@@ -1,15 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{1D9A0A7D-0752-4A66-B3EF-7FC33E4AA1B6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyTitle>Jobbr.Server.ForkedExecution.TestRunner</AssemblyTitle>
-    <Company>Zuehlke Engineering</Company>
-    <Product>Jobbr.Server.ForkedExecution.TestRunner</Product>
-    <Copyright>Copyright © Zuehlke Engineering 2022</Copyright>
+    <OutputType>Exe</OutputType>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>

@@ -1,12 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{A0B35BE9-E134-4C81-9976-AC08850218D1}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyTitle>Jobbr.ArtefactStorage.FileSystem</AssemblyTitle>
-    <Company>Zuehlke Engineering</Company>
-    <Product>Jobbr.ArtefactStorage.FileSystem</Product>
-    <Copyright>Copyright © Zuehlke Engineering 2022</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Product>Jobbr.ArtefactStorage.FileSystem</Product>
+    <PackageId>Jobbr.ArtefactStorage.FileSystem</PackageId>
+    <Description>Stores Jobbr Artefacts on a File System.</Description>
+    <Authors>Jobbr</Authors>
+    <Company>Jobbr</Company>
+    <Copyright>Copyright © 2023-2025</Copyright>
+    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+    <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -26,6 +31,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\icon.png" Pack="true" PackagePath="images/" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

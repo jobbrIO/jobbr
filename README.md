@@ -1,8 +1,12 @@
 # Jobbr
 
-Jobbr is a .NET job server. It is designed to reduce artifical complexity when a job server is needed in a project. Jobbr tries to get out of your way as much as possible so that you can focus on business logic. Job implementations have no dependency to Jobbr which makes it easy to integrate Jobbr in any .NET project.
+Jobbr is a .NET job server. It is designed to reduce artificial complexity when a job server is needed in a project.
+Jobbr tries to get out of your way as much as possible so that you can focus on business logic.
+Job implementations have no dependency to Jobbr which makes it easy to integrate Jobbr in any .NET project.
 
-This repository acts as mono-repo for Jobbr to drastically reduce the required overhead in development.
+> [!IMPORTANT]
+> This mono-repo continues the development of Jobbr while drastically reducing the overhead in development.
+> All other Jobbr repositories have been merged into this repository and are now obsolete.
 
 ## Main Features
 
@@ -23,7 +27,8 @@ The best way to get started is to check out the [demo repo](https://github.com/j
 
 ## Implementing a job
 
-Good news! All your C#-Code is compatible with jobbr as long as the CLR-type can be instantiated and has at least a public `Run()`- Method.
+Good news!
+All your C#-Code is compatible with jobbr as long as the CLR-type can be instantiated and has at least a public `Run()`- Method.
 
 ```c#
 public class SampleJob
@@ -54,12 +59,11 @@ jobbrBuilder.AddJobs(repo =>
         .WithTrigger(DateTime.UtcNow.AddHours(2)) /* run once in two hours */
         .WithTrigger("* * * * *"); /* run every minute */
 });
-
 ```
 
 # License
 
-This software is licenced under GPLv3. See [LICENSE](LICENSE), please see the related licences of 3rd party libraries below.
+This software is licenced under GPLv3, see the [LICENSE](LICENSE) file for more details.
 
 ## Credits
 
