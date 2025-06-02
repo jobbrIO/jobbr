@@ -44,4 +44,5 @@
     <ProjectReference Include="..\ComponentModel\Registration\Jobbr.ComponentModel.Registration.csproj" />
     <ProjectReference Include="..\WebAPI\Jobbr.Server.WebAPI.csproj" />
   </ItemGroup>
+  <Import Project="Jobbr.Dashboard.targets" />
 </Project>
