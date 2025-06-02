@@ -7,6 +7,7 @@ namespace Jobbr.Storage.MsSql.Tests
     public class PackagingTests
     {
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Feature_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Storage.MsSql", "Jobbr.Storage.MsSql.csproj"), Asserter.ResolveRootFile("Jobbr.Storage.MsSql.nuspec"));

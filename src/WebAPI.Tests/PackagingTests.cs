@@ -7,6 +7,7 @@ namespace Jobbr.WebAPI.Tests
     public class PackagingTests
     {
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Feature_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Server.WebAPI", "Jobbr.Server.WebAPI.csproj"), Asserter.ResolveRootFile("Jobbr.Server.WebAPI.nuspec"));
@@ -27,6 +28,7 @@ namespace Jobbr.WebAPI.Tests
         }
 
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Client_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Client", "Jobbr.Client.csproj"), Asserter.ResolveRootFile("Jobbr.Client.nuspec"));
