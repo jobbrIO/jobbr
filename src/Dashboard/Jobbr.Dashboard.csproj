@@ -25,7 +25,7 @@
   <ItemGroup>
     <PackageReference Include="Jobbr.Server.WebAPI" Version="[3.0,3.1)" />
     <PackageReference Include="NCrontab" Version="[3.3.3,)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
