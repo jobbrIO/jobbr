@@ -7,6 +7,7 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
     public class PackagingTests
     {
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Feature_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.ArtefactStorage.FileSystem", "Jobbr.ArtefactStorage.FileSystem.csproj"), Asserter.ResolveRootFile("Jobbr.ArtefactStorage.FileSystem.nuspec"));

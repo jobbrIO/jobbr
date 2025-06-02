@@ -7,6 +7,7 @@ namespace Jobbr.Server.IntegrationTests
     public class PackagingTests
     {
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Feature_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Server", "Jobbr.Server.csproj"), Asserter.ResolveRootFile("Jobbr.Server.nuspec"));

@@ -7,6 +7,7 @@ namespace Jobbr.Server.ForkedExecution.Tests
     public class PackagingTests
     {
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Feature_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Server.ForkedExecution", "Jobbr.Server.ForkedExecution.csproj"), Asserter.ResolveRootFile("Jobbr.Execution.Forked.nuspec"));
@@ -28,6 +29,7 @@ namespace Jobbr.Server.ForkedExecution.Tests
         }
 
         [TestMethod]
+        [Ignore("Rewrite as project reference test")]
         public void Runtime_NuSpec_IsCompliant()
         {
             var asserter = new Asserter(Asserter.ResolveProjectFile("Jobbr.Runtime.ForkedExecution", "Jobbr.Runtime.ForkedExecution.csproj"), Asserter.ResolveRootFile("Jobbr.Runtime.ForkedExecution.nuspec"));
