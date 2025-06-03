@@ -23,6 +23,8 @@
   <ItemGroup>
     <None Include="..\icon.png" Pack="true" PackagePath="images/" />
     <None Include="..\WebAPI\README.md" Pack="true" PackagePath="/" />
+    <BuildOutputInPackage Include="$(OutputPath)Jobbr.Server.WebAPI.Model.dll" />
+    <BuildOutputInPackage Include="$(OutputPath)Jobbr.Server.WebAPI.Model.pdb" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
