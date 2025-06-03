@@ -14,18 +14,15 @@
     <NoWarn>1701;1702;1591;SA1600</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.9.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.9.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Server\Jobbr.Server.csproj" />
     <ProjectReference Include="..\DevSupport\ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Moq" Version="4.18.4" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

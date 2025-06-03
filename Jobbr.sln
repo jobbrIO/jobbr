@@ -24,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevSupport", "DevSupport", "{F7768017-C019-4C3D-A437-B5267C50BD15}"
 	ProjectSection(SolutionItems) = preProject
 		src\DevSupport\Directory.Build.props = src\DevSupport\Directory.Build.props
+		src\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets = src\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets
+		src\DevSupport\StyleCopAnalyzer\JobbrRuleSet.ruleset = src\DevSupport\StyleCopAnalyzer\JobbrRuleSet.ruleset
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobbr.DevSupport.GitJuggler", "src\DevSupport\GitJuggler\Jobbr.DevSupport.GitJuggler.csproj", "{D3E0EFEA-A9A7-4038-988C-9B72630790EE}"

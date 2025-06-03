@@ -14,9 +14,10 @@
     <NoWarn>1701;1702;1591;SA1600</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.9.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.9.1" />
+    <PackageReference Include="Shouldly" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ComponentModel\ArtefactStorage\Jobbr.ComponentModel.ArtefactStorage.csproj" />
@@ -25,13 +26,6 @@
     <ProjectReference Include="..\..\Server\Jobbr.Server.csproj" />
     <ProjectReference Include="..\MsSql\Jobbr.Storage.MsSql.csproj" />
     <ProjectReference Include="..\..\DevSupport\ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.8.0" />
-    <PackageReference Include="Shouldly" Version="4.3.0" />
-    <PackageReference Include="System.Memory" Version="4.5.5" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
