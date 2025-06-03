@@ -1,19 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{237C7A31-A97F-4473-9B6A-6B5724DE35E3}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputPath>bin\$(Configuration)\</OutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyTitle>Jobbr.Runtime</AssemblyTitle>
-    <Product>Jobbr.Runtime</Product>
+    <IsPackable>false</IsPackable>
     <PackageId>Jobbr.Runtime</PackageId>
+    <Description>Core execution engine to run Jobbr jobs</Description>
     <Authors>Jobbr</Authors>
     <Company>Jobbr</Company>
+    <Copyright>Copyright © 2022-2025</Copyright>
     <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
-    <Copyright>Copyright © 2022-2025</Copyright>
-    <Description>Core execution engine to run Jobbr jobs</Description>
     <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
