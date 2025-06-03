@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <Product>Jobbr.ComponentModel.ArtefactStorage</Product>
     <PackageId>Jobbr.ComponentModel.ArtefactStorage</PackageId>
     <Description>Component Models for implementing JobStorage-Providers</Description>
-    <Authors>Jobbr</Authors>
-    <Company>Jobbr</Company>
-    <Copyright>Copyright © 2022-2025</Copyright>
     <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
     <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

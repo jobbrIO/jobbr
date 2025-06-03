@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <Product>Jobbr.Server.WebAPI</Product>
     <PackageId>Jobbr.Server.WebAPI</PackageId>
     <Description>Adds Rest-style API to a Jobbr-Server</Description>
-    <Authors>Jobbr</Authors>
-    <Company>Jobbr</Company>
-    <Copyright>Copyright © 2023-2025</Copyright>
     <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
     <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

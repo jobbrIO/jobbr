@@ -1,26 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <Product>Jobbr.Server</Product>
     <PackagedId>Jobbr.Server</PackagedId>
     <Description>Scaffolding that manages the Jobbr server and uses other compomenents depending on the registration</Description>
-    <Authors>Jobbr</Authors>
-    <Company>Jobbr</Company>
-    <Copyright>Copyright © 2022-2025</Copyright>
     <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
     <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <PackageIcon>images\icon.png</PackageIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="[12.0.1,)" />

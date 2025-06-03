@@ -1,28 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <Product>Jobbr.Server.MsSql</Product>
     <PackageId>Jobbr.Storage.MsSql</PackageId>
     <Description>This is a storage adapter implementation for the Jobbr .NET job server to store job related information on MS SQL Servers.</Description>
-    <Authors>Jobbr</Authors>
-    <Company>Jobbr</Company>
-    <Copyright>Copyright © 2023-2025</Copyright>
     <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
     <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <PackageIcon>images\icon.png</PackageIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent />
   </PropertyGroup>
   <ItemGroup>
     <None Include="CreateTables.sql">

@@ -1,25 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <Product>Jobbr.Execution.InMemory</Product>
     <PackageId>Jobbr.Execution.InProcess</PackageId>
     <Description>Jobbr is a .NET JobServer</Description>
-    <Copyright>Copyright © 2017-2025</Copyright>
-    <Authors>Jobbr</Authors>
-    <Company>Jobbr</Company>
     <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
     <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <PackageIcon>images\icon.png</PackageIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
