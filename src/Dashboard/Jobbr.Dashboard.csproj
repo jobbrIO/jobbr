@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Product>Jobbr.Dashboard.Backend</Product>
     <PackageId>Jobbr.Dashboard</PackageId>
     <Description>Dashboard for Jobbr</Description>
@@ -21,7 +21,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SharpCoreFileSystem" Version="[1.0.7,)" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="[6.0.2,)" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="[9.0.9,)" />
+    <PackageReference Include="System.Text.Json" Version="[9.0.9,)" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dashboard-app.zip" Pack="true" PackagePath="Build" />

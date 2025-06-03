@@ -96,12 +96,11 @@ namespace Jobbr.WebAPI.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
         public void ServerAddressWithoutScheme_ShouldThrowException()
         {
             var host = $"localhost:{NextFreeTcpPort()}";
 
-            GivenRunningServerWithWebApi(host + "/path/");
+            Assert.Throws<FormatException>(() => GivenRunningServerWithWebApi(host + "/path/"));
         }
     }
 }

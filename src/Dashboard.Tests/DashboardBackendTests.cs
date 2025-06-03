@@ -63,7 +63,6 @@ namespace Jobbr.Dashboard.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void DashboardBackend_StartedTwice_RaisesException()
         {
             // Arrange
@@ -77,7 +76,8 @@ namespace Jobbr.Dashboard.Tests
             // Act
             // Assert
             host.Start();
-            host.Start();
+
+            Assert.Throws<InvalidOperationException>(() => host.Start());
         }
 
         [TestMethod]

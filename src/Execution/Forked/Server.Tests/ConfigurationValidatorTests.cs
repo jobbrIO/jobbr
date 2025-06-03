@@ -31,7 +31,6 @@ namespace Jobbr.Server.ForkedExecution.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void RunnerExecutable_IsNull_ValidationThrowsException()
         {
             // Arrange
@@ -39,11 +38,10 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunnerExecutable = null;
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void RunnerExecutable_Empty_ValidationThrowsException()
         {
             // Arrange
@@ -51,11 +49,10 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunnerExecutable = string.Empty;
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void RunnerExecutable_IsInvalidPath_ValidationThrowsException()
         {
             // Arrange
@@ -63,11 +60,10 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunnerExecutable = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "bla", "blupp.exe");
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void JobRunDirectory_IsNull_ValidationThrowsException()
         {
             // Arrange
@@ -75,11 +71,10 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunDirectory = null;
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void JobRunDirectory_Empty_ValidationThrowsException()
         {
             // Arrange
@@ -87,11 +82,10 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunDirectory = string.Empty;
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void JobRunDirectory_IsInvalidPath_ValidationThrowsException()
         {
             // Arrange
@@ -99,7 +93,7 @@ namespace Jobbr.Server.ForkedExecution.Tests
             _workingConfiguration.JobRunDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "bla");
 
             // Assert
-            _workingConfigurationValidator.Validate(_workingConfiguration);
+            Assert.Throws<ArgumentException>(() => _workingConfigurationValidator.Validate(_workingConfiguration));
         }
 
         private static ForkedExecutionConfiguration GetWorkingConfiguration()
