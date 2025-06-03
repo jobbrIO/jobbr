@@ -2,7 +2,6 @@
 
 namespace Jobbr.ComponentModel.JobStorage.Model
 {
-    [Serializable]
     public enum JobRunStates
     {
         /// <summary>
