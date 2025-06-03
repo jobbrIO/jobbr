@@ -8,7 +8,9 @@
     <Copyright>Copyright © 2017-2025</Copyright>
     <Authors>Jobbr</Authors>
     <Company>Jobbr</Company>
-    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
+    <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <PackageIcon>images\icon.png</PackageIcon>
@@ -35,5 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="images/" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>

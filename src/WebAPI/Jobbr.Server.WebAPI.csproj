@@ -8,7 +8,9 @@
     <Authors>Jobbr</Authors>
     <Company>Jobbr</Company>
     <Copyright>Copyright © 2023-2025</Copyright>
-    <PackageProjectUrl>https://github.com/jobbrIO/jobbr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jobbrIO/jobbr</RepositoryUrl>
+    <PackageProjectUrl>https://jobbr.readthedocs.io/</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <PackageIcon>images\icon.png</PackageIcon>
@@ -32,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\icon.png" Pack="true" PackagePath="images/" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
