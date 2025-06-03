@@ -16,9 +16,6 @@
     <ProjectReference Include="..\Runtime\Jobbr.Runtime.ForkedExecution.csproj" />
     <ProjectReference Include="..\..\..\Runtime\Jobbr.Runtime.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
   <ImportGroup>
     <Import Project="..\..\..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
   </ImportGroup>
