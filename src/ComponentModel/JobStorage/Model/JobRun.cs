@@ -2,7 +2,6 @@
 
 namespace Jobbr.ComponentModel.JobStorage.Model
 {
-    [Serializable]
     public class JobRun
     {
         public long Id { get; set; }
