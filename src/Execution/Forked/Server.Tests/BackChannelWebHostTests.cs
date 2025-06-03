@@ -99,7 +99,6 @@ namespace Jobbr.Server.ForkedExecution.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void BackChannel_StartedTwice_RaisesException()
         {
             // Arrange
@@ -113,7 +112,8 @@ namespace Jobbr.Server.ForkedExecution.Tests
             // Act
             // Assert
             host.Start();
-            host.Start();
+
+            Assert.Throws<InvalidOperationException>(() => host.Start());
         }
     }
 }

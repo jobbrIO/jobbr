@@ -52,7 +52,6 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void Configuration_WithEmptyDataDirectoy_ThrowsExceptionOnJobStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -62,14 +61,16 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
                 config.DataDirectory = "";
             });
 
-            using (var server = builder.Create())
+            Assert.Throws<Exception>(() =>
             {
-                server.Start();
-            }
+                using (var server = builder.Create())
+                {
+                    server.Start();
+                }
+            });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void Configuration_WithInvalidDrive_ThrowsExceptionOnJobStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -83,14 +84,16 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
                 config.DataDirectory = invalidDrives.First() + ":\\test";
             });
 
-            using (var server = builder.Create())
+            Assert.Throws<Exception>(() =>
             {
-                server.Start();
-            }
+                using (var server = builder.Create())
+                {
+                    server.Start();
+                }
+            });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void Configuration_WithInvalidPath_ThrowsExceptionOnJobStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -100,10 +103,13 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
                 config.DataDirectory = ":\\\\$^09//";
             });
 
-            using (var server = builder.Create())
+            Assert.Throws<Exception>(() =>
             {
-                server.Start();
-            }
+                using (var server = builder.Create())
+                {
+                    server.Start();
+                }
+            });
         }
 
         [TestMethod]
@@ -124,7 +130,6 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void Configuration_WithInaccessablePath_ThrowsExceptionOnJobStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -138,10 +143,13 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
                 config.DataDirectory = invalidDrives.First() + ":\\test";
             });
 
-            using (var server = builder.Create())
+            Assert.Throws<Exception>(() =>
             {
-                server.Start();
-            }
+                using (var server = builder.Create())
+                {
+                    server.Start();
+                }
+            });
         }
     }
 }

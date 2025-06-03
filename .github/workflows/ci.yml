@@ -23,8 +23,6 @@ jobs:
           - { name: Windows, os: windows-2025 }
           - { name: macOS x64, os: macos-13 }
         dotnet:
-          - { name: .NET 6, version: "6.0.x" }
-          - { name: .NET 7, version: "7.0.x" }
           - { name: .NET 8, version: "8.0.x" }
           - { name: .NET 9, version: "9.0.x" }
           - { name: .NET 10, version: "10.0.x" }
@@ -72,20 +70,20 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Install Docker on MacOS
-        if: runner.os == 'macOS' && matrix.dotnet.name == '.NET 6'
+        if: runner.os == 'macOS' && matrix.dotnet.name == '.NET 8'
         run: |
           brew install colima
           brew install docker --formula
           colima start
       - name: Install SQL Server on Linux or MacOS
-        if: runner.os != 'Windows' && matrix.dotnet.name == '.NET 6'
+        if: runner.os != 'Windows' && matrix.dotnet.name == '.NET 8'
         run: docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1StrongPwd!!" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
       - name: Install SQL Server on Windows
-        if: runner.os == 'Windows' && matrix.dotnet.name == '.NET 6'
+        if: runner.os == 'Windows' && matrix.dotnet.name == '.NET 8'
         run: choco install sql-server-2019 -y --params="'/Q /SUPPRESSPRIVACYSTATEMENTNOTICE /IACCEPTSQLSERVERLICENSETERMS /ACTION=Install /SkipRules=RebootRequiredCheck /FEATURES=SQLENGINE /SECURITYMODE=SQL /TCPENABLED=1 /SAPWD=1StrongPwd!!'"
 
       - name: Test Jobbr
-        if: matrix.dotnet.name == '.NET 6'
+        if: matrix.dotnet.name == '.NET 8'
         run: dotnet test --configuration Release --no-restore --logger GitHubActions
 
       - name: Pack Jobbr
@@ -98,7 +96,7 @@ jobs:
           path: publish/*nupkg
 
       - name: Publish Jobbr NuGet Packages
-        if: github.ref == 'refs/heads/master' && matrix.dotnet.name == '.NET 6' && runner.os == 'Windows'
+        if: github.ref == 'refs/heads/master' && matrix.dotnet.name == '.NET 8' && runner.os == 'Windows'
         run: |
           foreach($file in (Get-ChildItem publish -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate

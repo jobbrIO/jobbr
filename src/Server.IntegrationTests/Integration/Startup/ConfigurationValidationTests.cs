@@ -47,7 +47,6 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void ValidatorForSettings_ValidationFails_PreventsStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -58,11 +57,10 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
 
             var jobbr = builder.Create();
 
-            jobbr.Start();
+            Assert.Throws<Exception>(() => jobbr.Start());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void ValidatorForSettings_ThrowsException_PreventsStart()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -73,7 +71,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
 
             var jobbr = builder.Create();
 
-            jobbr.Start();
+            Assert.Throws<Exception>(() => jobbr.Start());
         }
 
         public class DemoComponent : IJobbrComponent

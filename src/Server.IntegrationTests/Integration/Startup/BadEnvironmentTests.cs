@@ -54,7 +54,6 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void StartingJobbr_ComponentFails_ExceptionIsThrown()
         {
             var builder = new JobbrBuilder(NullLoggerFactory.Instance);
@@ -62,7 +61,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
 
             var jobbr = builder.Create();
 
-            jobbr.Start();
+            Assert.Throws<Exception>(() => jobbr.Start());
         }
 
         private void WaitForStatusChange(Func<JobbrState> state, int timeout)
