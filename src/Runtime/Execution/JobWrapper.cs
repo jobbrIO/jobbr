@@ -14,7 +14,7 @@ namespace Jobbr.Runtime.Execution
         internal JobWrapper(ILoggerFactory loggerFactory, Action action, UserContext runtimeContext)
         {
             _logger = loggerFactory.CreateLogger<JobWrapper>();
-            
+
             _thread = new Thread(() =>
             {
                 var previousPrincipal = Thread.CurrentPrincipal;
@@ -39,12 +39,12 @@ namespace Jobbr.Runtime.Execution
             });
         }
 
+        public Exception Exception { get; private set; }
+
         internal void Start()
         {
             _thread.Start();
         }
-
-        public Exception Exception { get; private set; }
 
         internal bool WaitForCompletion()
         {

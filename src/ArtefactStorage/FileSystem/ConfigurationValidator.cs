@@ -40,9 +40,18 @@ namespace Jobbr.ArtefactStorage.FileSystem
             {
                 fi = new FileInfo(path);
             }
-            catch (ArgumentException) { }
-            catch (PathTooLongException) { }
-            catch (NotSupportedException) { }
+            catch (ArgumentException)
+            {
+                // Fail silently
+            }
+            catch (PathTooLongException)
+            {
+                // Fail silently
+            }
+            catch (NotSupportedException)
+            {
+                // Fail silently
+            }
 
             if (ReferenceEquals(fi, null))
             {

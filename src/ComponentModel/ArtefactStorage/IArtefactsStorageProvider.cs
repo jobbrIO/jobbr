@@ -7,7 +7,7 @@ namespace Jobbr.ComponentModel.ArtefactStorage
     public interface IArtefactsStorageProvider
     {
         /// <summary>
-        /// Stores a file uniquely identifyable by the container and the filename
+        /// Stores a file uniquely identifiable by the container and the filename
         /// </summary>
         /// <param name="container">Usually relates to a JobRun and contains one or multiple files</param>
         /// <param name="fileName">The original fileName that was used when creating the file</param>
@@ -19,7 +19,7 @@ namespace Jobbr.ComponentModel.ArtefactStorage
         /// </summary>
         /// <param name="container">Usually relates to a JobRun and contains one or multiple files</param>
         /// <param name="fileName">The original fileName that was used when creating the file</param>
-        /// <returns>A stream the gives access to the file-contents</returns>
+        /// <returns>A stream that gives access to the file-contents</returns>
         Stream Load(string container, string fileName);
 
         /// <summary>

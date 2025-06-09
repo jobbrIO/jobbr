@@ -1,11 +1,11 @@
-﻿using Jobbr.ComponentModel.Registration;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Jobbr.ComponentModel.Registration;
 using Jobbr.Server;
 using Jobbr.Server.Builder;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Jobbr.ArtefactStorage.FileSystem.Tests
 {
@@ -58,7 +58,7 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
 
             builder.AddFileSystemArtefactStorage(config =>
             {
-                config.DataDirectory = "";
+                config.DataDirectory = string.Empty;
             });
 
             Assert.Throws<Exception>(() =>

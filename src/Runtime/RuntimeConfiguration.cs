@@ -12,7 +12,7 @@ namespace Jobbr.Runtime
         public IList<Assembly> JobTypeSearchAssemblies { get; set; }
 
         /// <summary>
-        /// Gets ot sets own implementation of a service provider. Let the implementation also implement the <seealso cref="IConfigurableServiceProvider"/> 
+        /// Gets ot sets own implementation of a service provider. Let the implementation also implement the <seealso cref="IConfigurableServiceProvider"/>
         /// interface so that additional components for a specific jobRun can be registered
         /// </summary>
         public IServiceProvider ServiceProvider { get; set; }

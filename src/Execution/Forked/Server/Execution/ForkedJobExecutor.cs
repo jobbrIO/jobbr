@@ -25,14 +25,21 @@ namespace Jobbr.Server.ForkedExecution.Execution
         private readonly IPeriodicTimer _periodicTimer;
         private readonly IDateTimeProvider _dateTimeProvider;
 
-        private readonly List<PlannedJobRun> _plannedJobRuns = new ();
-        private readonly List<IJobRunContext> _activeContexts = new ();
+        private readonly List<PlannedJobRun> _plannedJobRuns = new();
+        private readonly List<IJobRunContext> _activeContexts = new();
 
-        private readonly object _syncRoot = new ();
+        private readonly object _syncRoot = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ForkedJobExecutor"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
+        /// <param name="jobRunContextFactory">Factory to create a job run context</param>
+        /// <param name="jobRunInformationService">Service to get job run information</param>
+        /// <param name="progressChannel">Communication channel to report the job progress</param>
+        /// <param name="periodicTimer">Timer to sync the job execution</param>
+        /// <param name="dateTimeProvider">DateTime provider to sync the job execution</param>
+        /// <param name="configuration">Job configuration</param>
         public ForkedJobExecutor(ILoggerFactory loggerFactory, IJobRunContextFactory jobRunContextFactory, IJobRunInformationService jobRunInformationService, IJobRunProgressChannel progressChannel, IPeriodicTimer periodicTimer, IDateTimeProvider dateTimeProvider, ForkedExecutionConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger<ForkedJobExecutor>();

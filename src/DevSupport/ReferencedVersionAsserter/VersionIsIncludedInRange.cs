@@ -11,7 +11,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         /// Initializes a new instance of the <see cref="VersionIsIncludedInRange"/> class.
         /// </summary>
         /// <param name="packageName">The target package name.</param>
-        public VersionIsIncludedInRange(string packageName) : base(packageName)
+        public VersionIsIncludedInRange(string packageName)
+            : base(packageName)
         {
         }
 

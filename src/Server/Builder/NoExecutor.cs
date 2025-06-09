@@ -33,6 +33,7 @@ namespace Jobbr.Server.Builder
         /// <summary>
         /// Does nothing.
         /// </summary>
+        /// <param name="newPlan">New plan for the executor</param>
         public void OnPlanChanged(List<PlannedJobRun> newPlan)
         {
         }

@@ -5,15 +5,15 @@ namespace Jobbr.Storage.MsSql.Tests
 {
     public class ExposeStorageProvider : IJobbrComponent
     {
-        internal IJobStorageProvider JobStorageProvider { get; }
-
-        public static ExposeStorageProvider Instance;
-
         public ExposeStorageProvider(IJobStorageProvider jobStorageProvider)
         {
-            JobStorageProvider = jobStorageProvider;
             Instance = this;
+            JobStorageProvider = jobStorageProvider;
         }
+
+        public static ExposeStorageProvider Instance { get; private set; }
+
+        internal IJobStorageProvider JobStorageProvider { get; }
 
         public void Dispose()
         {

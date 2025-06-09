@@ -1,9 +1,9 @@
-﻿using Jobbr.ComponentModel.ArtefactStorage;
-using Jobbr.ComponentModel.ArtefactStorage.Model;
-using MimeTypes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Jobbr.ComponentModel.ArtefactStorage;
+using Jobbr.ComponentModel.ArtefactStorage.Model;
+using MimeTypes;
 
 namespace Jobbr.ArtefactStorage.FileSystem
 {

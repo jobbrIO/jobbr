@@ -23,9 +23,9 @@ namespace Jobbr.Server.Scheduling
         private readonly IScheduledJobRunPlaner _scheduledJobRunPlanner;
         private readonly IRecurringJobRunPlaner _recurringJobRunPlanner;
         private readonly DefaultSchedulerConfiguration _schedulerConfiguration;
-        private readonly object _evaluateTriggersLock = new ();
+        private readonly object _evaluateTriggersLock = new();
 
-        private List<ScheduledPlanItem> _currentPlan = new ();
+        private List<ScheduledPlanItem> _currentPlan = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultScheduler"/> class.

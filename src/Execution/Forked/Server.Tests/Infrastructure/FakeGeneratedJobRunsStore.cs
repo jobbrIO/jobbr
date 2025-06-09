@@ -7,8 +7,8 @@ namespace Jobbr.Server.ForkedExecution.Tests.Infrastructure
 {
     public class FakeGeneratedJobRunsStore
     {
-        private readonly List<FakeJobRunStoreTuple> _store = new ();
-        private readonly object _syncRoot = new ();
+        private readonly List<FakeJobRunStoreTuple> _store = new();
+        private readonly object _syncRoot = new();
 
         /// <summary>
         /// Create a fake job run.

@@ -10,10 +10,6 @@ namespace Jobbr.Runtime.Tests
     [TestClass]
     public class JobTypeResolverTests
     {
-        private class JobInExecutingAssembly
-        {
-        }
-
         [TestMethod]
         public void TypeFullName_SearchAssemblySet_TypeFound()
         {
@@ -44,6 +40,10 @@ namespace Jobbr.Runtime.Tests
 
             Assert.IsNotNull(result);
             Assert.AreEqual(typeof(JobInExecutingAssembly), result);
+        }
+
+        private class JobInExecutingAssembly
+        {
         }
     }
 }

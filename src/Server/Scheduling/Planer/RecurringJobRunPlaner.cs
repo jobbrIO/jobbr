@@ -19,6 +19,9 @@ namespace Jobbr.Server.Scheduling.Planer
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringJobRunPlaner"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
+        /// <param name="jobbrRepository">Repository to access and update job data</param>
+        /// <param name="dateTimeProvider">DateTime provider to sync the job run</param>
         public RecurringJobRunPlaner(ILoggerFactory loggerFactory, IJobbrRepository jobbrRepository, IDateTimeProvider dateTimeProvider)
         {
             _logger = loggerFactory.CreateLogger<RecurringJobRunPlaner>();
