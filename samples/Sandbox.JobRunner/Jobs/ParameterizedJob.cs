@@ -1,5 +1,4 @@
 ﻿using System;
-using Sandbox.JobRunner.Jobs;
 
 namespace Sandbox.JobRunner.Jobs
 {

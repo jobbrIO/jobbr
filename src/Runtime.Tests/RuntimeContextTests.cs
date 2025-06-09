@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading;
@@ -211,6 +210,7 @@ namespace Jobbr.Runtime.Tests
                 }
             }
 
+            // ReSharper disable once UnusedMember.Local - Called via external assembly
             public void Run()
             {
                 lock (CallBackLock)

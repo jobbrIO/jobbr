@@ -106,7 +106,7 @@ namespace Jobbr.Server.Storage
         public void EnableTrigger(long jobId, long triggerId)
         {
             // TODO: Move this logic to the storage adapter which can implement this more efficient
-            var trigger = _jobStorageProvider.GetTriggerById(jobId, triggerId);
+            _ = _jobStorageProvider.GetTriggerById(jobId, triggerId);
 
             _jobStorageProvider.EnableTrigger(jobId, triggerId);
         }
@@ -320,7 +320,7 @@ namespace Jobbr.Server.Storage
 
             for (var i = minState; i <= maxState; i++)
             {
-                var currentState = (JobRunStates)i;
+                var currentState = i;
 
                 var jobRunsByState = GetJobRunsByState(currentState, 1, int.MaxValue);
 
@@ -419,6 +419,9 @@ namespace Jobbr.Server.Storage
 
         private bool ApplyOtherChanges(InstantTrigger fromDb, InstantTrigger updatedOne)
         {
+            _ = fromDb;
+            _ = updatedOne;
+
             _logger.LogWarning("Cannot change an instant trigger!");
 
             return false;

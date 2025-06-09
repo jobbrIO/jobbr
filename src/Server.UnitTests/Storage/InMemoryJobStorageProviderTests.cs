@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Jobbr.ComponentModel.JobStorage;
@@ -400,7 +399,7 @@ namespace Jobbr.Server.UnitTests.Storage
             var allStates = Enum.GetValues<JobRunStates>();
             var jobRuns = Enumerable.Range(0, 127).Select(x => new JobRun { State = allStates[x % allStates.Length] }).ToList();
             jobRuns.ForEach(jobRun => _provider.AddJobRun(jobRun));
-            var states = new JobRunStates[] { JobRunStates.Initializing, JobRunStates.Preparing, JobRunStates.Connected };
+            var states = new[] { JobRunStates.Initializing, JobRunStates.Preparing, JobRunStates.Connected };
             var statesCount = jobRuns.Count(jobRun => states.Contains(jobRun.State));
 
             // Act

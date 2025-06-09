@@ -15,6 +15,8 @@ namespace Jobbr.Storage.MsSql
     public class MsSqlStorageProvider : IJobStorageProvider
     {
         private readonly OrmLiteConnectionFactory _connectionFactory;
+
+        // ReSharper disable once NotAccessedField.Local - Needs to remain alive
         private RetentionEnforcer _retentionEnforcer;
 
         public MsSqlStorageProvider(JobbrMsSqlConfiguration configuration)
@@ -527,7 +529,7 @@ namespace Jobbr.Storage.MsSql
                 connection.Delete<Entities.JobRun>(p => p.PlannedStartDateTimeUtc <= deadline.UtcDateTime);
 
                 // also delete orphaned scheduled/instant triggers
-                connection.Delete<Entities.Trigger>(p => (p.Type == TriggerType.InstantTrigger || p.Type == TriggerType.ScheduledTrigger) && Sql.In(p.Id, triggerIds));
+                connection.Delete<Trigger>(p => (p.Type == TriggerType.InstantTrigger || p.Type == TriggerType.ScheduledTrigger) && Sql.In(p.Id, triggerIds));
             }
         }
 
