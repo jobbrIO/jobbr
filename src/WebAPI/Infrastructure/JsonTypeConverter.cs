@@ -105,7 +105,7 @@ namespace Jobbr.Server.WebAPI.Infrastructure
             {
                 if (_possibleTypes == null)
                 {
-                    _possibleTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).Where(t => t.IsSubclassOf(typeof(TType)) || typeof(TType).IsAssignableFrom(t)).ToList();
+                    _possibleTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(GetLoadableTypes).Where(t => t.IsSubclassOf(typeof(TType)) || typeof(TType).IsAssignableFrom(t)).ToList();
                 }
             }
             catch (ReflectionTypeLoadException e)
@@ -121,6 +121,19 @@ namespace Jobbr.Server.WebAPI.Infrastructure
             }
 
             return _possibleTypes;
+        }
+
+        // See also: https://github.com/dotnet/SqlClient/issues/1930#issuecomment-2195775595
+        private static Type[] GetLoadableTypes(Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                return ex.Types.Where((Func<Type, bool>)(t => t != null)).ToArray();
+            }
         }
 
         private Type GetTypeFromJsonProperty(JsonElement jsonObject)
