@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using Jobbr.ComponentModel.JobStorage;
@@ -641,6 +642,7 @@ namespace Jobbr.Server.Storage
             return _localJobs.Count;
         }
 
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration", Justification = "Paging shouldn't materialize for the count")]
         private IEnumerable<JobTriggerBase> ApplyFiltersAndPaging(int page, int pageSize, string jobTypeFilter, string jobUniqueNameFilter, string query, IEnumerable<JobTriggerBase> enumerable, out int totalItems)
         {
             if (string.IsNullOrWhiteSpace(jobTypeFilter) == false)
@@ -672,6 +674,7 @@ namespace Jobbr.Server.Storage
             return enumerable;
         }
 
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration", Justification = "Paging shouldn't materialize for the count")]
         private IEnumerable<Job> ApplyFiltersAndPaging(int page, int pageSize, string jobTypeFilter, string jobUniqueNameFilter, string query, IEnumerable<Job> enumerable, out int totalItems)
         {
             if (string.IsNullOrWhiteSpace(jobTypeFilter) == false)
@@ -697,6 +700,7 @@ namespace Jobbr.Server.Storage
             return enumerable;
         }
 
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration", Justification = "Paging shouldn't materialize for the count")]
         private IEnumerable<JobRun> ApplyFiltersAndPaging(int page, int pageSize, string jobTypeFilter, string jobUniqueNameFilter, string query, IEnumerable<JobRun> enumerable, out int totalItems)
         {
             if (string.IsNullOrWhiteSpace(jobTypeFilter) == false)

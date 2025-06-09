@@ -7,6 +7,7 @@ using Jobbr.ComponentModel.Execution;
 using Jobbr.ComponentModel.Execution.Model;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable InconsistentlySynchronizedField
 namespace Jobbr.Server.ForkedExecution.Execution
 {
     /// <summary>

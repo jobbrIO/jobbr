@@ -211,7 +211,7 @@ namespace Jobbr.Client
         /// <inheritdoc/>
         public T UpdateTrigger<T>(long jobId, T triggerDto)
             where T : JobTriggerDtoBase
-            => UpdateTriggerAsync<T>(jobId, triggerDto).Result;
+            => UpdateTriggerAsync(jobId, triggerDto).Result;
 
         /// <inheritdoc/>
         public async Task<T> UpdateTriggerAsync<T>(long jobId, T triggerDto)

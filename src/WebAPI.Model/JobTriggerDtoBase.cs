@@ -3,7 +3,7 @@
     /// <summary>
     /// The job trigger base
     /// </summary>
-    public class JobTriggerDtoBase
+    public abstract class JobTriggerDtoBase
     {
         /// <summary>
         /// Job Trigger ID
@@ -13,7 +13,7 @@
         /// <summary>
         /// Trigger Type overwritten by derived types
         /// </summary>
-        public virtual string TriggerType { get; }
+        public abstract string TriggerType { get; }
 
         /// <summary>
         /// Determines if the Trigger is active or not

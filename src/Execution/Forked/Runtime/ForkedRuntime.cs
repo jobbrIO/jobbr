@@ -38,8 +38,8 @@ namespace Jobbr.Runtime.ForkedExecution
             _coreRuntime = new CoreRuntime(loggerFactory, runtimeConfiguration);
 
             // Wire Events to publish status
-            _coreRuntime.Initializing += (sender, args) => HandleEvent("Initializing", () => _forkedExecutionRestClient.PublishState(JobRunStates.Initializing));
-            _coreRuntime.Starting += (sender, args) => HandleEvent("Starting", () => _forkedExecutionRestClient.PublishState(JobRunStates.Processing));
+            _coreRuntime.Initializing += (sender, args) => HandleEvent("Initializing", () => _forkedExecutionRestClient?.PublishState(JobRunStates.Initializing));
+            _coreRuntime.Starting += (sender, args) => HandleEvent("Starting", () => _forkedExecutionRestClient?.PublishState(JobRunStates.Processing));
 
             _coreRuntime.Ended += (sender, args) => HandleEvent("Ended", () => CoreRuntimeOnEnded(args));
         }

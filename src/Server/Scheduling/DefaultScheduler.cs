@@ -7,6 +7,7 @@ using Jobbr.Server.Scheduling.Planer;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable InconsistentlySynchronizedField - ILogger isn't required for synchronization
 namespace Jobbr.Server.Scheduling
 {
     /// <summary>
@@ -256,7 +257,7 @@ namespace Jobbr.Server.Scheduling
 
                     foreach (var trigger in activeTriggers.Cast<RecurringTrigger>())
                     {
-                        var planResult = GetPlanResult(trigger, false);
+                        var planResult = GetPlanResult(trigger);
 
                         if (planResult.Action == PlanAction.Possible)
                         {

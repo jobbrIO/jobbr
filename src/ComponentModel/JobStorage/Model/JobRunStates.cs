@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Jobbr.ComponentModel.JobStorage.Model
+﻿namespace Jobbr.ComponentModel.JobStorage.Model
 {
     public enum JobRunStates
     {

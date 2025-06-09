@@ -5,6 +5,7 @@ namespace Jobbr.Storage.MsSql
 {
     public class RetentionEnforcer
     {
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable - Keep timer instance alive
         private readonly Timer _timer;
 
         public RetentionEnforcer(MsSqlStorageProvider storage, TimeSpan retention, TimeSpan interval)

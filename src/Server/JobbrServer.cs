@@ -125,7 +125,7 @@ namespace Jobbr.Server
             var waitForDbTask = new Task(WaitForDb, cancellationToken);
 
             var startComponents = waitForDbTask.ContinueWith(
-                t =>
+                _ =>
                     {
                         RegisterJobsFromRepository();
                         StartInternalComponents();

@@ -48,7 +48,7 @@ namespace Jobbr.Server.UnitTests.Core
             _service.UpdateProgress(jobRunId, progress);
 
             // Assert
-            _repositoryMock.Verify(rep => rep.UpdateJobRunProgress(It.Is<long>(x => x == jobRunId), It.Is<double>(x => x == progress)), Times.Once());
+            _repositoryMock.Verify(rep => rep.UpdateJobRunProgress(It.Is<long>(x => x == jobRunId), It.Is<double>(x => Math.Abs(x - progress) < float.Epsilon)), Times.Once());
         }
 
         [TestMethod]

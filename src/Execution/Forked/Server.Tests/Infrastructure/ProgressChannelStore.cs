@@ -8,7 +8,7 @@ using Jobbr.ComponentModel.Execution.Model;
 namespace Jobbr.Server.ForkedExecution.Tests.Infrastructure
 {
     /// <summary>
-    /// Acts as a IJobRunProgressChannel but stores all updates internally, with the option to wait for Given conditions to happen.
+    /// Acts as a IJobRunProgressChannel, but stores all updates internally, with the option to wait for Given conditions to happen.
     /// </summary>
     public class ProgressChannelStore : IJobRunProgressChannel
     {
@@ -17,6 +17,8 @@ namespace Jobbr.Server.ForkedExecution.Tests.Infrastructure
         private readonly Dictionary<long, List<string>> _jobRunArtefactUploads = new();
         private readonly Dictionary<long, List<Tuple<string, long>>> _jobRunPids = new();
         private readonly Dictionary<Func<Dictionary<long, List<JobRunStates>>, bool>, AutoResetEvent> _statusUpdateWaitCallBacks = new();
+
+        // ReSharper disable once CollectionNeverQueried.Local
         private readonly Dictionary<Func<Dictionary<long, List<double>>, bool>, AutoResetEvent> _progressUpdateWaitCallBacks = new();
 
         public Dictionary<long, List<JobRunStates>> AllStatusUpdates => _jobRunStatusUpdates;
