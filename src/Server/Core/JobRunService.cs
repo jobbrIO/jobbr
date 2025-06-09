@@ -25,6 +25,11 @@ namespace Jobbr.Server.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="JobRunService"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
+        /// <param name="messengerHub">A messenger aggregator</param>
+        /// <param name="jobbrRepository">Repository to access and update job data</param>
+        /// <param name="artefactsStorageProvider">Storage provider to save or load artefacts</param>
+        /// <param name="mapper">Mapper instance</param>
         public JobRunService(ILoggerFactory loggerFactory, ITinyMessengerHub messengerHub, IJobbrRepository jobbrRepository, IArtefactsStorageProvider artefactsStorageProvider, IMapper mapper)
         {
             _logger = loggerFactory.CreateLogger<JobRunService>();

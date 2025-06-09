@@ -22,6 +22,7 @@ namespace Jobbr.Server.WebAPI
         /// Add Web API to builder with configurations.
         /// </summary>
         /// <param name="builder">Target builder.</param>
+        /// <param name="config">Configuration for the WebApi to be added</param>
         public static void AddWebApi(this IJobbrBuilder builder, Action<JobbrWebApiConfiguration> config)
         {
             var customConfig = new JobbrWebApiConfiguration();

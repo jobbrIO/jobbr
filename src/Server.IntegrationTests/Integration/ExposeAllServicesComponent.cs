@@ -13,7 +13,7 @@ namespace Jobbr.Server.IntegrationTests.Integration
     /// </summary>
     public class ExposeAllServicesComponent : IJobbrComponent
     {
-        private static readonly ThreadLocal<ExposeAllServicesComponent> InstancesPerThread = new ();
+        private static readonly ThreadLocal<ExposeAllServicesComponent> InstancesPerThread = new();
 
         public ExposeAllServicesComponent(IJobbrServiceProvider serviceProvider, IArtefactsStorageProvider artefactsStorageProvider, IJobStorageProvider jobStorageProvider, IJobManagementService jobManagementService, IQueryService queryService, IServerManagementService managementService, IJobRunInformationService informationService, IJobRunProgressChannel progressChannel)
         {

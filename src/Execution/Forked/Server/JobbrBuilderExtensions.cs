@@ -17,7 +17,7 @@ namespace Jobbr.Server.ForkedExecution
         /// <param name="builder">Builder where the configuration is placed.</param>
         public static void AddForkedExecution(this IJobbrBuilder builder)
         {
-            AddForkedExecution(builder, configuration => { });
+            AddForkedExecution(builder, _ => { });
         }
 
         /// <summary>

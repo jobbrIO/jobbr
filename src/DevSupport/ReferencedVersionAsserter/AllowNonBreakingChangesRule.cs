@@ -9,7 +9,8 @@
         /// Initializes a new instance of the <see cref="AllowNonBreakingChangesRule"/> class.
         /// </summary>
         /// <param name="packageName">Name of the validation target package.</param>
-        public AllowNonBreakingChangesRule(string packageName) : base(packageName)
+        public AllowNonBreakingChangesRule(string packageName)
+            : base(packageName)
         {
         }
 

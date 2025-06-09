@@ -40,7 +40,7 @@ namespace Jobbr.Server.ForkedExecution.BackChannel
         /// <param name="jobRunId">The target job run ID.</param>
         /// <returns>A result containing a <see cref="JobRunInfoDto"/> or 404 if not found.</returns>
         [HttpGet("jobrun/{jobRunId}")]
-        public async Task<IActionResult> GetJobRunInfosAsync(long jobRunId)
+        public IActionResult GetJobRunInfos(long jobRunId)
         {
             _logger.LogDebug("ConsoleExecutor is requesting information about a job run with id '{jobRunId}'", jobRunId);
 
@@ -77,7 +77,7 @@ namespace Jobbr.Server.ForkedExecution.BackChannel
         /// <param name="dto">The payload for updating a job run with.</param>
         /// <returns>A result containing either 202(Accepted), 404(NotFound) or 400(BadRequest).</returns>
         [HttpPut("jobrun/{jobRunId}")]
-        public async Task<IActionResult> PutJobRunUpdateAsync(long jobRunId, [FromBody] JobRunUpdateDto dto)
+        public IActionResult PutJobRunUpdate(long jobRunId, [FromBody] JobRunUpdateDto dto)
         {
             _logger.LogDebug("ConsoleExecutor is trying to update job with ID '{jobRunId}'", jobRunId);
             var jobRun = _jobRunInformationService.GetByJobRunId(jobRunId);
@@ -107,7 +107,7 @@ namespace Jobbr.Server.ForkedExecution.BackChannel
         /// <returns>A result that contains NotFound(404) or Accepted(202).</returns>
         [HttpPost("jobrun/{jobRunId}/artefacts")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> AddArtefactsAsync(long jobRunId)
+        public IActionResult AddArtefacts(long jobRunId)
         {
             _logger.LogDebug("ConsoleExecutor is upload job artifacts for job with ID '{jobRunId}'", jobRunId);
             var jobRun = _jobRunInformationService.GetByJobRunId(jobRunId);

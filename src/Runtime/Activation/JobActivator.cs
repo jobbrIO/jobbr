@@ -63,7 +63,6 @@ namespace Jobbr.Runtime.Activation
                 {
                     registrar?.RegisterInstance(dep);
                 }
-
             }
             catch (Exception e)
             {

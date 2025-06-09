@@ -15,7 +15,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         /// Initializes a new instance of the <see cref="ExactVersionMatchRule"/> class.
         /// </summary>
         /// <param name="dependencyName">The name of the target dependency.</param>
-        public ExactVersionMatchRule(string dependencyName) : base(dependencyName)
+        public ExactVersionMatchRule(string dependencyName)
+            : base(dependencyName)
         {
             _dependencyName = dependencyName;
         }

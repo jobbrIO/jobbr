@@ -170,7 +170,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was added.</returns>
-        T AddTrigger<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase;
+        T AddTrigger<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Asynchronously add job trigger with job ID.
@@ -179,7 +180,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was added.</returns>
-        Task<T> AddTriggerAsync<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase;
+        Task<T> AddTriggerAsync<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Add job trigger with unique name.
@@ -188,7 +190,8 @@ namespace Jobbr.Client
         /// <param name="uniqueName">Unique name.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was added.</returns>
-        T AddTrigger<T>(string uniqueName, T triggerDto) where T : JobTriggerDtoBase;
+        T AddTrigger<T>(string uniqueName, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Asynchronously add job trigger with unique name.
@@ -197,7 +200,8 @@ namespace Jobbr.Client
         /// <param name="uniqueName">Unique name.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was added.</returns>
-        Task<T> AddTriggerAsync<T>(string uniqueName, T triggerDto) where T : JobTriggerDtoBase;
+        Task<T> AddTriggerAsync<T>(string uniqueName, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Update job trigger with job ID.
@@ -206,7 +210,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was updated.</returns>
-        T UpdateTrigger<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase;
+        T UpdateTrigger<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Asynchronously update job trigger with job ID.
@@ -215,7 +220,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerDto">Trigger data transfer object.</param>
         /// <returns>Trigger that was updated.</returns>
-        Task<T> UpdateTriggerAsync<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase;
+        Task<T> UpdateTriggerAsync<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Get job trigger with job ID.
@@ -224,7 +230,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerId">Trigger ID.</param>
         /// <returns>Trigger that was found.</returns>
-        T GetTriggerById<T>(long jobId, long triggerId) where T : JobTriggerDtoBase;
+        T GetTriggerById<T>(long jobId, long triggerId)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Asynchronously get job trigger with job ID.
@@ -233,7 +240,8 @@ namespace Jobbr.Client
         /// <param name="jobId">Job ID.</param>
         /// <param name="triggerId">Trigger ID.</param>
         /// <returns>Trigger that was found.</returns>
-        Task<T> GetTriggerByIdAsync<T>(long jobId, long triggerId) where T : JobTriggerDtoBase;
+        Task<T> GetTriggerByIdAsync<T>(long jobId, long triggerId)
+            where T : JobTriggerDtoBase;
 
         /// <summary>
         /// Get job runs by trigger ID.

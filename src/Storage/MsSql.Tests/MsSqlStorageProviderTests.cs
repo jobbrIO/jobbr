@@ -1,11 +1,11 @@
-﻿using Jobbr.ComponentModel.JobStorage.Model;
+﻿using System;
+using System.Data.SqlClient;
+using System.Linq;
+using Jobbr.ComponentModel.JobStorage.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
 using Shouldly;
-using System;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace Jobbr.Storage.MsSql.Tests
 {
@@ -31,30 +31,6 @@ namespace Jobbr.Storage.MsSql.Tests
                 DialectProvider = new SqlServer2017OrmLiteDialectProvider(),
                 CreateTablesIfNotExists = true
             });
-        }
-
-        private static void DropTablesIfExists()
-        {
-            var factory = new OrmLiteConnectionFactory(ConnectionString, new SqlServer2017OrmLiteDialectProvider());
-            var connection = factory.CreateDbConnection();
-            connection.Open();
-
-            if (connection.TableExists<Entities.JobRun>())
-            {
-                connection.DropTable<Entities.JobRun>();
-            }
-
-            if (connection.TableExists<Entities.Trigger>())
-            {
-                connection.DropTable<Entities.Trigger>();
-            }
-
-            if (connection.TableExists<Entities.Job>())
-            {
-                connection.DropTable<Entities.Job>();
-            }
-
-            connection.Close();
         }
 
         [TestMethod]
@@ -1347,6 +1323,30 @@ namespace Jobbr.Storage.MsSql.Tests
             existingTriggerFromDb = _storageProvider.GetTriggerById(job1.Id, trigger1.Id);
 
             existingTriggerFromDb.ShouldNotBeNull();
+        }
+
+        private static void DropTablesIfExists()
+        {
+            var factory = new OrmLiteConnectionFactory(ConnectionString, new SqlServer2017OrmLiteDialectProvider());
+            var connection = factory.CreateDbConnection();
+            connection.Open();
+
+            if (connection.TableExists<Entities.JobRun>())
+            {
+                connection.DropTable<Entities.JobRun>();
+            }
+
+            if (connection.TableExists<Entities.Trigger>())
+            {
+                connection.DropTable<Entities.Trigger>();
+            }
+
+            if (connection.TableExists<Entities.Job>())
+            {
+                connection.DropTable<Entities.Job>();
+            }
+
+            connection.Close();
         }
     }
 }

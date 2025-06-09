@@ -5,14 +5,15 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
 {
     public class DirectServiceAccessComponent : IJobbrComponent
     {
-        public static DirectServiceAccessComponent Instance;
-        public IArtefactsStorageProvider ArtefactStorageProvider { get; }
-
         public DirectServiceAccessComponent(IArtefactsStorageProvider artefactsStorageProvider)
         {
             Instance = this;
             ArtefactStorageProvider = artefactsStorageProvider;
         }
+
+        public static DirectServiceAccessComponent Instance { get; private set; }
+
+        public IArtefactsStorageProvider ArtefactStorageProvider { get; }
 
         public void Dispose()
         {

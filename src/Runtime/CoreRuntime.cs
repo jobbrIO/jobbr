@@ -12,6 +12,17 @@ namespace Jobbr.Runtime
 
         private readonly JobActivator _jobActivator;
 
+        public CoreRuntime(ILoggerFactory loggerFactory, RuntimeConfiguration runtimeConfiguration)
+        {
+            _loggerFactory = loggerFactory;
+            _logger = loggerFactory.CreateLogger<CoreRuntime>();
+
+            var jobTypeResolver = new JobTypeResolver(loggerFactory, runtimeConfiguration.JobTypeSearchAssemblies);
+            var serviceProvider = runtimeConfiguration.ServiceProvider ?? new DefaultServiceProvider();
+
+            _jobActivator = new JobActivator(loggerFactory, jobTypeResolver, serviceProvider);
+        }
+
         /// <summary>
         /// Raised immediately after start and indicates that the Runtime is setting up itself
         /// </summary>
@@ -42,17 +53,6 @@ namespace Jobbr.Runtime
         /// </summary>
         public event EventHandler<InfrastructureExceptionEventArgs> InfrastructureException;
 
-        public CoreRuntime(ILoggerFactory loggerFactory, RuntimeConfiguration runtimeConfiguration)
-        {
-            _loggerFactory = loggerFactory;
-            _logger = loggerFactory.CreateLogger<CoreRuntime>();
-                
-            var jobTypeResolver = new JobTypeResolver(loggerFactory, runtimeConfiguration.JobTypeSearchAssemblies);
-            var serviceProvider = runtimeConfiguration.ServiceProvider ?? new DefaultServiceProvider();
-
-            _jobActivator = new JobActivator(loggerFactory, jobTypeResolver, serviceProvider);
-        }
-
         public void Execute(ExecutionMetadata executionMetadata)
         {
             var wasSuccessful = false;
@@ -72,7 +72,7 @@ namespace Jobbr.Runtime
 
                 // Register userContext as RuntimeContext in the DI if available
                 _logger.LogDebug("Trying to register additional dependencies if supported.");
-                
+
                 #pragma warning disable 618
                 var runtimeContext = new RuntimeContext
                 {
@@ -108,7 +108,7 @@ namespace Jobbr.Runtime
                     return;
                 }
 
-                // Start 
+                // Start
                 _logger.LogDebug("Starting Task to execute the Run()-Method.");
                 OnStarting();
 
@@ -127,7 +127,7 @@ namespace Jobbr.Runtime
             }
             finally
             {
-                OnEnded(new ExecutionEndedEventArgs() { Succeeded = wasSuccessful, Exception = lastException});
+                OnEnded(new ExecutionEndedEventArgs() { Succeeded = wasSuccessful, Exception = lastException });
             }
         }
 
@@ -163,7 +163,7 @@ namespace Jobbr.Runtime
             {
                 WiringMethod?.Invoke(this, EventArgs.Empty);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogError(exception, "Recipient of the event {event} threw an exception", nameof(OnWiringMethod));
             }
