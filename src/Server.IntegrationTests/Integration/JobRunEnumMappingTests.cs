@@ -19,14 +19,14 @@ namespace Jobbr.Server.IntegrationTests.Integration
 
         public JobRunEnumMappingTests()
         {
-            var componentModelAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(a => a.Name.Contains("ComponentModel"));
+            var componentModelAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(a => a.Name != null && a.Name.Contains("ComponentModel"));
             foreach (var assemblyName in componentModelAssemblies)
             {
                 Assembly.Load(assemblyName);
             }
 
             _allComponentModelJobRunEnumTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(asm => asm.GetTypes().Where(_enumTypeMatcher));
-            _coreType = typeof(Server.Core.Models.JobRunStates);
+            _coreType = typeof(Core.Models.JobRunStates);
         }
 
         [TestMethod]

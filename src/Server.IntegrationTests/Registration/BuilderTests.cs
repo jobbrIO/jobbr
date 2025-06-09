@@ -416,11 +416,6 @@ namespace Jobbr.Server.IntegrationTests.Registration
                 throw new NotImplementedException();
             }
 
-            public void ApplyRetention(DateTimeOffset date)
-            {
-                throw new NotImplementedException();
-            }
-
             public bool IsAvailable()
             {
                 throw new NotImplementedException();

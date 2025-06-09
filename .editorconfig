@@ -45,6 +45,7 @@ dotnet_diagnostic.SA1206.severity = error # The 'static' modifier should appear 
 dotnet_diagnostic.SA1208.severity = error # Using directive for 'x' should appear before directive for 'y'
 dotnet_diagnostic.SA1214.severity = error # Readonly fields should appear before non-readonly fields
 dotnet_diagnostic.SA1309.severity = none # Field should not begin with an underscore
+dotnet_diagnostic.SA1404.severity = none # Code analysis suppression should have justification
 dotnet_diagnostic.SA1413.severity = none # Use trailing comma in multi-line initializers
 dotnet_diagnostic.SA1500.severity = error # Braces for multi-line statements should not share line
 dotnet_diagnostic.SA1501.severity = error # Statement should not be on a single line
@@ -59,3 +60,28 @@ dotnet_diagnostic.SA1623.severity = none # The property's documentation summary 
 dotnet_diagnostic.SA1629.severity = none # Documentation text should end with a period
 dotnet_diagnostic.SA1633.severity = none # The file header is missing or not located at the top of the file
 dotnet_diagnostic.SA1649.severity = error # File name should match first type name
+
+# ReSharper Rules
+resharper_redundant_using_directive_highlighting = error # Redundant using directive
+resharper_unused_parameter_local_highlighting = error # Unused parameter (private accessibility)
+resharper_redundant_name_qualifier_highlighting = error # Redundant name qualifier
+resharper_redundant_argument_default_value_highlighting = error # Redundant argument with default value
+resharper_access_to_disposed_closure_highlighting = error # Access to disposed captured variable
+resharper_unassigned_get_only_auto_property_highlighting = error # Get-only auto-property is never assigned
+resharper_redundant_type_arguments_of_method_highlighting = error # Redundant type arguments of method
+resharper_private_field_can_be_converted_to_local_variable_highlighting = error # Private field can be converted into local variable
+resharper_unused_variable_highlighting = error # Unused local variable
+resharper_redundant_cast_highlighting = error # Redundant cast
+resharper_redundant_explicit_array_creation_highlighting = error # Redundant explicit type in array creation
+resharper_compare_of_floats_by_equality_operator_highlighting = error # Equality comparison of floating point numbers
+resharper_unused_member_local_highlighting = error # Type member is never used (private accessibility)
+resharper_inconsistently_synchronized_field_highlighting = error # Inconsistent synchronization on field
+resharper_invalid_xml_doc_comment_highlighting = error # Invalid XML documentation comment
+resharper_collection_never_queried_local_highlighting = error # Collection content is never queried (private accessibility)
+resharper_static_member_in_generic_type_highlighting = error # Static field or auto-property in generic type
+resharper_possible_null_reference_exception_highlighting = error # Possible 'System.NullReferenceException'
+resharper_arrange_modifiers_order_highlighting = none # Adjust modifiers declaration order
+
+# .NET Analyzer Rules
+# TODO - https://github.com/jobbrIO/jobbr/issues/52
+dotnet_diagnostic.CA1416.severity = none # Validate platform compatibility

@@ -10,7 +10,6 @@ using Jobbr.Server.JobRegistry;
 using Jobbr.Server.Scheduling;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using SimpleInjector;
 
 namespace Jobbr.Server.Builder

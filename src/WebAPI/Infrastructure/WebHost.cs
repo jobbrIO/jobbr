@@ -82,13 +82,16 @@ namespace Jobbr.Server.WebAPI.Infrastructure
         /// <summary>
         /// Conditional dispose.
         /// </summary>
-        /// <param name="disposing">If should be disposed.</param>
+        /// <param name="disposing">It should be disposed.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                Task.Run(async () => await _webHost.StopAsync());
-                _webHost?.Dispose();
+                Task.Run(async () =>
+                {
+                    await _webHost.StopAsync();
+                    _webHost?.Dispose();
+                });
             }
         }
 

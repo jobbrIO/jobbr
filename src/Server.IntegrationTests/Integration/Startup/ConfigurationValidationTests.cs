@@ -17,7 +17,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Startup
             builder.Add<DemoSettings>(new DemoSettings());
             var isCalled = false;
 
-            builder.AddForCollection<IConfigurationValidator>(new DemoComponentValidator(s => isCalled = true));
+            builder.AddForCollection<IConfigurationValidator>(new DemoComponentValidator(_ => isCalled = true));
 
             var jobbr = builder.Create();
 
