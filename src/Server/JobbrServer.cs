@@ -34,6 +34,14 @@ namespace Jobbr.Server
         /// <summary>
         /// Initializes a new instance of the <see cref="JobbrServer"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
+        /// <param name="scheduler">Scheduler responsible for scheduling jobs</param>
+        /// <param name="jobExecutor">Executor instance to run the job</param>
+        /// <param name="jobStorageProvider">Storage provider to save or load artefacts</param>
+        /// <param name="jobbrComponents">List of Jobbr components used by the job server</param>
+        /// <param name="messageDispatcher">Communication channel to hook into the message hub</param>
+        /// <param name="configurationManager">Provider of the job server configuration</param>
+        /// <param name="registryBuilder">Builder for the job server registry</param>
         public JobbrServer(ILoggerFactory loggerFactory, IJobScheduler scheduler, IJobExecutor jobExecutor, IJobStorageProvider jobStorageProvider, List<IJobbrComponent> jobbrComponents, IMessageDispatcher messageDispatcher, IConfigurationManager configurationManager, IRegistryBuilder registryBuilder)
         {
             _logger = loggerFactory.CreateLogger<JobbrServer>();

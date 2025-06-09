@@ -34,12 +34,12 @@ public static class Program
             {
                 repo.Define("ProgressJob", "Sandbox.JobRunner.Jobs.ProgressJob")
                     .WithTrigger("* * * * *")
-                    .WithTrigger(DateTime.UtcNow.AddSeconds(30), new RunParameter {Param1 = "foo", Param2 = 1337});
+                    .WithTrigger(DateTime.UtcNow.AddSeconds(30), new RunParameter { Param1 = "foo", Param2 = 1337 });
 
                 repo.Define("ParameterizedJob", "Sandbox.JobRunner.Jobs.ParameterizedJob")
-                    .WithParameter(new RunParameter {Param1 = "default job param", Param2 = 1000})
+                    .WithParameter(new RunParameter { Param1 = "default job param", Param2 = 1000 })
                     .WithTrigger("* * * * *")
-                    .WithTrigger(DateTime.UtcNow.AddSeconds(30), new RunParameter {Param1 = "customized", Param2 = 5000});
+                    .WithTrigger(DateTime.UtcNow.AddSeconds(30), new RunParameter { Param1 = "customized", Param2 = 5000 });
 
                 repo.Define("ArtefactJob", "Sandbox.JobRunner.Jobs.JobWithArtefacts")
                     .WithTrigger("* * * * *");

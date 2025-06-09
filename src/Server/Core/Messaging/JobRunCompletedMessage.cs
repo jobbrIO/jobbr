@@ -11,7 +11,8 @@ namespace Jobbr.Server.Core.Messaging
         /// Initializes a new instance of the <see cref="JobRunCompletedMessage"/> class.
         /// </summary>
         /// <param name="sender">Message sender.</param>
-        public JobRunCompletedMessage(object sender) : base(sender)
+        public JobRunCompletedMessage(object sender)
+            : base(sender)
         {
         }
 

@@ -10,7 +10,7 @@ namespace Jobbr.Storage.MsSql
 {
     public static class OrderExtensions
     {
-        private static IDictionary<string, Expression<Func<Entities.JobRun, object>>> JobRunMapping { get; } = new Dictionary<string, Expression<Func<Entities.JobRun, object>>>
+        private static readonly IDictionary<string, Expression<Func<Entities.JobRun, object>>> JobRunMapping = new Dictionary<string, Expression<Func<Entities.JobRun, object>>>
         {
             { nameof(JobRun.Id), run => run.Id },
             { nameof(JobRun.InstanceParameters), run => run.InstanceParameters },
@@ -24,7 +24,7 @@ namespace Jobbr.Storage.MsSql
             { nameof(JobRun.State), run => run.State }
         };
 
-        private static IDictionary<string, Expression<Func<Entities.Job, object>>> JobMapping { get; } = new Dictionary<string, Expression<Func<Entities.Job, object>>>
+        private static readonly IDictionary<string, Expression<Func<Entities.Job, object>>> JobMapping = new Dictionary<string, Expression<Func<Entities.Job, object>>>
         {
             { nameof(Job.Id), run => run.Id },
             { nameof(Job.CreatedDateTimeUtc), run => run.CreatedDateTimeUtc },
@@ -34,40 +34,6 @@ namespace Jobbr.Storage.MsSql
             { nameof(Job.UniqueName), run => run.UniqueName },
             { nameof(Job.UpdatedDateTimeUtc), run => run.UpdatedDateTimeUtc },
         };
-
-        private class OrderByEntry
-        {
-            public string Field { get; set; }
-
-            public SortOrder SortOrder { get; set; }
-        }
-
-        private static List<OrderByEntry> GetOrderByEntries(string[] orderBy)
-        {
-            if (orderBy == null)
-            {
-                return new List<OrderByEntry>();
-            }
-
-            return orderBy.Select(
-                f =>
-                {
-                    var entry = new OrderByEntry();
-
-                    if (f.StartsWith("-"))
-                    {
-                        entry.SortOrder = SortOrder.Descending;
-                        entry.Field = f.Substring(1);
-                    }
-                    else
-                    {
-                        entry.SortOrder = SortOrder.Ascending;
-                        entry.Field = f;
-                    }
-
-                    return entry;
-                }).ToList();
-        }
 
         public static void Ordered(this SqlExpression<Entities.Job> sqlExpression, string[] orderBy)
         {
@@ -121,6 +87,40 @@ namespace Jobbr.Storage.MsSql
                     }
                 }
             }
+        }
+
+        private static List<OrderByEntry> GetOrderByEntries(string[] orderBy)
+        {
+            if (orderBy == null)
+            {
+                return new List<OrderByEntry>();
+            }
+
+            return orderBy.Select(
+                f =>
+                {
+                    var entry = new OrderByEntry();
+
+                    if (f.StartsWith("-"))
+                    {
+                        entry.SortOrder = SortOrder.Descending;
+                        entry.Field = f.Substring(1);
+                    }
+                    else
+                    {
+                        entry.SortOrder = SortOrder.Ascending;
+                        entry.Field = f;
+                    }
+
+                    return entry;
+                }).ToList();
+        }
+
+        private class OrderByEntry
+        {
+            public string Field { get; set; }
+
+            public SortOrder SortOrder { get; set; }
         }
     }
 }

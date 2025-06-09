@@ -39,14 +39,14 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task JobInfoEndpoint_GetExistingById_ReturnsOk()
+        public void JobInfoEndpoint_GetExistingById_ReturnsOk()
         {
             // Arrange
             var createdJobRun = _fakeStore.CreateFakeJobRun(DateTime.UtcNow);
             _jobRunInfoServiceMock.Setup(m => m.GetByJobRunId(createdJobRun.Id)).Returns(createdJobRun.JobRunInfo);
 
             // Act
-            var statusResponse = await _controller.GetJobRunInfosAsync(createdJobRun.Id);
+            var statusResponse = _controller.GetJobRunInfos(createdJobRun.Id);
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(OkObjectResult));
@@ -54,14 +54,14 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task JobInfoEndpoint_GetNonExistingById_ReturnsNotFound()
+        public void JobInfoEndpoint_GetNonExistingById_ReturnsNotFound()
         {
             // Arrange
             const int nonExistingJobRunId = 2491242;
             _jobRunInfoServiceMock.Setup(m => m.GetByJobRunId(nonExistingJobRunId)).Returns((JobRunInfo)null);
 
             // Act
-            var statusResponse = await _controller.GetJobRunInfosAsync(nonExistingJobRunId);
+            var statusResponse = _controller.GetJobRunInfos(nonExistingJobRunId);
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(NotFoundResult));
@@ -69,7 +69,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task JobRunEndpoint_UpdateExisting_ReturnsAccepted()
+        public void JobRunEndpoint_UpdateExisting_ReturnsAccepted()
         {
             // Arrange
             var createdJobRun = _fakeStore.CreateFakeJobRun(DateTime.UtcNow);
@@ -77,7 +77,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
             _progressChannelStoreMock.Setup(m => m.PublishStatusUpdate(createdJobRun.Id, JobRunStates.Started));
 
             // Act
-            var statusResponse = await _controller.PutJobRunUpdateAsync(createdJobRun.Id, new JobRunUpdateDto { State = JobRunStates.Started });
+            var statusResponse = _controller.PutJobRunUpdate(createdJobRun.Id, new JobRunUpdateDto { State = JobRunStates.Started });
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(AcceptedResult));
@@ -87,7 +87,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task JobRunEndpoint_UpdateNotExisting_ReturnsNotFound()
+        public void JobRunEndpoint_UpdateNotExisting_ReturnsNotFound()
         {
             // Arrange
             const int nonExistingJobRunId = 2491242;
@@ -95,7 +95,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
             _progressChannelStoreMock.Setup(m => m.PublishStatusUpdate(It.IsAny<long>(), It.IsAny<JobRunStates>()));
 
             // Act
-            var statusResponse = await _controller.PutJobRunUpdateAsync(nonExistingJobRunId, new JobRunUpdateDto { State = JobRunStates.Started });
+            var statusResponse = _controller.PutJobRunUpdate(nonExistingJobRunId, new JobRunUpdateDto { State = JobRunStates.Started });
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(NotFoundResult));
@@ -105,14 +105,14 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task ArtefactEndpoint_SendForKnownJobRun_ReturnsAccepted()
+        public void ArtefactEndpoint_SendForKnownJobRun_ReturnsAccepted()
         {
             // Arrange
             var createdJobRun = _fakeStore.CreateFakeJobRun(DateTime.UtcNow);
             _jobRunInfoServiceMock.Setup(m => m.GetByJobRunId(createdJobRun.Id)).Returns(createdJobRun.JobRunInfo);
 
             var httpContext = new DefaultHttpContext();
-            httpContext.Request.Headers.Add("Content-Type", "multipart/form-data; boundary=--THIS_STRING_SEPARATES");
+            httpContext.Request.Headers["Content-Type"] = "multipart/form-data; boundary=--THIS_STRING_SEPARATES";
             const string fileName = "dummy.txt";
             var file = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("This is a dummy file")), 0, 1000, "Data", fileName);
             httpContext.Request.Form = new FormCollection(new Dictionary<string, StringValues>(), new FormFileCollection { file });
@@ -120,8 +120,8 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
 
             _controller.ControllerContext = new ControllerContext(actx);
 
-            // Act;
-            var statusResponse = await _controller.AddArtefactsAsync(createdJobRun.Id);
+            // Act
+            var statusResponse = _controller.AddArtefacts(createdJobRun.Id);
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(AcceptedResult));
@@ -131,7 +131,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
         }
 
         [TestMethod]
-        public async Task ArtefactEndpoint_SendForUnknownJobRun_ReturnsNotFound()
+        public void ArtefactEndpoint_SendForUnknownJobRun_ReturnsNotFound()
         {
             // Arrange
             const int nonExistingJobRunId = 2491242;
@@ -139,7 +139,7 @@ namespace Jobbr.Server.ForkedExecution.Tests.BackChannel
             _progressChannelStoreMock.Setup(m => m.PublishArtefact(It.IsAny<long>(), It.IsAny<string>(), It.IsAny<Stream>()));
 
             // Act
-            var statusResponse = await _controller.AddArtefactsAsync(nonExistingJobRunId); // TODO fix fileupload endpoint
+            var statusResponse = _controller.AddArtefacts(nonExistingJobRunId); // TODO fix fileupload endpoint
 
             // Assert
             Assert.IsInstanceOfType(statusResponse, typeof(NotFoundResult));

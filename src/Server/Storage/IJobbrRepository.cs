@@ -18,7 +18,7 @@ namespace Jobbr.Server.Storage
         /// <param name="jobTypeFilter">Job type filter.</param>
         /// <param name="jobUniqueNameFilter">Job unique name filter.</param>
         /// <param name="query">Query.</param>
-        /// <param name="showDeleted">If deleted jobs should be included.</param>
+        /// <param name="showDeleted">If deleted, jobs should be included.</param>
         /// <param name="sort">Sort.</param>
         /// <returns>A paged list result of jobs matching the search criteria.</returns>
         PagedResult<Job> GetJobs(int page = 1, int pageSize = 50, string jobTypeFilter = null, string jobUniqueNameFilter = null, string query = null, bool showDeleted = false, params string[] sort);

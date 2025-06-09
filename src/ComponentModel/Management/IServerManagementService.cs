@@ -6,8 +6,8 @@ namespace Jobbr.ComponentModel.Management
     {
         int MaxConcurrentJobs { get; set; }
 
-        void Shutdown();
-
         DateTime StartTime { get; }
+
+        void Shutdown();
     }
 }

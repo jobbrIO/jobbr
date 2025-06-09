@@ -44,9 +44,9 @@ namespace Jobbr.Server.Storage
             { nameof(JobRun.EstimatedEndDateTimeUtc), e => e.EstimatedEndDateTimeUtc }
         };
 
-        private readonly List<JobTriggerBase> _localTriggers = new ();
-        private readonly List<Job> _localJobs = new ();
-        private readonly List<JobRun> _localJobRuns = new ();
+        private readonly List<JobTriggerBase> _localTriggers = new();
+        private readonly List<Job> _localJobs = new();
+        private readonly List<JobRun> _localJobRuns = new();
 
         /// <summary>
         /// Get job triggers by job ID.

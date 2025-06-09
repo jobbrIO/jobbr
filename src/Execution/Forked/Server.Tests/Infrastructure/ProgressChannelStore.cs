@@ -12,12 +12,12 @@ namespace Jobbr.Server.ForkedExecution.Tests.Infrastructure
     /// </summary>
     public class ProgressChannelStore : IJobRunProgressChannel
     {
-        private readonly Dictionary<long, List<JobRunStates>> _jobRunStatusUpdates = new ();
-        private readonly Dictionary<long, List<double>> _jobRunProgressUpdates = new ();
-        private readonly Dictionary<long, List<string>> _jobRunArtefactUploads = new ();
-        private readonly Dictionary<long, List<Tuple<string, long>>> _jobRunPids = new ();
-        private readonly Dictionary<Func<Dictionary<long, List<JobRunStates>>, bool>, AutoResetEvent> _statusUpdateWaitCallBacks = new ();
-        private readonly Dictionary<Func<Dictionary<long, List<double>>, bool>, AutoResetEvent> _progressUpdateWaitCallBacks = new ();
+        private readonly Dictionary<long, List<JobRunStates>> _jobRunStatusUpdates = new();
+        private readonly Dictionary<long, List<double>> _jobRunProgressUpdates = new();
+        private readonly Dictionary<long, List<string>> _jobRunArtefactUploads = new();
+        private readonly Dictionary<long, List<Tuple<string, long>>> _jobRunPids = new();
+        private readonly Dictionary<Func<Dictionary<long, List<JobRunStates>>, bool>, AutoResetEvent> _statusUpdateWaitCallBacks = new();
+        private readonly Dictionary<Func<Dictionary<long, List<double>>, bool>, AutoResetEvent> _progressUpdateWaitCallBacks = new();
 
         public Dictionary<long, List<JobRunStates>> AllStatusUpdates => _jobRunStatusUpdates;
 

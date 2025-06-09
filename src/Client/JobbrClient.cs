@@ -183,40 +183,52 @@ namespace Jobbr.Client
         }
 
         /// <inheritdoc/>
-        public T AddTrigger<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase => AddTriggerAsync(jobId, triggerDto).Result;
+        public T AddTrigger<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase
+            => AddTriggerAsync(jobId, triggerDto).Result;
 
         /// <inheritdoc/>
-        public T AddTrigger<T>(string uniqueName, T triggerDto) where T : JobTriggerDtoBase => AddTriggerAsync(uniqueName, triggerDto).Result;
+        public T AddTrigger<T>(string uniqueName, T triggerDto)
+            where T : JobTriggerDtoBase
+            => AddTriggerAsync(uniqueName, triggerDto).Result;
 
         /// <inheritdoc/>
-        public async Task<T> AddTriggerAsync<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase
+        public async Task<T> AddTriggerAsync<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase
         {
             var url = $"jobs/{jobId}/triggers";
             return await PostTriggerAsync(triggerDto, url).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public async Task<T> AddTriggerAsync<T>(string uniqueName, T triggerDto) where T : JobTriggerDtoBase
+        public async Task<T> AddTriggerAsync<T>(string uniqueName, T triggerDto)
+            where T : JobTriggerDtoBase
         {
             var url = $"jobs/{uniqueName}/triggers";
             return await PostTriggerAsync(triggerDto, url).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public T UpdateTrigger<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase => UpdateTriggerAsync<T>(jobId, triggerDto).Result;
+        public T UpdateTrigger<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase
+            => UpdateTriggerAsync<T>(jobId, triggerDto).Result;
 
         /// <inheritdoc/>
-        public async Task<T> UpdateTriggerAsync<T>(long jobId, T triggerDto) where T : JobTriggerDtoBase
+        public async Task<T> UpdateTriggerAsync<T>(long jobId, T triggerDto)
+            where T : JobTriggerDtoBase
         {
             var url = $"jobs/{jobId}/triggers/{triggerDto.Id}";
             return await PatchTriggerAsync(triggerDto, url).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
-        public T GetTriggerById<T>(long jobId, long triggerId) where T : JobTriggerDtoBase => GetTriggerByIdAsync<T>(jobId, triggerId).Result;
+        public T GetTriggerById<T>(long jobId, long triggerId)
+            where T : JobTriggerDtoBase
+            => GetTriggerByIdAsync<T>(jobId, triggerId).Result;
 
         /// <inheritdoc/>
-        public async Task<T> GetTriggerByIdAsync<T>(long jobId, long triggerId) where T : JobTriggerDtoBase
+        public async Task<T> GetTriggerByIdAsync<T>(long jobId, long triggerId)
+            where T : JobTriggerDtoBase
         {
             var url = $"jobs/{jobId}/triggers/{triggerId}";
             return await GetTrigger<T>(url).ConfigureAwait(false);
@@ -279,22 +291,26 @@ namespace Jobbr.Client
             return requestResult.StatusCode == HttpStatusCode.OK;
         }
 
-        private async Task<T> PostTriggerAsync<T>(T triggerDto, string url) where T : JobTriggerDtoBase
+        private async Task<T> PostTriggerAsync<T>(T triggerDto, string url)
+            where T : JobTriggerDtoBase
         {
             return await ExecuteDtoRequest(url, triggerDto, HttpMethod.Post).ConfigureAwait(false);
         }
 
-        private async Task<T> PatchTriggerAsync<T>(T triggerDto, string url) where T : JobTriggerDtoBase
+        private async Task<T> PatchTriggerAsync<T>(T triggerDto, string url)
+            where T : JobTriggerDtoBase
         {
             return await ExecuteDtoRequest(url, triggerDto, new HttpMethod("PATCH")).ConfigureAwait(false);
         }
 
-        private async Task<T> GetTrigger<T>(string url) where T : class
+        private async Task<T> GetTrigger<T>(string url)
+            where T : class
         {
             return await ExecuteDtoRequest<T>(url, null, HttpMethod.Get).ConfigureAwait(false);
         }
 
-        private async Task<T> ExecuteDtoRequest<T>(string url, T dto, HttpMethod httpMethod) where T : class
+        private async Task<T> ExecuteDtoRequest<T>(string url, T dto, HttpMethod httpMethod)
+            where T : class
         {
             var json = dto != null ? JsonSerializer.Serialize(dto, Options) : string.Empty;
             var request = new HttpRequestMessage(httpMethod, url);

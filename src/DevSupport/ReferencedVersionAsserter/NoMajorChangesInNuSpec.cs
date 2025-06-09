@@ -9,7 +9,8 @@ namespace Jobbr.DevSupport.ReferencedVersionAsserter
         /// Initializes a new instance of the <see cref="NoMajorChangesInNuSpec"/> class.
         /// </summary>
         /// <param name="packageName">Target package name.</param>
-        public NoMajorChangesInNuSpec(string packageName) : base(packageName)
+        public NoMajorChangesInNuSpec(string packageName)
+            : base(packageName)
         {
         }
 

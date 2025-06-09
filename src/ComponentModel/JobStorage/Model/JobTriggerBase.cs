@@ -3,7 +3,7 @@
 namespace Jobbr.ComponentModel.JobStorage.Model
 {
     /// <summary>
-    /// Base class for triggers. 
+    /// Base class for triggers.
     /// Note: Composite key contains Id and JobId property.
     /// </summary>
     public class JobTriggerBase

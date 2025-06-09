@@ -22,32 +22,6 @@ namespace Jobbr.Runtime.Execution
             _instanceParameter = instanceParameter;
         }
 
-        private object GetCastedParameterValue(string parameterName, Type targetType, string jobbrParamName, object value)
-        {
-            object castedValue;
-
-            _logger.LogInformation("Casting {jobbrParamName}-parameter to its target value '{targetType}' based on the Run()-Parameter {parameterName}", jobbrParamName, targetType, parameterName);
-
-            // Try to cast them to specific types
-            if (value == null)
-            {
-                _logger.LogDebug("The {jobbrParamName}-parameter is null - no cast needed.", jobbrParamName);
-                castedValue = null;
-            }
-            else if (targetType == typeof(object))
-            {
-                _logger.LogDebug("The {jobbrParamName}-parameter is of type 'object' - no cast needed.", jobbrParamName);
-                castedValue = value;
-            }
-            else
-            {
-                _logger.LogDebug("The {jobbrParamName}-parameter '{parameterName}' is from type '{targetType}'. Casting this value to '{targetType}'", jobbrParamName, parameterName, targetType, targetType);
-                castedValue = JsonSerializer.Deserialize(value.ToString(), targetType, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            }
-
-            return castedValue;
-        }
-
         internal JobWrapper CreateWrapper(object jobClassInstance, UserContext runtimeContext)
         {
             var runMethods = _jobType.GetMethods().Where(m => string.Equals(m.Name, "Run", StringComparison.Ordinal) && m.IsPublic).ToList();
@@ -84,7 +58,7 @@ namespace Jobbr.Runtime.Execution
                 var jobParameterValue = GetCastedParameterValue(param1Name, param1Type, "job", _jobParameter);
                 var instanceParameterValue = GetCastedParameterValue(param2Name, param2Type, "instance", _instanceParameter);
 
-                runMethodWrapper = () => { parameterizedMethod.Invoke(jobClassInstance, new[] {jobParameterValue, instanceParameterValue}); };
+                runMethodWrapper = () => { parameterizedMethod.Invoke(jobClassInstance, new[] { jobParameterValue, instanceParameterValue }); };
             }
             else
             {
@@ -106,6 +80,32 @@ namespace Jobbr.Runtime.Execution
             _logger.LogDebug("Initializing task for JobRun");
 
             return new JobWrapper(_loggerFactory, runMethodWrapper, runtimeContext);
+        }
+
+        private object GetCastedParameterValue(string parameterName, Type targetType, string jobbrParamName, object value)
+        {
+            object castedValue;
+
+            _logger.LogInformation("Casting {jobbrParamName}-parameter to its target value '{targetType}' based on the Run()-Parameter {parameterName}", jobbrParamName, targetType, parameterName);
+
+            // Try to cast them to specific types
+            if (value == null)
+            {
+                _logger.LogDebug("The {jobbrParamName}-parameter is null - no cast needed.", jobbrParamName);
+                castedValue = null;
+            }
+            else if (targetType == typeof(object))
+            {
+                _logger.LogDebug("The {jobbrParamName}-parameter is of type 'object' - no cast needed.", jobbrParamName);
+                castedValue = value;
+            }
+            else
+            {
+                _logger.LogDebug("The {jobbrParamName}-parameter '{parameterName}' is from type '{targetType}'. Casting this value to '{targetType}'", jobbrParamName, parameterName, targetType, targetType);
+                castedValue = JsonSerializer.Deserialize(value.ToString(), targetType, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            }
+
+            return castedValue;
         }
     }
 }

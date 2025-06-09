@@ -12,7 +12,8 @@ namespace Jobbr.Server.Core.Messaging
         /// </summary>
         /// <param name="sender">Message sender.</param>
         /// <param name="content">The trigger information for the message.</param>
-        public TriggerUpdatedMessage(object sender, TriggerKey content) : base(sender, content)
+        public TriggerUpdatedMessage(object sender, TriggerKey content)
+            : base(sender, content)
         {
         }
 
