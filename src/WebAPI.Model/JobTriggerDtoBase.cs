@@ -1,9 +1,15 @@
-﻿namespace Jobbr.Server.WebAPI.Model
+﻿using System.Text.Json.Serialization;
+
+namespace Jobbr.Server.WebAPI.Model
 {
     /// <summary>
     /// The job trigger base
     /// </summary>
-    public abstract class JobTriggerDtoBase
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "triggerType")]
+    [JsonDerivedType(typeof(InstantTriggerDto), typeDiscriminator: InstantTriggerDto.Type)]
+    [JsonDerivedType(typeof(RecurringTriggerDto), typeDiscriminator: RecurringTriggerDto.Type)]
+    [JsonDerivedType(typeof(ScheduledTriggerDto), typeDiscriminator: ScheduledTriggerDto.Type)]
+    public class JobTriggerDtoBase
     {
         /// <summary>
         /// Job Trigger ID
@@ -13,7 +19,7 @@
         /// <summary>
         /// Trigger Type overwritten by derived types
         /// </summary>
-        public abstract string TriggerType { get; }
+        public virtual string TriggerType => string.Empty;
 
         /// <summary>
         /// Determines if the Trigger is active or not
