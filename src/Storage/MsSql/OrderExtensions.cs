@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using Jobbr.ComponentModel.JobStorage.Model;
+using Microsoft.Data.SqlClient;
 using ServiceStack.OrmLite;
 
 namespace Jobbr.Storage.MsSql

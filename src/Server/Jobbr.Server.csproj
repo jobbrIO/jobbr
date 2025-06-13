@@ -12,13 +12,13 @@
     <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="[12.0.1,)" />
-    <PackageReference Include="FastCloner" Version="3.3.8" />
+    <PackageReference Include="AutoMapper" Version="[14.0.0,)" />
+    <PackageReference Include="FastCloner" Version="[3.3.8,)" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="[8.0.0,)" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[8.0.1,)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[8.0.3,)" />
     <PackageReference Include="NCrontab" Version="[3.3.3,)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
