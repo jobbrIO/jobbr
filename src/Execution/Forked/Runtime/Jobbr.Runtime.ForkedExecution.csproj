@@ -12,7 +12,9 @@
     <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Runtime\Jobbr.Runtime.csproj" />
+    <ProjectReference Include="..\..\..\Runtime\Jobbr.Runtime.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="[2.9.1,)" />
@@ -26,6 +28,8 @@
   <ItemGroup>
     <None Include="..\..\..\icon.png" Pack="true" PackagePath="images/" />
     <None Include="..\README.md" Pack="true" PackagePath="/" />
+    <BuildOutputInPackage Include="$(OutputPath)Jobbr.Runtime.dll" />
+    <BuildOutputInPackage Include="$(OutputPath)Jobbr.Runtime.pdb" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\..\..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />

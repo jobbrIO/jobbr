@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Execution\Forked\Runtime\Jobbr.Runtime.ForkedExecution.csproj" />
+    <ProjectReference Include="..\..\src\Runtime\Jobbr.Runtime.csproj" />
   </ItemGroup>
 </Project>
