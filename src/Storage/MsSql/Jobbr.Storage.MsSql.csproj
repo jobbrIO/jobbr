@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Product>Jobbr.Server.MsSql</Product>
     <PackageId>Jobbr.Storage.MsSql</PackageId>
     <Description>This is a storage adapter implementation for the Jobbr .NET job server to store job related information on MS SQL Servers.</Description>
@@ -21,11 +21,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="[6.1.1,)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[9.0.9,)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.8.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="[6.11,)" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="[8.8.0,)" />
     <PackageReference Include="System.Text.Json" Version="[9.0.9,)" />
   </ItemGroup>
   <ItemGroup>

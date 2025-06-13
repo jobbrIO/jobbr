@@ -99,7 +99,9 @@ namespace Jobbr.Storage.MsSql.Tests
 
             _storageProvider.AddJob(job1);
 
+#pragma warning disable CS0618 // Exception is thrown by OrmLite
             Should.Throw<SqlException>(() => _storageProvider.AddJob(job2), "SqlException should have been raised");
+#pragma warning restore CS0618
         }
 
         [TestMethod]
