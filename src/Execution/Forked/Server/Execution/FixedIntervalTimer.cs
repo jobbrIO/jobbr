@@ -18,7 +18,7 @@ namespace Jobbr.Server.ForkedExecution.Execution
         /// </summary>
         public FixedIntervalTimer()
         {
-            _timer = new Timer(state => _callback());
+            _timer = new Timer(_ => _callback?.Invoke());
         }
 
         /// <summary>

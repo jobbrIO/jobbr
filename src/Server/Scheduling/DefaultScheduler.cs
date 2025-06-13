@@ -7,6 +7,7 @@ using Jobbr.Server.Scheduling.Planer;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable InconsistentlySynchronizedField - ILogger isn't required for synchronization
 namespace Jobbr.Server.Scheduling
 {
     /// <summary>
@@ -23,9 +24,9 @@ namespace Jobbr.Server.Scheduling
         private readonly IScheduledJobRunPlaner _scheduledJobRunPlanner;
         private readonly IRecurringJobRunPlaner _recurringJobRunPlanner;
         private readonly DefaultSchedulerConfiguration _schedulerConfiguration;
-        private readonly object _evaluateTriggersLock = new ();
+        private readonly object _evaluateTriggersLock = new();
 
-        private List<ScheduledPlanItem> _currentPlan = new ();
+        private List<ScheduledPlanItem> _currentPlan = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultScheduler"/> class.
@@ -256,7 +257,7 @@ namespace Jobbr.Server.Scheduling
 
                     foreach (var trigger in activeTriggers.Cast<RecurringTrigger>())
                     {
-                        var planResult = GetPlanResult(trigger, false);
+                        var planResult = GetPlanResult(trigger);
 
                         if (planResult.Action == PlanAction.Possible)
                         {

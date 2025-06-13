@@ -2,7 +2,6 @@
 
 namespace Jobbr.ComponentModel.JobStorage.Model
 {
-    [Serializable]
     public class JobRun
     {
         public long Id { get; set; }
@@ -16,8 +15,8 @@ namespace Jobbr.ComponentModel.JobStorage.Model
         public DateTime? ActualEndDateTimeUtc { get; set; }
         public DateTime? EstimatedEndDateTimeUtc { get; set; }
 
-        public string JobParameters { get; set; }		
-        public string InstanceParameters { get; set; }		
+        public string JobParameters { get; set; }
+        public string InstanceParameters { get; set; }
 
         public int? Pid { get; set; }
         public bool Deleted { get; set; }

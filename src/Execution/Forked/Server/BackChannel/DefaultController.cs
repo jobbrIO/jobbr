@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Jobbr.Server.ForkedExecution.BackChannel
@@ -27,7 +26,7 @@ namespace Jobbr.Server.ForkedExecution.BackChannel
         /// </summary>
         /// <returns><see cref="OkObjectResult"/> if the service manages to respond.</returns>
         [HttpGet("status")]
-        public async Task<IActionResult> GetStatus()
+        public IActionResult GetStatus()
         {
             _logger.LogDebug("Called StatusRoute");
             return Ok("All fine!");

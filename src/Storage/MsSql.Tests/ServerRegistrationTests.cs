@@ -25,45 +25,47 @@ namespace Jobbr.Storage.MsSql.Tests
             Assert.AreEqual(typeof(MsSqlStorageProvider), ExposeStorageProvider.Instance.JobStorageProvider.GetType());
         }
 
-        //[TestMethod]
-        //[Ignore]
-        //public void RegisteredAsComponent_WithBasicConfiguration_DoesStart()
-        //{
-        //    var connectionString = GivenDatabaseInstance();
-        //    var builder = new JobbrBuilder();
-        //    builder.Register<IJobbrComponent>(typeof(ExposeStorageProvider));
+        /*
+        [TestMethod]
+        [Ignore]
+        public void RegisteredAsComponent_WithBasicConfiguration_DoesStart()
+        {
+            var connectionString = GivenDatabaseInstance();
+            var builder = new JobbrBuilder();
+            builder.Register<IJobbrComponent>(typeof(ExposeStorageProvider));
 
-        //    builder.AddMsSqlStorage(config =>
-        //    {
-        //        config.ConnectionString = connectionString;
-        //    });
+            builder.AddMsSqlStorage(config =>
+            {
+                config.ConnectionString = connectionString;
+            });
 
-        //    using (var server = builder.Create())
-        //    {
-        //        server.Start();
+            using (var server = builder.Create())
+            {
+                server.Start();
 
-        //        Assert.AreEqual(JobbrState.Running, server.State, "Server should be possible to start with default configuration");
-        //    }
-        //}
+                Assert.AreEqual(JobbrState.Running, server.State, "Server should be possible to start with default configuration");
+            }
+        }
 
-        //private static string GivenDatabaseInstance()
-        //{
-        //    var localDb = new LocalDb();
-        //    var sqlConnection = localDb.CreateSqlConnection();
-        //    sqlConnection.Open();
+        private static string GivenDatabaseInstance()
+        {
+            var localDb = new LocalDb();
+            var sqlConnection = localDb.CreateSqlConnection();
+            sqlConnection.Open();
 
-        //    var sqlStatements = SqlHelper.SplitSqlStatements(File.ReadAllText("CreateSchemaAndTables.sql")).ToList();
+            var sqlStatements = SqlHelper.SplitSqlStatements(File.ReadAllText("CreateSchemaAndTables.sql")).ToList();
 
-        //    foreach (var statement in sqlStatements)
-        //    {
-        //        using (var command = sqlConnection.CreateCommand())
-        //        {
-        //            command.CommandText = statement;
-        //            command.ExecuteNonQuery();
-        //        }
-        //    }
+            foreach (var statement in sqlStatements)
+            {
+                using (var command = sqlConnection.CreateCommand())
+                {
+                    command.CommandText = statement;
+                    command.ExecuteNonQuery();
+                }
+            }
 
-        //    return localDb.ConnectionStringName;
-        //}
+            return localDb.ConnectionStringName;
+        }
+        */
     }
 }

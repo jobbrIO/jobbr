@@ -25,6 +25,10 @@ namespace Jobbr.Server.ForkedExecution.Execution
         /// <summary>
         /// Initializes a new instance of the <see cref="JobRunContext"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
+        /// <param name="jobRunInfo">Basic information of the job run</param>
+        /// <param name="configuration">Job configuration</param>
+        /// <param name="progressChannel">Communication channel to report the job progress</param>
         public JobRunContext(ILoggerFactory loggerFactory, JobRunInfo jobRunInfo, ForkedExecutionConfiguration configuration, IJobRunProgressChannel progressChannel)
         {
             _logger = loggerFactory.CreateLogger<JobRunContext>();
@@ -130,7 +134,7 @@ namespace Jobbr.Server.ForkedExecution.Execution
 
             // Wire events
             proc.OutputDataReceived += ProcOnOutputDataReceived;
-            proc.Exited += (o, args) => OnEnded(new JobRunEndedEventArgs
+            proc.Exited += (_, _) => OnEnded(new JobRunEndedEventArgs
             {
                 ExitCode = proc.ExitCode,
                 JobRun = jobRun,

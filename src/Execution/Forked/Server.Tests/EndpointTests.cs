@@ -19,8 +19,8 @@ namespace Jobbr.Server.ForkedExecution.Tests
     public class EndpointTests
     {
         private readonly string _configBackendAddress;
-        private readonly FakeGeneratedJobRunsStore _fakeStore = new ();
-        private readonly ProgressChannelStore _channelFakeStore = new ();
+        private readonly FakeGeneratedJobRunsStore _fakeStore = new();
+        private readonly ProgressChannelStore _channelFakeStore = new();
 
         public EndpointTests()
         {

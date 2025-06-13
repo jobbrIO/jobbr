@@ -43,7 +43,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Scheduler
 
             var updatedJobRun = storageProvider.GetJobRuns().Items.FirstOrDefault();
 
-            Assert.AreEqual(futureMinute2, updatedJobRun.PlannedStartDateTimeUtc.Minute, "As per updated definition, the job should now start on a different plan");
+            Assert.AreEqual(futureMinute2, updatedJobRun?.PlannedStartDateTimeUtc.Minute, "As per updated definition, the job should now start on a different plan");
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Scheduler
 
             var updatedJobRun = storageProvider.GetJobRuns().Items.FirstOrDefault();
 
-            Assert.AreEqual(futureDate2, updatedJobRun.PlannedStartDateTimeUtc, "As per updated startddate, the job should now start on a different point in time");
+            Assert.AreEqual(futureDate2, updatedJobRun?.PlannedStartDateTimeUtc, "As per updated startddate, the job should now start on a different point in time");
         }
 
         [TestMethod]
@@ -106,11 +106,11 @@ namespace Jobbr.Server.IntegrationTests.Integration.Scheduler
             jobManagementService.DisableTrigger(demoJob.Id, trigger.Id);
 
             // Wait for the scheduler to do his work
-            WaitFor.HasElements(() => storageProvider.GetJobRuns().Items.Where(r => r.State == ComponentModel.JobStorage.Model.JobRunStates.Deleted).ToList());
+            WaitFor.HasElements(() => storageProvider.GetJobRuns().Items.Where(r => r.State == JobRunStates.Deleted).ToList());
 
             var jobRun = storageProvider.GetJobRuns().Items.FirstOrDefault();
 
-            Assert.AreEqual(ComponentModel.JobStorage.Model.JobRunStates.Deleted, jobRun.State);
+            Assert.AreEqual(JobRunStates.Deleted, jobRun?.State);
         }
 
         [TestMethod]
@@ -138,7 +138,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Scheduler
 
             var jobRun = storageProvider.GetJobRuns().Items.FirstOrDefault();
 
-            Assert.AreEqual(JobRunStates.Scheduled, jobRun.State);
+            Assert.AreEqual(JobRunStates.Scheduled, jobRun?.State);
         }
     }
 }

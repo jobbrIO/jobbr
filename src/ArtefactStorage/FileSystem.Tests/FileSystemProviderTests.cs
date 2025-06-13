@@ -8,20 +8,6 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
     [TestClass]
     public class FileSystemProviderTests
     {
-        private static FileSystemArtefactsStorageProvider GivenArtefactStorageProviderInCurrentPath()
-        {
-            return new FileSystemArtefactsStorageProvider(new() { DataDirectory = Directory.GetCurrentDirectory() });
-        }
-
-        private static void GivenAContainerWithFourArbitraryFiles(string container)
-        {
-            Directory.CreateDirectory(container);
-            File.WriteAllText(Path.Join(container, "file1.txt"), "Hello1");
-            File.WriteAllText(Path.Join(container, "file2.doc"), "some bites");
-            File.WriteAllText(Path.Join(container, "file3.log"), "Debug[] blablalb");
-            File.WriteAllText(Path.Join(container, "file4.pdf"), "some bites");
-        }
-
         [TestCleanup]
         public void CleanupAfterEachTest()
         {
@@ -55,7 +41,7 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
         public void SaveFile_WithValidName_ContentIsSaved()
         {
             var provider = GivenArtefactStorageProviderInCurrentPath();
-            
+
             provider.Save("container", "test123.txt", new MemoryStream(Encoding.UTF8.GetBytes("HelloWorld")));
 
             var fileContent = File.ReadAllText("container/test123.txt", Encoding.UTF8);
@@ -165,6 +151,20 @@ namespace Jobbr.ArtefactStorage.FileSystem.Tests
 
             var stream = provider.Load("blabla", "blupp.pdf");
             Assert.IsNull(stream);
+        }
+
+        private static FileSystemArtefactsStorageProvider GivenArtefactStorageProviderInCurrentPath()
+        {
+            return new FileSystemArtefactsStorageProvider(new() { DataDirectory = Directory.GetCurrentDirectory() });
+        }
+
+        private static void GivenAContainerWithFourArbitraryFiles(string container)
+        {
+            Directory.CreateDirectory(container);
+            File.WriteAllText(Path.Join(container, "file1.txt"), "Hello1");
+            File.WriteAllText(Path.Join(container, "file2.doc"), "some bites");
+            File.WriteAllText(Path.Join(container, "file3.log"), "Debug[] blablalb");
+            File.WriteAllText(Path.Join(container, "file4.pdf"), "some bites");
         }
     }
 }

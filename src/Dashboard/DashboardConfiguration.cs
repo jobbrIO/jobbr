@@ -16,7 +16,7 @@
         public bool DisableCors { get; set; }
 
         /// <summary>
-        /// If job run should be soft deleted on retry.
+        /// If job run should be soft-deleted on retry.
         /// </summary>
         public bool SoftDeleteJobRunOnRetry { get; set; }
     }

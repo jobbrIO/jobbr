@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoMapper;
 using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.ComponentModel.Management;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -64,6 +63,9 @@ namespace Jobbr.Server.IntegrationTests.Integration.Management
 
             // Act
             var result = QueryService.GetJobById(job.Id);
+
+            // Assert
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
@@ -121,7 +123,7 @@ namespace Jobbr.Server.IntegrationTests.Integration.Management
             // Test
             Assert.IsNotNull(triggers);
             Assert.AreEqual(1, triggers.Count);
-            Assert.AreEqual(recurringTrigger.Id, assertingRecurringTrigger.Id);
+            Assert.AreEqual(recurringTrigger.Id, assertingRecurringTrigger?.Id);
         }
 
         [TestMethod]

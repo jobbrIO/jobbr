@@ -144,8 +144,11 @@ public class DashboardBackend : IJobbrComponent
     {
         if (disposing)
         {
-            Task.Run(async () => await _webHost.StopAsync());
-            _webHost?.Dispose();
+            Task.Run(async () =>
+            {
+                await _webHost.StopAsync();
+                _webHost?.Dispose();
+            });
         }
     }
 }

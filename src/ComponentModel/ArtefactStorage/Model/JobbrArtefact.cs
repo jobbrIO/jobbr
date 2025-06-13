@@ -12,10 +12,10 @@
         public string FileName { get; set; }
 
         /// <summary>
-        /// Gets or setzs the MimeType of the created file
+        /// Gets or sets the MimeType of the created file
         /// </summary>
         public string MimeType { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the size of the file in bytes
         /// </summary>

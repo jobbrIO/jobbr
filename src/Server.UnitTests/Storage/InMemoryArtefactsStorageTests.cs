@@ -50,6 +50,7 @@ namespace Jobbr.Server.UnitTests.Storage
 
             // Assert
             using var outputStream = _provider.Load(container, fileName) as MemoryStream;
+            outputStream.ShouldNotBeNull();
             var bytes = outputStream.ToArray();
             bytes.Length.ShouldBe(content.Length);
 
@@ -74,6 +75,7 @@ namespace Jobbr.Server.UnitTests.Storage
 
             // Assert
             using var outputStream = _provider.Load(container, fileName) as MemoryStream;
+            outputStream.ShouldNotBeNull();
             var bytes = outputStream.ToArray();
             bytes.Length.ShouldBe(content.Length);
 

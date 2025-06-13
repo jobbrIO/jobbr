@@ -37,7 +37,7 @@ namespace Jobbr.Server.UnitTests.Core
             var triggerModel = new RecurringTriggerModel { Id = 1, JobId = 2 };
             _repositoryMock
                 .Setup(rep => rep.SaveAddTrigger(It.IsAny<long>(), It.IsAny<RecurringTrigger>()))
-                .Callback<long, RecurringTrigger>((id, trigger) =>
+                .Callback<long, RecurringTrigger>((_, trigger) =>
                 {
                     trigger.Id = 3;
                     trigger.JobId = 4;
@@ -71,7 +71,7 @@ namespace Jobbr.Server.UnitTests.Core
             var triggerModel = new ScheduledTriggerModel { Id = 1, JobId = 2 };
             _repositoryMock
                 .Setup(rep => rep.SaveAddTrigger(It.IsAny<long>(), It.IsAny<ScheduledTrigger>()))
-                .Callback<long, ScheduledTrigger>((id, trigger) =>
+                .Callback<long, ScheduledTrigger>((_, trigger) =>
                 {
                     trigger.Id = 3;
                     trigger.JobId = 4;
@@ -105,7 +105,7 @@ namespace Jobbr.Server.UnitTests.Core
             var triggerModel = new InstantTriggerModel { Id = 1, JobId = 2 };
             _repositoryMock
                 .Setup(rep => rep.SaveAddTrigger(It.IsAny<long>(), It.IsAny<InstantTrigger>()))
-                .Callback<long, InstantTrigger>((id, trigger) =>
+                .Callback<long, InstantTrigger>((_, trigger) =>
                 {
                     trigger.Id = 3;
                     trigger.JobId = 4;

@@ -16,7 +16,7 @@ namespace Jobbr.Server.Scheduling
         /// </summary>
         public FixedMinuteTimer()
         {
-            _timer = new Timer(_ => _callback());
+            _timer = new Timer(_ => _callback?.Invoke());
         }
 
         /// <inheritdoc/>

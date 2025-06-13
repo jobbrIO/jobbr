@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Jobbr.ComponentModel.JobStorage;
 using Jobbr.ComponentModel.JobStorage.Model;
@@ -10,9 +11,12 @@ using JobRun = Jobbr.ComponentModel.JobStorage.Model.JobRun;
 
 namespace Jobbr.Storage.MsSql
 {
+    [SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Keep the private implementation close to the public function")]
     public class MsSqlStorageProvider : IJobStorageProvider
     {
         private readonly OrmLiteConnectionFactory _connectionFactory;
+
+        // ReSharper disable once NotAccessedField.Local - Needs to remain alive
         private RetentionEnforcer _retentionEnforcer;
 
         public MsSqlStorageProvider(JobbrMsSqlConfiguration configuration)
@@ -216,8 +220,7 @@ namespace Jobbr.Storage.MsSql
             }
         }
 
-        public PagedResult<JobRun> GetJobRuns(int page = 1, int pageSize = 50, string jobTypeFilter = null, string jobUniqueNameFilter = null,
-            string query = null, bool showDeleted = false, params string[] sort)
+        public PagedResult<JobRun> GetJobRuns(int page = 1, int pageSize = 50, string jobTypeFilter = null, string jobUniqueNameFilter = null, string query = null, bool showDeleted = false, params string[] sort)
         {
             AssertOnlyOneFilterIsActive(jobTypeFilter, jobUniqueNameFilter, query);
 
@@ -229,8 +232,7 @@ namespace Jobbr.Storage.MsSql
             return GetJobRuns(sql => sql.Where(p => p.JobId == jobId), page, pageSize, showDeleted: showDeleted, sort: sort);
         }
 
-        public PagedResult<JobRun> GetJobRunsByUserId(string userId, int page = 1, int pageSize = 50, string jobTypeFilter = null,
-            string jobUniqueNameFilter = null, bool showDeleted = false, params string[] sort)
+        public PagedResult<JobRun> GetJobRunsByUserId(string userId, int page = 1, int pageSize = 50, string jobTypeFilter = null, string jobUniqueNameFilter = null, bool showDeleted = false, params string[] sort)
         {
             return GetJobRuns(sql => sql.And<Trigger>(p => p.UserId == userId), page, pageSize, jobTypeFilter, jobUniqueNameFilter, null, showDeleted, sort);
         }
@@ -527,7 +529,7 @@ namespace Jobbr.Storage.MsSql
                 connection.Delete<Entities.JobRun>(p => p.PlannedStartDateTimeUtc <= deadline.UtcDateTime);
 
                 // also delete orphaned scheduled/instant triggers
-                connection.Delete<Entities.Trigger>(p => (p.Type == TriggerType.InstantTrigger || p.Type == TriggerType.ScheduledTrigger) && Sql.In(p.Id, triggerIds));
+                connection.Delete<Trigger>(p => (p.Type == TriggerType.InstantTrigger || p.Type == TriggerType.ScheduledTrigger) && Sql.In(p.Id, triggerIds));
             }
         }
 

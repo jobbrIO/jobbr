@@ -13,12 +13,12 @@
         Scheduled = 1,
 
         /// <summary>
-        /// The JobStarter has created a enviornment for the Job and copies a related files/data to the working directory
+        /// The JobStarter has created an environment for the Job and copies the related files/data to the working directory
         /// </summary>
         Preparing = 2,
 
         /// <summary>
-        /// The JobStarted has started a new executable 
+        /// The JobStarted has started a new executable
         /// </summary>
         Starting = 3,
 

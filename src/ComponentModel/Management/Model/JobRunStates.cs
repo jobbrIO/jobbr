@@ -13,12 +13,12 @@
         Scheduled,
 
         /// <summary>
-        /// The JobStarter has created a enviornment for the Job and copies a related files/data to the working directory
+        /// The JobStarter has created an environment for the Job and copies the related files/data to the working directory
         /// </summary>
         Preparing,
 
         /// <summary>
-        /// The JobStarted has started a new executable 
+        /// The JobStarted has started a new executable
         /// </summary>
         Starting,
 
@@ -53,7 +53,7 @@
         Collecting,
 
         /// <summary>
-        /// The job as executed sucessfully and the executer has cleaned up and terminated
+        /// The job as executed successfully and the executer has cleaned up and terminated
         /// </summary>
         Completed,
 

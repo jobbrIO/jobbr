@@ -12,6 +12,7 @@ namespace Jobbr.Server.Scheduling.Planer
         /// <summary>
         /// Initializes a new instance of the <see cref="InstantJobRunPlaner"/> class.
         /// </summary>
+        /// <param name="dateTimeProvider">DateTime provider to sync the job run</param>
         public InstantJobRunPlaner(IDateTimeProvider dateTimeProvider)
         {
             _dateTimeProvider = dateTimeProvider;

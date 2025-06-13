@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading;
@@ -12,64 +11,6 @@ namespace Jobbr.Runtime.Tests
     [TestClass]
     public class RuntimeContextTests
     {
-        private class CustomActivator : IConfigurableServiceProvider
-        {
-            public List<object> RegisteredInstances { get; } = new List<object>();
-
-            public object GetService(Type serviceType)
-            {
-                return null;
-            }
-
-            public void RegisterInstance<T>(T instance)
-            {
-                RegisteredInstances.Add(instance);
-            }
-        }
-
-        private class TestJob
-        {
-        }
-
-        private class RunCallBackTestJob
-        {
-            private static Action _callback;
-
-            private static readonly object CallBackLock = new List<object>();
-
-            public static Action Callback
-            {
-                set
-                {
-                    lock (CallBackLock)
-                    {
-                        if (_callback != null)
-                        {
-                            Assert.Fail($"Cannot use {nameof(RunCallBackTestJob)} in more than one test simultaneously.");
-                        }
-
-                        _callback = value;
-                    }
-                }
-            }
-
-            public static void Reset()
-            {
-                lock (CallBackLock)
-                {
-                    _callback = null;
-                }
-            }
-
-            public void Run()
-            {
-                lock (CallBackLock)
-                {
-                    _callback();
-                }
-            }
-        }
-
         [TestInitialize]
         public void TestInitialize()
         {
@@ -126,7 +67,7 @@ namespace Jobbr.Runtime.Tests
             var currentThreadPrincipal = Thread.CurrentPrincipal;
 
             var runtime = new CoreRuntime(NullLoggerFactory.Instance, new RuntimeConfiguration());
-            runtime.Execute(new ExecutionMetadata { JobType = typeof(TestJob).AssemblyQualifiedName, UserId = "bla"});
+            runtime.Execute(new ExecutionMetadata { JobType = typeof(TestJob).AssemblyQualifiedName, UserId = "bla" });
 
             Assert.AreEqual(currentThreadPrincipal, Thread.CurrentPrincipal);
         }
@@ -173,10 +114,10 @@ namespace Jobbr.Runtime.Tests
             RunCallBackTestJob.Callback = () => executingThreadPrincipal = Thread.CurrentPrincipal;
 
             var runtime = new CoreRuntime(NullLoggerFactory.Instance, new RuntimeConfiguration());
-            runtime.Execute(new ExecutionMetadata { JobType = typeof(RunCallBackTestJob).AssemblyQualifiedName, UserId = "anything"});
+            runtime.Execute(new ExecutionMetadata { JobType = typeof(RunCallBackTestJob).AssemblyQualifiedName, UserId = "anything" });
 
             RunCallBackTestJob.Reset();
-            
+
             Assert.IsNotNull(executingThreadPrincipal);
             Assert.IsNotNull(executingThreadPrincipal.Identity);
             Assert.IsNotNull(Thread.CurrentPrincipal);
@@ -193,7 +134,7 @@ namespace Jobbr.Runtime.Tests
             const string userName = "michael.schnyder@zuehlke.com";
 
             var runtime = new CoreRuntime(NullLoggerFactory.Instance, new RuntimeConfiguration());
-            runtime.Execute(new ExecutionMetadata { JobType = typeof(RunCallBackTestJob).AssemblyQualifiedName, UserId = userName});
+            runtime.Execute(new ExecutionMetadata { JobType = typeof(RunCallBackTestJob).AssemblyQualifiedName, UserId = userName });
 
             RunCallBackTestJob.Reset();
 
@@ -218,6 +159,65 @@ namespace Jobbr.Runtime.Tests
             Assert.IsNotNull(executingThreadPrincipal);
             Assert.IsNotNull(executingThreadPrincipal.Identity);
             Assert.AreEqual("JobbrIdentity", executingThreadPrincipal.Identity.AuthenticationType);
+        }
+
+        private class CustomActivator : IConfigurableServiceProvider
+        {
+            public List<object> RegisteredInstances { get; } = new List<object>();
+
+            public object GetService(Type serviceType)
+            {
+                return null;
+            }
+
+            public void RegisterInstance<T>(T instance)
+            {
+                RegisteredInstances.Add(instance);
+            }
+        }
+
+        private class TestJob
+        {
+        }
+
+        private class RunCallBackTestJob
+        {
+            private static readonly object CallBackLock = new List<object>();
+
+            private static Action _callback;
+
+            public static Action Callback
+            {
+                set
+                {
+                    lock (CallBackLock)
+                    {
+                        if (_callback != null)
+                        {
+                            Assert.Fail($"Cannot use {nameof(RunCallBackTestJob)} in more than one test simultaneously.");
+                        }
+
+                        _callback = value;
+                    }
+                }
+            }
+
+            public static void Reset()
+            {
+                lock (CallBackLock)
+                {
+                    _callback = null;
+                }
+            }
+
+            // ReSharper disable once UnusedMember.Local - Called via external assembly
+            public void Run()
+            {
+                lock (CallBackLock)
+                {
+                    _callback();
+                }
+            }
         }
     }
 }

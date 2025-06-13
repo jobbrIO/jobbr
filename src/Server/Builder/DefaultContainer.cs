@@ -13,7 +13,6 @@ using Jobbr.Server.Scheduling.Planer;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging;
 using SimpleInjector;
-using SimpleInjector.Lifestyles;
 using TinyMessenger;
 
 namespace Jobbr.Server.Builder
@@ -28,6 +27,7 @@ namespace Jobbr.Server.Builder
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultContainer"/> class.
         /// </summary>
+        /// <param name="loggerFactory">Factory to create a logger instance</param>
         public DefaultContainer(ILoggerFactory loggerFactory)
         {
             // This is done so we can manually check for the services in the container and use in-memory ones if something is missing.

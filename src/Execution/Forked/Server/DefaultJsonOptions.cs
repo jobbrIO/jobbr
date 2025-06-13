@@ -13,7 +13,7 @@ namespace Jobbr.Server.ForkedExecution
         /// <summary>
         /// The default options.
         /// </summary>
-        public static readonly JsonSerializerOptions Options = new ()
+        public static readonly JsonSerializerOptions Options = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
