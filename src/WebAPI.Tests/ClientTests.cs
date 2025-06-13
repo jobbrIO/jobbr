@@ -1,4 +1,5 @@
-﻿using Jobbr.Client;
+﻿using System;
+using Jobbr.Client;
 using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.Server.WebAPI.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,13 +55,17 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var trigger = new InstantTrigger();
+                var trigger = new InstantTrigger
+                {
+                    DelayedMinutes = 1
+                };
                 JobStorage.AddTrigger(job.Id, trigger);
 
                 var triggerDto = client.GetTriggerById<InstantTriggerDto>(job.Id, trigger.Id);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.AreEqual(trigger.Id, triggerDto.Id);
+                Assert.AreEqual(trigger.DelayedMinutes, triggerDto.DelayedMinutes);
             }
         }
 
@@ -74,13 +79,17 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var trigger = new ScheduledTrigger();
+                var trigger = new ScheduledTrigger
+                {
+                    StartDateTimeUtc = DateTime.UtcNow.AddMinutes(5)
+                };
                 JobStorage.AddTrigger(job.Id, trigger);
 
                 var triggerDto = client.GetTriggerById<ScheduledTriggerDto>(job.Id, trigger.Id);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.AreEqual(trigger.Id, triggerDto.Id);
+                Assert.AreEqual(trigger.StartDateTimeUtc, triggerDto.StartDateTimeUtc);
             }
         }
 
@@ -94,13 +103,17 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var trigger = new RecurringTrigger();
+                var trigger = new RecurringTrigger
+                {
+                    Definition = "* * * * *"
+                };
                 JobStorage.AddTrigger(job.Id, trigger);
 
                 var triggerDto = client.GetTriggerById<RecurringTriggerDto>(job.Id, trigger.Id);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.AreEqual(trigger.Id, triggerDto.Id);
+                Assert.AreEqual(trigger.Definition, triggerDto.Definition);
             }
         }
 
@@ -114,10 +127,18 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var triggerDto = client.AddTrigger(job.Id, new InstantTriggerDto { Comment = "test" });
+                var trigger = new InstantTriggerDto
+                {
+                    Comment = "test",
+                    DelayedMinutes = 1
+                };
+
+                var triggerDto = client.AddTrigger(job.Id, trigger);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.IsTrue(triggerDto.Id > 0);
+                Assert.AreEqual(trigger.Comment, triggerDto.Comment);
+                Assert.AreEqual(trigger.DelayedMinutes, triggerDto.DelayedMinutes);
             }
         }
 
@@ -131,10 +152,18 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var triggerDto = client.AddTrigger(job.Id, new ScheduledTriggerDto { Comment = "test" });
+                var trigger = new ScheduledTriggerDto
+                {
+                    Comment = "test",
+                    StartDateTimeUtc = DateTime.UtcNow.AddMinutes(5)
+                };
+
+                var triggerDto = client.AddTrigger(job.Id, trigger);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.IsTrue(triggerDto.Id > 0);
+                Assert.AreEqual(trigger.Comment, triggerDto.Comment);
+                Assert.AreEqual(trigger.StartDateTimeUtc, triggerDto.StartDateTimeUtc);
             }
         }
 
@@ -148,10 +177,18 @@ namespace Jobbr.WebAPI.Tests
                 var job = new Job();
                 JobStorage.AddJob(job);
 
-                var triggerDto = client.AddTrigger(job.Id, new RecurringTriggerDto { Comment = "test" });
+                var trigger = new RecurringTriggerDto
+                {
+                    Comment = "test",
+                    Definition = "* * * * *"
+                };
+
+                var triggerDto = client.AddTrigger(job.Id, trigger);
 
                 Assert.IsNotNull(triggerDto);
                 Assert.IsTrue(triggerDto.Id > 0);
+                Assert.AreEqual(trigger.Comment, triggerDto.Comment);
+                Assert.AreEqual(trigger.Definition, triggerDto.Definition);
             }
         }
 
