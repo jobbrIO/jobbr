@@ -5,7 +5,8 @@ using Jobbr.ComponentModel.Registration;
 using Jobbr.Server;
 using Jobbr.Server.Builder;
 using Jobbr.Server.WebAPI;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Jobbr.WebAPI.Tests
 {
@@ -14,6 +15,8 @@ namespace Jobbr.WebAPI.Tests
         public string BackendAddress { get; private set; }
 
         public IJobStorageProvider JobStorage => ExposeStorageProvider.Instance.JobStorageProvider;
+
+        public ServiceProvider ServiceProvider { get; private set; }
 
         public static int NextFreeTcpPort()
         {
@@ -26,7 +29,13 @@ namespace Jobbr.WebAPI.Tests
 
         protected JobbrServer GivenRunningServerWithWebApi(string url = "")
         {
-            var builder = new JobbrBuilder(new NullLoggerFactory());
+            ServiceProvider = new ServiceCollection()
+                .AddLogging(b => b.AddDebug().AddConsole())
+                .BuildServiceProvider();
+
+            var loggingFactory = ServiceProvider.GetService<ILoggerFactory>();
+
+            var builder = new JobbrBuilder(loggingFactory);
 
             if (string.IsNullOrWhiteSpace(url))
             {
