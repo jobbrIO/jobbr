@@ -44,7 +44,7 @@ namespace Jobbr.Server.WebAPI.Infrastructure
                     options.JsonSerializerOptions.PropertyNamingPolicy = DefaultJsonOptions.Options.PropertyNamingPolicy;
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = DefaultJsonOptions.Options.PropertyNameCaseInsensitive;
                     options.JsonSerializerOptions.DefaultIgnoreCondition = DefaultJsonOptions.Options.DefaultIgnoreCondition;
-                    options.JsonSerializerOptions.Converters.Add(new JsonTypeConverter<JobTriggerDtoBase>(_loggerFactory, "TriggerType", JobTriggerTypeResolver));
+                    options.JsonSerializerOptions.Converters.Add(new JobTriggerDtoConverter(_loggerFactory));
                 });
         }
 
@@ -64,26 +64,6 @@ namespace Jobbr.Server.WebAPI.Infrastructure
             {
                 endpoints.MapControllers();
             });
-        }
-
-        private static Type JobTriggerTypeResolver(List<Type> types, string typeValue)
-        {
-            if (typeValue.ToLowerInvariant() == RecurringTriggerDto.Type.ToLowerInvariant())
-            {
-                return typeof(RecurringTriggerDto);
-            }
-
-            if (typeValue.ToLowerInvariant() == ScheduledTriggerDto.Type.ToLowerInvariant())
-            {
-                return typeof(ScheduledTriggerDto);
-            }
-
-            if (typeValue.ToLowerInvariant() == InstantTriggerDto.Type.ToLowerInvariant())
-            {
-                return typeof(InstantTriggerDto);
-            }
-
-            return null;
         }
     }
 }
