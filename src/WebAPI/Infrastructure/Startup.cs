@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Jobbr.Server.WebAPI.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Jobbr.Server.WebAPI.Infrastructure
 {
@@ -13,17 +11,14 @@ namespace Jobbr.Server.WebAPI.Infrastructure
     /// </summary>
     public class Startup
     {
-        private readonly ILoggerFactory _loggerFactory;
         private readonly JobbrWebApiConfiguration _configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="loggerFactory">The logger factory.</param>
         /// <param name="configuration">Web API configuration.</param>
-        public Startup(ILoggerFactory loggerFactory, JobbrWebApiConfiguration configuration)
+        public Startup(JobbrWebApiConfiguration configuration)
         {
-            _loggerFactory = loggerFactory;
             _configuration = configuration;
         }
 
@@ -44,7 +39,6 @@ namespace Jobbr.Server.WebAPI.Infrastructure
                     options.JsonSerializerOptions.PropertyNamingPolicy = DefaultJsonOptions.Options.PropertyNamingPolicy;
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = DefaultJsonOptions.Options.PropertyNameCaseInsensitive;
                     options.JsonSerializerOptions.DefaultIgnoreCondition = DefaultJsonOptions.Options.DefaultIgnoreCondition;
-                    options.JsonSerializerOptions.Converters.Add(new JobTriggerDtoConverter(_loggerFactory));
                 });
         }
 
