@@ -1,11 +1,10 @@
-# Jobbr Execution InProcess [![Build status](https://img.shields.io/appveyor/build/Jobbr/jobbr-execution-inprocess/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-inproccess)
+# Jobbr Execution InProcess
 
 Components to execute Jobs within same process
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-execution-inprocess/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-inprocess) 
-[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Execution.InProcess.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Execution.InProcess)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-execution-inprocess/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-inprocess) 
-[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Execution.InProcess.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Execution.InProcess)
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Execution.InProcess?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Execution.InProcess)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Execution.InProcess?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Execution.InProcess)
 
 ## Idea
 

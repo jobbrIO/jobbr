@@ -1,15 +1,15 @@
-# Jobbr Forked Process Execution [![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-execution-forked/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-forked)
+# Jobbr Forked Process Execution
 
 An alternative execution model that starts new processes and executes jobs in these different processes to increase stability.
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-execution-forked/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-forked) 
-[![NuGet-Stable (Server)](https://img.shields.io/nuget/v/Jobbr.Execution.Forked.svg?label=NuGet%20stable%20%28Extension%29)](https://www.nuget.org/packages/Jobbr.Execution.Forked) 
-[![NuGet-Stable (Runtime)](https://img.shields.io/nuget/v/Jobbr.Runtime.ForkedExecution.svg?label=NuGet%20stable%20%28Runtime%29)](https://www.nuget.org/packages/Jobbr.Runtime.ForkedExecution)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-execution-forked/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-execution-forked) 
-[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Execution.Forked.svg?label=NuGet%20pre%20%28Extension%29)](https://www.nuget.org/packages/Jobbr.Execution.Forked) 
-[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Runtime.ForkedExecution.svg?label=NuGet%20pre%20%28Runtime%29)](https://www.nuget.org/packages/Jobbr.Runtime.ForkedExecution)
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable (Server)](https://img.shields.io/nuget/v/Jobbr.Execution.Forked?label=NuGet%20stable%20%28Extension%29)](https://www.nuget.org/packages/Jobbr.Execution.Forked)
+[![NuGet-Stable (Runtime)](https://img.shields.io/nuget/v/Jobbr.Runtime.ForkedExecution?label=NuGet%20stable%20%28Runtime%29)](https://www.nuget.org/packages/Jobbr.Runtime.ForkedExecution)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Execution.Forked?label=NuGet%20pre%20%28Extension%29)](https://www.nuget.org/packages/Jobbr.Execution.Forked)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Runtime.ForkedExecution?label=NuGet%20pre%20%28Runtime%29)](https://www.nuget.org/packages/Jobbr.Runtime.ForkedExecution)
 
-Jobbr supports multiple execution models as described **[here]**. The forked execition model is split on the execution extension on the Jobbr-Server and it's counterpart which needs to be included in a simple ConsoleApplication, often referenced as Runner. Please see the **[wiki:concept]** or more details.
+Jobbr supports multiple execution models as described **[here]**. The forked execution model is split on the execution extension on the Jobbr-Server and it's counterpart which needs to be included in a simple ConsoleApplication, often referenced as Runner.
+Please see the **[wiki:concept]** or more details.
 
 ## Server Extension
 
@@ -17,7 +17,8 @@ It's assumed that the Jobbr-Server is already installed. The following sample sh
 
 ### NuGet
 
-Install the NuGet `Jobbr.Execution.Forked` to the project where you host your Jobbr-Server. The extension contains everything that is needed to offload jobs to a forked process.
+Install the NuGet `Jobbr.Execution.Forked` to the project where you host your Jobbr-Server.
+The extension contains everything that is needed to offload jobs to a forked process.
 
 ```powershell
 Install-Package Jobbr.Execution.Forked
@@ -60,11 +61,15 @@ There are additional configuration options beside the required one above.
 |`IsRuntimeWaitingForDebugger` | If set to true, the executable will wait up to 10s before start (or a dabugger is detected), so that a debugger can be attached to the forked process           | `false`      |
 |`AddJobRunnerArguments`       | Callback to pass additional parameters to the executable | `null` |
 
-> **Note**: A more detailed explanation can be found the the **[wiki:configuration]**
+> **Note**: A more detailed explanation can be found the **[wiki:configuration]**
 
 ## Runner Installation
 
-Creating a runner and setting up all the required dependencies for the runner is your job, a short reminder: The forked execution model bases on an additional executable that executes your job. This additional executable is not part of this package and is under your control. You'll need to reference the related Job-Types in this application. The only additional thing you need to do, is to include the NuGet Package `Jobbr.Runtime.ForkedExecution` in you application and start it.
+Creating a runner and setting up all the required dependencies for the runner is your job, a short reminder:
+The forked execution model bases on an additional executable that executes your job.
+This additional executable is not part of this package and is under your control.
+You'll need to reference the related Job-Types in this application.
+The only additional thing you need to do, is to include the NuGet Package `Jobbr.Runtime.ForkedExecution` in you application and start it.
 
 ```powershell
 Install-Package Jobbr.Runtime.ForkedExecution
@@ -94,14 +99,17 @@ public static void Main(string[] args)
 
 ### Configuration
 
-If you want to configure the runtime, please pass an instance of a `RuntimeConfiguration` to the constructor. The runtime supports the following configuration properties.
+If you want to configure the runtime, please pass an instance of a `RuntimeConfiguration` to the constructor.
+The runtime supports the following configuration properties.
 
 #### JobType Search Hint
 
-Since the Job is registered by its CLR-Name, the runtime needs to find the related type before instantiating it. The type is queried with the following strategies
-1. Treat the name as full quelified and try to activate
-2. Enummerate all types from the `JobTypeSearchAssembly` if provided and match against the Job name
-3. Enummerate all currently loaded assemblies and try to find the job there
+Since the Job is registered by its CLR-Name, the runtime needs to find the related type before instantiating it.
+The type is queried with the following strategies
+
+1. Treat the name as full qualified and try to activate
+2. Enumerate all types from the `JobTypeSearchAssembly` if provided and match against the Job name
+3. Enumerate all currently loaded assemblies and try to find the job there
 4. Load all referenced (and not yet loaded assemblies) and query again for the job
 
 **Example**
@@ -116,7 +124,8 @@ var runtime = new ForkedRuntime(config);
 
 #### Custom Dependency resolver
 
-The default dependency resolver activates the type by using the default constructor. If your job as additional dependencies, you might need to register a dependency resolver that implements the `IServiceProvider`-Interface.
+The default dependency resolver activates the type by using the default constructor.
+If your job as additional dependencies, you might need to register a dependency resolver that implements the `IServiceProvider`-Interface.
 
 **Example**
 ```c#
@@ -128,7 +137,8 @@ var config = new RuntimeConfiguration { ServiceProvider = serviceProvider };
 
 #### Access to the RuntimeContext
 
-The runtime context contains properties for the current userId and DisplayName that has triggered the jobrun. If you need access to this information, you need to implement the `IServiceProviderConfigurator` interface on your DiWrapper so that the runtime is able to register an instance of the RuntimeContext on your DI, which then can be injected to your job afterwards
+The runtime context contains properties for the current userId and DisplayName that has triggered the jobrun.
+If you need access to this information, you need to implement the `IServiceProviderConfigurator` interface on your DiWrapper so that the runtime is able to register an instance of the RuntimeContext on your DI, which then can be injected to your job afterwards
 
 # License
 

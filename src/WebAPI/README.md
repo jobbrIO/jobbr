@@ -1,11 +1,9 @@
-# Jobbr Web API Extension [![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-webapi/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-webapi)
+# Jobbr Web API Extension
 
 Adds Rest-style api to a Jobbr-Server and and provides a strong typed .NET Client for the [Jobbr .NET JobServer](http://www.jobbr.io). 
-The Jobbr main repository can be found on [JobbrIO/jobbr-server](https://github.com/jobbrIO).
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-webapi/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-webapi) 
-[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Server.WebAPI.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Server.WebAPI)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-webapi/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-webapi) 
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Server.WebAPI.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Server.WebAPI)
 [![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Server.WebAPI.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Server.WebAPI)
 
 ## Installation
@@ -14,7 +12,9 @@ First of all you'll need a working jobserver by using the usual builder as shown
 
 ### NuGet
 
-Install the NuGet `Jobbr.Server.WebAPI` to the project where you host you Jobbr-Server. The extension already comes with a small webserver based on OWIN/Katana. The referenced HttpListenr will be installed by NuGet automatically.
+Install the NuGet `Jobbr.Server.WebAPI` to the project where you host you Jobbr-Server.
+The extension already comes with a small webserver based on OWIN/Katana.
+The referenced HttpListenr will be installed by NuGet automatically.
 
 ```powershell
 Install-Package Jobbr.Server.WebAPI
@@ -22,7 +22,10 @@ Install-Package Jobbr.Server.WebAPI
 
 ### Registration
 
-The Library comes with an extension method for the `JobbrBuilder`. To add the Web API to a Jobbr-Server you need to register it prior start as you see below. Please note that this is not ASP.NET WebAPI when registering it to an OWIN Pipeline, allthough we're using the same principle. (In fact, we're using WebAPI internally :smile: )
+The Library comes with an extension method for the `JobbrBuilder`.
+To add the Web API to a Jobbr-Server you need to register it prior start as you see below.
+Please note that this is not ASP.NET WebAPI when registering it to an OWIN Pipeline, allthough we're using the same principle.
+(In fact, we're using WebAPI internally :smile: )
 
 ```c#
 using Jobbr.Server.WebAPI;
@@ -44,7 +47,8 @@ server.Start();
 
 ### Configuration
 
-If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and binds to all available interfaces. The endpoint is logged and usually shown in the console, but this approach is not suggested in production scenarios, see below:
+If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and binds to all available interfaces.
+The endpoint is logged and usually shown in the console, but this approach is not suggested in production scenarios, see below:
 
 ```
 [WARN]  (Jobbr.Server.WebAPI.Core.WebHost) There was no BackendAdress specified. Falling back to random port, which is not guaranteed to work in production scenarios
@@ -53,7 +57,8 @@ If you don't specify any value for `BackendAddress` the server will try to find 
 JobbrWebApiConfiguration = [BackendAddress: "http://localhost:1903/api"]
 ```
 
-You can override this behavior, by explicitly providing your own URI prefix, for instance `http://localhost:8765/api`. See example below:
+You can override this behavior, by explicitly providing your own URI prefix, for instance `http://localhost:8765/api`.
+See example below:
 
 ```c#
 builder.AddWebApi(config => 
@@ -70,7 +75,8 @@ Please note that the API documentation has moved to [jobbr.readthedocs.io](https
 
 ## Static Typed Client
 
-There is also a static typed client available which you can use to interact with any Jobbr Rest Api. Please see the documentation on [jobbr.readthedocs.io](https://jobbr.readthedocs.io/en/latest/use/restApi.html#static-typed-c-client) for more details
+There is also a static typed client available which you can use to interact with any Jobbr Rest Api.
+Please see the documentation on [jobbr.readthedocs.io](https://jobbr.readthedocs.io/en/latest/use/restApi.html#static-typed-c-client) for more details
 
 # License
 

@@ -1,17 +1,15 @@
-
-# Jobbr MSSql Storage Provider [![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-storage-mssql/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-storage-mssql)
+# Jobbr MSSql Storage Provider
 
 This is a storage adapter implementation for the [Jobbr .NET JobServer](http://www.jobbr.io) to store job related information on MS SQL Servers. 
-The Jobbr main repository can be found on [JobbrIO/jobbr-server](https://github.com/jobbrIO/jobbr-server).
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-storage-mssql/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-storage-mssql) 
-[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Storage.MsSql.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Storage.MsSql)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-storage-mssql/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-storage-mssql) 
-[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Storage.MsSql.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Storage.MsSql) 
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Storage.MsSql.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Storage.MsSql)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Storage.MsSql.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Storage.MsSql)
 
 ## Installation
 
-First of all you'll need a working jobserver by using the usual builder as shown in the demos ([jobbrIO/demo](https://github.com/jobbrIO/demo)). In addition to that you'll need to install the NuGet Package for this extension.
+First of all you'll need a working jobserver by using the usual builder as shown in the demos ([jobbrIO/demo](https://github.com/jobbrIO/demo)).
+In addition to that you'll need to install the NuGet Package for this extension.
 
 ### NuGet
 
@@ -21,7 +19,8 @@ Install-Package Jobbr.Storage.MsSql
 
 ### Configuration
 
-Since you already have a configured server, the registration of the MsSQL Storage Provider is quite easy. Actually you only need a working Database-Connection (A list of typical ConnectionStrings can be found on [https://www.connectionstrings.com/sql-server/](https://www.connectionstrings.com/sql-server/)
+Since you already have a configured server, the registration of the MsSQL Storage Provider is quite easy.
+Actually you only need a working Database-Connection (A list of typical ConnectionStrings can be found on [https://www.connectionstrings.com/sql-server/](https://www.connectionstrings.com/sql-server/)
 
 ```c#
 using Jobbr.Storage.MsSql;
@@ -50,7 +49,8 @@ server.Start();
 
 ### Database-Schema
 
-By default, the extension tries to create the tables if they are not present. You can disable this behaviour (see example above) and create the tables manually using the script located on [source/Jobbr.Storage.MsSql/CreateTables.sql](source/Jobbr.Storage.MsSql/CreateTables.sql).
+By default, the extension tries to create the tables if they are not present.
+You can disable this behaviour (see example above) and create the tables manually using the script located on [source/Jobbr.Storage.MsSql/CreateTables.sql](source/Jobbr.Storage.MsSql/CreateTables.sql).
 
 ![Diagram](https://raw.githubusercontent.com/jobbrIO/jobbr-storage-mssql/develop/docs/diagram.png)
 
@@ -62,8 +62,7 @@ This software is licenced under GPLv3. See [LICENSE](LICENSE), and the related l
 
 This extension is built using the following great open source projects
 
-* [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) 
-  [(GNU Affero General Public License)](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/license.txt)
+* [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) [(GNU Affero General Public License)](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/license.txt)
 
 # Credits
 

@@ -1,10 +1,9 @@
-# Jobbr [![Build status](https://img.shields.io/appveyor/build/jobbr/jobbr-server/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-server)
+# Jobbr
 
-Jobbr is a .NET job server. It is designed to reduce artifical complexity when a job server is needed in a project. Jobbr tries to get out of your way as much as possible so that you can focus on business logic. Job implementations have no dependency to Jobbr which makes it easy to integrate Jobbr in any .NET project.
+Jobbr is a .NET job server. It is designed to reduce artificial complexity when a job server is needed in a project. Jobbr tries to get out of your way as much as possible so that you can focus on business logic. Job implementations have no dependency to Jobbr which makes it easy to integrate Jobbr in any .NET project.
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-server/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-server) 
-[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Server.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Server)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-server/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-server) 
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Server.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Server)
 [![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Server.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Server)
 
 ## Main Features
@@ -59,7 +58,8 @@ jobbrBuilder.AddJobs(repo =>
 
 ``` 
 
-If you need to add triggers at runtime head over to the [REST API component](https://github.com/jobbrIO/jobbr-webapi) which also includes a typed client. The REST API is optional and has to be plugged in if needed.
+If you need to add triggers at runtime head over to the [REST API component](https://github.com/jobbrIO/jobbr/tree/master/src/WebAPI) which also includes a typed client.
+The REST API is optional and has to be plugged in if needed.
 
 ## Persistence
 
@@ -68,17 +68,18 @@ There are two different storages:
 - `Storage`: stores jobs, triggers and jobruns
 - `ArtefactStorage`: stores files created by running jobs
 
-By default Jobbr runs in memory, thus all data is lost when Jobbr is restarted. To keep the data configure one of the storage providers:
+By default Jobbr runs in memory, thus all data is lost when Jobbr is restarted.
+To keep the data configure one of the storage providers:
 
 ### Storage
 
 - [MsSql Storage Provider](https://github.com/jobbrIO/jobbr-server-mssql) to store the data in MS SQL Server
-- [RavenDb Storage Provider](https://github.com/jobbrIO/jobbr-server-ravendb) to store the data in [RavenDB](http://ravendb.net)
+- [RavenDb Storage Provider](https://github.com/jobbrIO/jobbr-server-ravendb) to store the data in [RavenDB](https://ravendb.net)
 
 ### ArtefactStorage
 
 - [Filesystem Storage Provider](https://github.com/jobbrIO/jobbr-artefactstorage-filesystem) to store the data in a folder
-- [RavenFS Storage Provider](https://github.com/jobbrIO/jobbr-artefactstorage-ravenfs) to store the data in [RavenDB](http://ravendb.net)
+- [RavenFS Storage Provider](https://github.com/jobbrIO/jobbr-artefactstorage-ravenfs) to store the data in [RavenDB](https://ravendb.net)
 
 
 # License
