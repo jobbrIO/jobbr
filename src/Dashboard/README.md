@@ -1,16 +1,15 @@
-# Jobbr Dashboard [![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-dashboard/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-dashboard)
+# Jobbr Dashboard
 
-This is a storage provider implementation for the [Jobbr .NET JobServer](http://www.jobbr.io) to store artefacts related from job runs on the filesystem in a folder of your choice. 
-The Jobbr main repository can be found on [JobbrIO/jobbr-server](https://github.com/jobbrIO).
+This is a storage provider implementation for the [Jobbr .NET JobServer](http://www.jobbr.io) to store artefacts related from job runs on the filesystem in a folder of your choice.
 
-[![Master build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-dashboard/master.svg?label=master)](https://ci.appveyor.com/project/Jobbr/jobbr-dashboard) 
-[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Dashboard.svg?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Dashboard)  
-[![Develop build status](https://img.shields.io/appveyor/ci/Jobbr/jobbr-dashboard/develop.svg?label=develop)](https://ci.appveyor.com/project/Jobbr/jobbr-dashboard) 
-[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Dashboard.svg?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Dashboard)
+[![GitHub Checks](https://img.shields.io/github/check-runs/jobbrIO/jobbr/master)](https://github.com/jobbrIO/jobbr/actions/workflows/ci.yml)
+[![NuGet-Stable](https://img.shields.io/nuget/v/Jobbr.Dashboard?label=NuGet%20stable)](https://www.nuget.org/packages/Jobbr.Dashboard)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/Jobbr.Dashboard?label=NuGet%20pre)](https://www.nuget.org/packages/Jobbr.Dashboard)
 
 ## Installation
 
-First of all you'll need a working jobserver by using the usual builder as shown in the demos ([jobbrIO/demo](https://github.com/jobbrIO/demo)). In addition to that you'll need to install the NuGet Package for this extension.
+First of all you'll need a working jobserver by using the usual builder as shown in the demos ([jobbrIO/demo](https://github.com/jobbrIO/demo)).
+In addition to that you'll need to install the NuGet Package for this extension.
 
 ### NuGet
 
@@ -20,7 +19,8 @@ Install-Package Jobbr.Dashboard
 
 ### Configuration
 
-Since you already have a configured server, the registration of the provider is quite easy. See Example below. The dashboard requires the [jobbr-webapi](https://github.com/jobbrIO/jobbr-webapi) component to be installed.
+Since you already have a configured server, the registration of the provider is quite easy. See Example below.
+The dashboard requires the [jobbr-webapi](https://github.com/jobbrIO/jobbr/tree/master/src/WebAPI) component to be installed.
 
 ```c#
 using Jobbr.Dashboard
