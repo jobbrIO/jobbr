@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using Jobbr.ComponentModel.JobStorage;
 using Jobbr.ComponentModel.Registration;
 using Jobbr.Server;
@@ -57,6 +59,9 @@ namespace Jobbr.WebAPI.Tests
             var server = builder.Create();
 
             server.Start();
+
+            // Give some time for the web API to start
+            Task.Delay(TimeSpan.FromMilliseconds(100)).Wait();
 
             return server;
         }

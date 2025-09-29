@@ -94,6 +94,9 @@ namespace Jobbr.Dashboard.Tests
             host.Start();
             host.Dispose();
 
+            // On Linux the disposal seems to take a bit longer
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+
             var ex = await Should.ThrowAsync<Exception>(() => new HttpClient().GetAsync(config.BackendAddress + "/config"));
             ex.InnerException.ShouldBeOfType<SocketException>();
         }
