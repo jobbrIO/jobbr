@@ -36,21 +36,10 @@ jobs:
       - name: Setup NodeJS 
         uses: actions/setup-node@v4
         with:
-          node-version: 10
+          node-version: 24
       - name: Install NPM Dependencies
         working-directory: src/Dashboard.Frontend
-        run: |
-          npm install
-          npm install -g aurelia-cli
-      - name: Build Aurelia Application
-        working-directory: src/Dashboard.Frontend
-        run: au build --env prod
-      - name: Package Aurelia Application
-        working-directory: src/Dashboard.Frontend/dist
-        run: |
-          7z a -tzip dashboard-app.zip *.*
-          cp dashboard-app.zip ../../../dashboard-app.zip
-          cp dashboard-app.zip ../../Dashboard/dashboard-app.zip
+        run: npm install
 
       - name: Setup .NET ${{ matrix.dotnet.version }} SDK
         id: setup-dotnet
