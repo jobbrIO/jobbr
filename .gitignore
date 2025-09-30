@@ -5,6 +5,7 @@
 
 # Repo.specific files
 src/Dashboard/dashboard-app.zip
+src/Dashboard.Frontend/dist/
 
 # User-specific files
 *.rsuser

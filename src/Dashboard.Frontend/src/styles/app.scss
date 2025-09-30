@@ -1,0 +1,147 @@
+// Main styles for Jobbr Dashboard
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Custom variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+
+// Override Bootstrap variables if needed
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+.app {
+  min-height: 100vh;
+  background-color: $light-color;
+}
+
+// Navigation styles
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  
+  .navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    i {
+      width: 16px;
+      text-align: center;
+    }
+  }
+}
+
+// Card styles
+.card {
+  border: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  margin-bottom: 1.5rem;
+  
+  .card-header {
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+  }
+}
+
+// Status badges
+.status-badge {
+  &.status-completed {
+    background-color: $success-color;
+  }
+  
+  &.status-failed {
+    background-color: $danger-color;
+  }
+  
+  &.status-running {
+    background-color: $info-color;
+  }
+  
+  &.status-scheduled {
+    background-color: $warning-color;
+    color: $dark-color;
+  }
+  
+  &.status-omitted {
+    background-color: $secondary-color;
+  }
+}
+
+// Table enhancements
+.table {
+  thead th {
+    border-top: none;
+    font-weight: 600;
+    background-color: $light-color;
+  }
+  
+  .table-row-clickable {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+}
+
+// Utility classes
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Loading spinner
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+// Dashboard specific styles
+.dashboard-stats {
+  .stat-card {
+    text-align: center;
+    padding: 1.5rem;
+    
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: $secondary-color;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+// Chart container
+.chart-container {
+  position: relative;
+  height: 300px;
+  margin: 1rem 0;
+}

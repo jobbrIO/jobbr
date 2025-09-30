@@ -1,4 +1,33 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DashboardFrontendPath>$(MSBuildThisFileDirectory)..\Dashboard.Frontend</DashboardFrontendPath>
+    <DashboardAppZipPath>$(MSBuildThisFileDirectory)dashboard-app.zip</DashboardAppZipPath>
+  </PropertyGroup>
+
+  <Target Name="BuildDashboardFrontend" BeforeTargets="BeforeBuild">
+    <Message Text="Building React Dashboard Frontend..." Importance="high" />
+
+    <!-- Install npm dependencies if node_modules doesn't exist -->
+    <Exec Command="npm install" WorkingDirectory="$(DashboardFrontendPath)" Condition="!Exists('$(DashboardFrontendPath)\node_modules')" />
+
+    <!-- Build and create zip -->
+    <Exec Command="npm run build:zip" WorkingDirectory="$(DashboardFrontendPath)" />
+
+    <Message Text="Dashboard frontend built successfully!" Importance="high" />
+  </Target>
+
+  <Target Name="CleanDashboardFrontend" BeforeTargets="Clean">
+    <Message Text="Cleaning React Dashboard Frontend..." Importance="high" />
+
+    <!-- Remove the zip file -->
+    <Delete Files="$(DashboardAppZipPath)" Condition="Exists('$(DashboardAppZipPath)')" />
+
+    <!-- Remove dist folder -->
+    <RemoveDir Directories="$(DashboardFrontendPath)\dist" Condition="Exists('$(DashboardFrontendPath)\dist')" />
+
+    <Message Text="Dashboard frontend cleaned!" Importance="high" />
+  </Target>
+
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)dashboard-app.zip">
       <Link>dashboard-app.zip</Link>
