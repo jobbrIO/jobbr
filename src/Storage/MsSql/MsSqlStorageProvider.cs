@@ -195,7 +195,7 @@ namespace Jobbr.Storage.MsSql
                             .Where(p => p.PlannedStartDateTimeUtc >= utcNow)
                             .Where(p => p.Deleted == false)
                             .OrderBy(o => o.PlannedStartDateTimeUtc))
-                            .Take(1)
+                    .Take(1)
                     .Select(s => s.ToModel())
                     .FirstOrDefault();
             }
@@ -390,7 +390,7 @@ namespace Jobbr.Storage.MsSql
 
                 var count = connection.Count(sqlExpression);
 
-                sqlExpression.Skip((page - 1) * pageSize).Take(pageSize);
+                sqlExpression.OrderBy(o => o.Id).Skip((page - 1) * pageSize).Take(pageSize);
 
                 var rows = connection.Select(sqlExpression)
                     .ToList()
@@ -440,7 +440,8 @@ namespace Jobbr.Storage.MsSql
                 var sqlExpression = connection.From<Trigger>()
                     .Where(p => p.JobId == jobId)
                     .Where(p => p.Deleted == showDeleted)
-                    .OrderByDescending(o => o.IsActive);
+                    .OrderByDescending(o => o.IsActive)
+                    .ThenBy(o => o.Id);
 
                 var count = connection.Count(sqlExpression);
 

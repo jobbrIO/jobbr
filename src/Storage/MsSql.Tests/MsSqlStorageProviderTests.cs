@@ -231,6 +231,50 @@ namespace Jobbr.Storage.MsSql.Tests
         }
 
         [TestMethod]
+        public void Querying_Only_Active_Triggers_WithPaging()
+        {
+            var job1 = new Job { UniqueName = "testjob1", Type = "Jobs.Test1" };
+            var job2 = new Job { UniqueName = "testjob2", Type = "Jobs.Test2" };
+
+            _storageProvider.AddJob(job1);
+            _storageProvider.AddJob(job2);
+
+            var trigger1 = new InstantTrigger { IsActive = false };
+            var trigger2 = new InstantTrigger { IsActive = true };
+            var trigger3 = new InstantTrigger { IsActive = true };
+            var trigger4 = new InstantTrigger { IsActive = true, Parameters = "{ \"Trigger\": \"4\" }" };
+            var trigger5 = new InstantTrigger { IsActive = true, Parameters = "{ \"Trigger\": \"5\" }" };
+            var trigger6 = new InstantTrigger { IsActive = false };
+            var trigger7 = new InstantTrigger { IsActive = true };
+            var trigger8 = new InstantTrigger { IsActive = true };
+            var trigger9 = new InstantTrigger { IsActive = true };
+            var trigger10 = new InstantTrigger { IsActive = true };
+            var trigger11 = new InstantTrigger { IsActive = false };
+
+            _storageProvider.AddTrigger(job1.Id, trigger1); // Not active
+            _storageProvider.AddTrigger(job1.Id, trigger2); // Page 1, Item 1
+            _storageProvider.AddTrigger(job2.Id, trigger3); // Page 1, Item 2
+            _storageProvider.AddTrigger(job1.Id, trigger4); // Page 2, Item 1
+            _storageProvider.AddTrigger(job2.Id, trigger5); // Page 2, Item 2
+            _storageProvider.AddTrigger(job2.Id, trigger6); // Not active
+            _storageProvider.AddTrigger(job1.Id, trigger7); // Page 3, Item 1
+            _storageProvider.AddTrigger(job2.Id, trigger8); // Page 3, Item 2
+            _storageProvider.AddTrigger(job1.Id, trigger9); // Page 4, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger10); // Page 4, Item 2
+            _storageProvider.AddTrigger(job2.Id, trigger11); // Not active
+
+            var activeTriggers = _storageProvider.GetActiveTriggers(2, 2);
+
+            activeTriggers.Items.Count.ShouldBe(2);
+            activeTriggers.Items.First().JobId.ShouldBe(job1.Id);
+            activeTriggers.Items.First().IsActive.ShouldBeTrue();
+            activeTriggers.Items.First().Parameters.ShouldBe("{ \"Trigger\": \"4\" }");
+            activeTriggers.Items.Last().JobId.ShouldBe(job2.Id);
+            activeTriggers.Items.Last().IsActive.ShouldBeTrue();
+            activeTriggers.Items.Last().Parameters.ShouldBe("{ \"Trigger\": \"5\" }");
+        }
+
+        [TestMethod]
         public void Querying_Triggers_Of_Job()
         {
             var job1 = new Job { UniqueName = "testjob1", Type = "Jobs.Test1" };
@@ -252,6 +296,50 @@ namespace Jobbr.Storage.MsSql.Tests
 
             triggersOfJob1.Items.Count.ShouldBe(2);
             triggersOfJob2.Items.Count.ShouldBe(1);
+        }
+
+        [TestMethod]
+        public void Querying_Triggers_Of_Job_WithPaging()
+        {
+            var job1 = new Job { UniqueName = "testjob1", Type = "Jobs.Test1" };
+            var job2 = new Job { UniqueName = "testjob2", Type = "Jobs.Test2" };
+
+            _storageProvider.AddJob(job1);
+            _storageProvider.AddJob(job2);
+
+            var trigger1 = new InstantTrigger { IsActive = false, Parameters = "{ \"Trigger\": \"1\" }" };
+            var trigger2 = new InstantTrigger { IsActive = true };
+            var trigger3 = new InstantTrigger { IsActive = true };
+            var trigger4 = new InstantTrigger { IsActive = true };
+            var trigger5 = new InstantTrigger { IsActive = true };
+            var trigger6 = new InstantTrigger { IsActive = false };
+            var trigger7 = new InstantTrigger { IsActive = true };
+            var trigger8 = new InstantTrigger { IsActive = true };
+            var trigger9 = new InstantTrigger { IsActive = false };
+            var trigger10 = new InstantTrigger { IsActive = true, Parameters = "{ \"Trigger\": \"10\" }" };
+            var trigger11 = new InstantTrigger { IsActive = false };
+
+            _storageProvider.AddTrigger(job1.Id, trigger1); // Job 1, Page 3, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger2); // Job 1, Page 1, Item 1
+            _storageProvider.AddTrigger(job2.Id, trigger3); // Job 2, Page 1, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger4); // Job 1, Page 2, Item 2
+            _storageProvider.AddTrigger(job2.Id, trigger5); // Job 2, Page 1, Item 2
+            _storageProvider.AddTrigger(job2.Id, trigger6); // Job 2, Page 2, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger7); // Job 1, Page 2, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger8); // Job 1, Page 2, Item 2
+            _storageProvider.AddTrigger(job1.Id, trigger9); // Job 1, Page 4, Item 1
+            _storageProvider.AddTrigger(job1.Id, trigger10); // Job 1, Page 3, Item 1
+            _storageProvider.AddTrigger(job2.Id, trigger11); // Job 2, Page 3, Item 1
+
+            var triggersOfJob1 = _storageProvider.GetTriggersByJobId(job1.Id, 3, 2);
+
+            triggersOfJob1.Items.Count.ShouldBe(2);
+            triggersOfJob1.Items.First().JobId.ShouldBe(job1.Id);
+            triggersOfJob1.Items.First().IsActive.ShouldBeTrue();
+            triggersOfJob1.Items.First().Parameters.ShouldBe("{ \"Trigger\": \"10\" }");
+            triggersOfJob1.Items.Last().JobId.ShouldBe(job1.Id);
+            triggersOfJob1.Items.Last().IsActive.ShouldBeFalse();
+            triggersOfJob1.Items.Last().Parameters.ShouldBe("{ \"Trigger\": \"1\" }");
         }
 
         [TestMethod]
