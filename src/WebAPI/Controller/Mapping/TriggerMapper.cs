@@ -104,7 +104,7 @@ namespace Jobbr.Server.WebAPI.Controller.Mapping
             dto.Id = trigger.Id;
             dto.Comment = trigger.Comment;
             dto.IsActive = trigger.IsActive;
-            dto.Parameters = trigger.Parameters != null ? JsonSerializer.Deserialize<JobTriggerDtoBase>(trigger.Parameters, DefaultJsonOptions.Options) : null;
+            dto.Parameters = trigger.Parameters != null ? JsonSerializer.Deserialize<object>(trigger.Parameters, DefaultJsonOptions.Options) : null;
             dto.UserDisplayName = trigger.UserDisplayName;
             dto.UserId = trigger.UserId;
             dto.Deleted = trigger.Deleted;
@@ -122,7 +122,7 @@ namespace Jobbr.Server.WebAPI.Controller.Mapping
         {
             trigger.Comment = dto.Comment;
             trigger.IsActive = dto.IsActive;
-            trigger.Parameters = trigger.Parameters is null ? null : JsonSerializer.Serialize(dto.Parameters, DefaultJsonOptions.Options);
+            trigger.Parameters = dto.Parameters is null ? null : JsonSerializer.Serialize(dto.Parameters, DefaultJsonOptions.Options);
             trigger.UserDisplayName = dto.UserDisplayName;
             trigger.UserId = dto.UserId;
             trigger.Deleted = dto.Deleted;
