@@ -80,8 +80,8 @@ namespace Jobbr.Server.WebAPI.Controller
                 trigger.Id = triggerId;
                 trigger.JobId = jobId;
                 trigger.Definition = recurringTriggerDto.Definition ?? existingTrigger.Definition;
-                trigger.StartDateTimeUtc = recurringTriggerDto.StartDateTimeUtc ?? existingTrigger.StartDateTimeUtc;
-                trigger.EndDateTimeUtc = recurringTriggerDto.EndDateTimeUtc ?? existingTrigger.EndDateTimeUtc;
+                trigger.StartDateTimeUtc = recurringTriggerDto.StartDateTimeUtc;
+                trigger.EndDateTimeUtc = recurringTriggerDto.EndDateTimeUtc;
 
                 _jobManagementService.Update(trigger);
             }

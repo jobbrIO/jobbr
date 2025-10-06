@@ -105,7 +105,8 @@ namespace Jobbr.WebAPI.Tests
 
                 var trigger = new RecurringTrigger
                 {
-                    Definition = "* * * * *"
+                    Definition = "* * * * *",
+                    Parameters = "{\"Param1\":\"abc\",\"Param2\":123}"
                 };
                 JobStorage.AddTrigger(job.Id, trigger);
 
@@ -114,6 +115,7 @@ namespace Jobbr.WebAPI.Tests
                 Assert.IsNotNull(triggerDto);
                 Assert.AreEqual(trigger.Id, triggerDto.Id);
                 Assert.AreEqual(trigger.Definition, triggerDto.Definition);
+                Assert.AreEqual(trigger.Parameters, triggerDto.Parameters.ToString());
             }
         }
 
@@ -363,12 +365,13 @@ namespace Jobbr.WebAPI.Tests
 
                 var trigger = new RecurringTrigger
                 {
-                    Definition = definition
+                    Definition = definition,
+                    EndDateTimeUtc = DateTime.UtcNow.AddDays(10)
                 };
 
                 JobStorage.AddTrigger(job.Id, trigger);
 
-                var triggerDto = client.UpdateTrigger(job.Id, new RecurringTriggerDto { Id = trigger.Id, IsActive = true });
+                var triggerDto = client.UpdateTrigger(job.Id, new RecurringTriggerDto { Id = trigger.Id, IsActive = true, EndDateTimeUtc = null });
 
                 Assert.IsNotNull(triggerDto);
                 Assert.IsTrue(triggerDto.IsActive);
@@ -377,7 +380,8 @@ namespace Jobbr.WebAPI.Tests
 
                 Assert.IsTrue(trigger2.IsActive);
                 Assert.IsNotNull(trigger2.Definition);
-                Assert.IsTrue(trigger2.Definition == definition);
+                Assert.AreEqual(definition, trigger2.Definition);
+                Assert.IsNull(trigger2.EndDateTimeUtc);
             }
         }
 
