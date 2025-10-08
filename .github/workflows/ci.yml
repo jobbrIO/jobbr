@@ -21,7 +21,7 @@ jobs:
         platform:
           - { name: Linux, os: ubuntu-24.04 }
           - { name: Windows, os: windows-2025 }
-          - { name: macOS x64, os: macos-13 }
+          - { name: macOS, os: macos-15 }
         dotnet:
           - { name: .NET 8, version: "8.0.x" }
           - { name: .NET 9, version: "9.0.x" }
@@ -36,7 +36,7 @@ jobs:
       - name: Setup NodeJS 
         uses: actions/setup-node@v4
         with:
-          node-version: 10
+          node-version: 17
       - name: Install NPM Dependencies
         working-directory: src/Dashboard.Frontend
         run: |
