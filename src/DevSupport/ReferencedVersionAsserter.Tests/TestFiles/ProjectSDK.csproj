@@ -5,6 +5,6 @@
         <Reference Include="System.Net.Http" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.0.1" />
+        <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
     </ItemGroup>
 </Project>
