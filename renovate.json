@@ -2,5 +2,17 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["*"],
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      // Do not update Moq to v4.20.0 or beyond as the newer versions may contain traces of SponsorLink
+      "matchDatasources": ["nuget"],
+      "matchPackageNames": ["Moq"],
+      "allowedVersions": "< 4.20.0"
+    }
   ]
 }
