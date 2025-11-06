@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[9.0.9,)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[9.0.9,)" />
     <PackageReference Include="NCrontab" Version="[3.4.0,)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.8.118">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.9.50">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
