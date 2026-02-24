@@ -42,7 +42,7 @@
     <ProjectReference Include="..\..\DevSupport\ReferencedVersionAsserter\Jobbr.DevSupport.ReferencedVersionAsserter.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RavenDB.Client" Version="3.5.9" />
+    <PackageReference Include="RavenDB.Client" Version="7.2.0" />
     <PackageReference Include="RavenDB.Database" Version="3.5.9" />
     <PackageReference Include="RavenDB.Tests.Helpers" Version="3.5.9" />
   </ItemGroup>
