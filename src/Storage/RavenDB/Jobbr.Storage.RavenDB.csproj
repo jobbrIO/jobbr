@@ -20,7 +20,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RavenDB.Client" Version="3.5.9" />
+    <PackageReference Include="RavenDB.Client" Version="7.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ComponentModel\JobStorage\Jobbr.ComponentModel.JobStorage.csproj" />
