@@ -23,16 +23,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
-            return 'vendor';
-          }
-          if (id.includes('node_modules/react-router-dom')) {
+          if (id.includes('node_modules/react-router-dom/')) {
             return 'router';
           }
-          if (id.includes('node_modules/bootstrap') || id.includes('node_modules/react-bootstrap')) {
+          if (id.includes('node_modules/react-bootstrap/') || id.includes('node_modules/bootstrap/')) {
             return 'bootstrap';
           }
-          if (id.includes('node_modules/smoothie')) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor';
+          }
+          if (id.includes('node_modules/smoothie/')) {
             return 'smoothie';
           }
         }
