@@ -22,11 +22,19 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          bootstrap: ['bootstrap', 'react-bootstrap'],
-          smoothie: ['smoothie'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor';
+          }
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'router';
+          }
+          if (id.includes('node_modules/bootstrap') || id.includes('node_modules/react-bootstrap')) {
+            return 'bootstrap';
+          }
+          if (id.includes('node_modules/smoothie')) {
+            return 'smoothie';
+          }
         }
       }
     }
