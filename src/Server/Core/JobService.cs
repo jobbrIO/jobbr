@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoMapper;
 using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.Server.Core.Models;
 using Jobbr.Server.Storage;
@@ -12,23 +11,21 @@ namespace Jobbr.Server.Core
     public class JobService : IJobService
     {
         private readonly IJobbrRepository _repository;
-        private readonly IMapper _mapper;
+        private static readonly Models.CoreMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobService"/> class.
         /// </summary>
         /// <param name="repository">The Jobbr repository.</param>
-        /// <param name="mapper">The mapper.</param>
-        public JobService(IJobbrRepository repository, IMapper mapper)
+        public JobService(IJobbrRepository repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         /// <inheritdoc/>
         public JobModel Add(JobModel model)
         {
-            var entity = _mapper.Map<Job>(model);
+            var entity = _mapper.ForgeJob(model);
 
             _repository.AddJob(entity);
             model.Id = entity.Id;
@@ -39,7 +36,7 @@ namespace Jobbr.Server.Core
         /// <inheritdoc/>
         public void Update(JobModel model)
         {
-            var entity = _mapper.Map<Job>(model);
+            var entity = _mapper.ForgeJob(model);
 
             var fromDb = _repository.GetJob(model.Id);
 

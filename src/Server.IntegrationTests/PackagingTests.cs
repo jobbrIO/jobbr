@@ -18,7 +18,7 @@ namespace Jobbr.Server.IntegrationTests
             asserter.Add(new PackageExistsInBothRule("Jobbr.ComponentModel.Management"));
             asserter.Add(new PackageExistsInBothRule("Jobbr.ComponentModel.Registration"));
 
-            asserter.Add(new PackageExistsInBothRule("AutoMapper"));
+            asserter.Add(new PackageExistsInBothRule("ForgeMap"));
             asserter.Add(new PackageExistsInBothRule("Microsoft.Extensions.Configuration.Abstractions"));
             asserter.Add(new PackageExistsInBothRule("Microsoft.Extensions.DependencyInjection"));
             asserter.Add(new PackageExistsInBothRule("Microsoft.Extensions.Logging.Abstractions"));
@@ -28,7 +28,7 @@ namespace Jobbr.Server.IntegrationTests
             asserter.Add(new PackageExistsInBothRule("TinyMessenger"));
 
             asserter.Add(new VersionIsIncludedInRange("Jobbr.ComponentModel.*"));
-            asserter.Add(new VersionIsIncludedInRange("AutoMapper"));
+            asserter.Add(new VersionIsIncludedInRange("ForgeMap"));
             asserter.Add(new VersionIsIncludedInRange("Microsoft.Extensions.Configuration.Abstractions"));
             asserter.Add(new VersionIsIncludedInRange("Microsoft.Extensions.DependencyInjection"));
             asserter.Add(new VersionIsIncludedInRange("Microsoft.Extensions.Logging.Abstractions"));

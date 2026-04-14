@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoMapper;
 using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.Server.Core.Messaging;
 using Jobbr.Server.Core.Models;
@@ -17,7 +16,7 @@ namespace Jobbr.Server.Core
         private readonly ILogger<TriggerService> _logger;
         private readonly IJobbrRepository _jobbrRepository;
         private readonly ITinyMessengerHub _messengerHub;
-        private readonly IMapper _mapper;
+        private static readonly Models.CoreMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TriggerService"/> class.
@@ -25,19 +24,17 @@ namespace Jobbr.Server.Core
         /// <param name="loggerFactory">The logger factory.</param>
         /// <param name="jobbrRepository">Repository for accessing job data.</param>
         /// <param name="messengerHub">SubPub messenger hub.</param>
-        /// <param name="mapper">The mapper.</param>
-        public TriggerService(ILoggerFactory loggerFactory, IJobbrRepository jobbrRepository, ITinyMessengerHub messengerHub, IMapper mapper)
+        public TriggerService(ILoggerFactory loggerFactory, IJobbrRepository jobbrRepository, ITinyMessengerHub messengerHub)
         {
             _logger = loggerFactory.CreateLogger<TriggerService>();
             _jobbrRepository = jobbrRepository;
             _messengerHub = messengerHub;
-            _mapper = mapper;
         }
 
         /// <inheritdoc/>
         public void Add(long jobId, RecurringTriggerModel trigger)
         {
-            var triggerEntity = _mapper.Map<RecurringTrigger>(trigger);
+            var triggerEntity = _mapper.ForgeRecurringTrigger(trigger);
 
             _jobbrRepository.SaveAddTrigger(jobId, triggerEntity);
             trigger.Id = triggerEntity.Id;
@@ -49,7 +46,7 @@ namespace Jobbr.Server.Core
         /// <inheritdoc/>
         public void Add(long jobId, ScheduledTriggerModel trigger)
         {
-            var triggerEntity = _mapper.Map<ScheduledTrigger>(trigger);
+            var triggerEntity = _mapper.ForgeScheduledTrigger(trigger);
 
             _jobbrRepository.SaveAddTrigger(jobId, triggerEntity);
             trigger.Id = triggerEntity.Id;
@@ -61,7 +58,7 @@ namespace Jobbr.Server.Core
         /// <inheritdoc/>
         public void Add(long jobId, InstantTriggerModel trigger)
         {
-            var triggerEntity = _mapper.Map<InstantTrigger>(trigger);
+            var triggerEntity = _mapper.ForgeInstantTrigger(trigger);
 
             _jobbrRepository.SaveAddTrigger(jobId, triggerEntity);
             trigger.Id = triggerEntity.Id;
@@ -119,7 +116,7 @@ namespace Jobbr.Server.Core
         /// <inheritdoc/>
         public void Update(RecurringTriggerModel trigger)
         {
-            var triggerEntity = _mapper.Map<RecurringTrigger>(trigger);
+            var triggerEntity = _mapper.ForgeRecurringTrigger(trigger);
 
             // ReSharper disable once UsePatternMatching
             var fromDb = _jobbrRepository.GetTriggerById(trigger.JobId, trigger.Id) as RecurringTrigger;
@@ -141,7 +138,7 @@ namespace Jobbr.Server.Core
         /// <inheritdoc/>
         public void Update(ScheduledTriggerModel trigger)
         {
-            var triggerEntity = _mapper.Map<ScheduledTrigger>(trigger);
+            var triggerEntity = _mapper.ForgeScheduledTrigger(trigger);
 
             // ReSharper disable once UsePatternMatching
             var fromDb = _jobbrRepository.GetTriggerById(trigger.JobId, trigger.Id) as ScheduledTrigger;

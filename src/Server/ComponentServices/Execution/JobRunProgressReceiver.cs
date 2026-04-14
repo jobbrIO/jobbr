@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using AutoMapper;
 using Jobbr.ComponentModel.Execution;
 using Jobbr.ComponentModel.Execution.Model;
 using Jobbr.Server.Core;
@@ -12,17 +11,14 @@ namespace Jobbr.Server.ComponentServices.Execution
     internal class JobRunProgressReceiver : IJobRunProgressChannel
     {
         private readonly IJobRunService _jobRunService;
-        private readonly IMapper _mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobRunProgressReceiver"/> class.
         /// </summary>
         /// <param name="jobRunService">Job run service.</param>
-        /// <param name="mapper">The mapper.</param>
-        public JobRunProgressReceiver(IJobRunService jobRunService, IMapper mapper)
+        public JobRunProgressReceiver(IJobRunService jobRunService)
         {
             _jobRunService = jobRunService;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -32,7 +28,7 @@ namespace Jobbr.Server.ComponentServices.Execution
         /// <param name="state">The state for the update.</param>
         public void PublishStatusUpdate(long jobRunId, JobRunStates state)
         {
-            var coreState = _mapper.Map<Core.Models.JobRunStates>(state);
+            var coreState = (Core.Models.JobRunStates)(int)state;
 
             _jobRunService.UpdateState(jobRunId, coreState);
         }

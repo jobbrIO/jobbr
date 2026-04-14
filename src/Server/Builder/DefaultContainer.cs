@@ -22,8 +22,6 @@ namespace Jobbr.Server.Builder
     /// </summary>
     internal class DefaultContainer : Container
     {
-        private readonly AutoMapperConfigurationFactory _autoMapperConfigurationFactory;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultContainer"/> class.
         /// </summary>
@@ -37,9 +35,7 @@ namespace Jobbr.Server.Builder
             // This is allowed to provide overriding the defaults set in this class.
             Options.AllowOverridingRegistrations = true;
 
-            _autoMapperConfigurationFactory = new AutoMapperConfigurationFactory(loggerFactory);
             AddCoreServices();
-            AddAutoMapper();
             AddComponentModelImplementations();
         }
 
@@ -47,13 +43,6 @@ namespace Jobbr.Server.Builder
         {
             Register<IJobbrRepository, JobbrRepository>(Lifestyle.Singleton);
             Register<ITinyMessengerHub, TinyMessengerHub>(Lifestyle.Singleton);
-        }
-
-        private void AddAutoMapper()
-        {
-            var config = _autoMapperConfigurationFactory.GetNew();
-
-            RegisterInstance(config.CreateMapper());
         }
 
         private void AddComponentModelImplementations()
