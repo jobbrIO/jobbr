@@ -1,6 +1,5 @@
 ﻿using System;
 using Jobbr.ComponentModel.JobStorage.Model;
-using Jobbr.Server.Builder;
 using Jobbr.Server.Core.Messaging;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -19,13 +18,11 @@ namespace Jobbr.Server.IntegrationTests.Components.JobRunService
 
         public ProgressUpdateTests()
         {
-            var autoMapperConfig = new AutoMapperConfigurationFactory(NullLoggerFactory.Instance).GetNew();
-
             _repo = new JobbrRepository(NullLoggerFactory.Instance, new InMemoryJobStorageProvider());
 
             _messengerHub = new TinyMessengerHub();
 
-            _service = new Server.Core.JobRunService(NullLoggerFactory.Instance, _messengerHub, _repo, null, autoMapperConfig.CreateMapper());
+            _service = new Server.Core.JobRunService(NullLoggerFactory.Instance, _messengerHub, _repo, null);
         }
 
         [TestMethod]

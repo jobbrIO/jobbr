@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using AutoMapper;
 using Jobbr.ComponentModel.Management;
 using Jobbr.ComponentModel.Management.Model;
 using Jobbr.Server.Core;
@@ -18,7 +17,7 @@ namespace Jobbr.Server.ComponentServices.Management
         private readonly IJobService _jobService;
         private readonly IJobRunService _jobRunService;
 
-        private readonly IMapper _mapper;
+        private static readonly ManagementMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobManagementService"/> class.
@@ -26,13 +25,11 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="triggerService">Job trigger service.</param>
         /// <param name="jobService">Job service.</param>
         /// <param name="jobRunService">Job run service.</param>
-        /// <param name="mapper">The mapper.</param>
-        public JobManagementService(ITriggerService triggerService, IJobService jobService, IJobRunService jobRunService, IMapper mapper)
+        public JobManagementService(ITriggerService triggerService, IJobService jobService, IJobRunService jobRunService)
         {
             _triggerService = triggerService;
             _jobService = jobService;
             _jobRunService = jobRunService;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -41,7 +38,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="job"><see cref="Job"/> to add.</param>
         public void AddJob(Job job)
         {
-            var model = _mapper.Map<JobModel>(job);
+            var model = _mapper.ForgeJobModel(job);
 
             var newJOb = _jobService.Add(model);
             job.Id = newJOb.Id;
@@ -53,7 +50,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="job"><see cref="Job"/> to update.</param>
         public void UpdateJob(Job job)
         {
-            var model = _mapper.Map<JobModel>(job);
+            var model = _mapper.ForgeJobModel(job);
 
             _jobService.Update(model);
         }
@@ -77,7 +74,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="trigger">The <see cref="RecurringTrigger"/>.</param>
         public void AddTrigger(long jobId, RecurringTrigger trigger)
         {
-            var model = _mapper.Map<RecurringTriggerModel>(trigger);
+            var model = _mapper.ForgeRecurringTriggerModel(trigger);
 
             _triggerService.Add(jobId, model);
 
@@ -92,7 +89,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="trigger">The <see cref="ScheduledTrigger"/>.</param>
         public void AddTrigger(long jobId, ScheduledTrigger trigger)
         {
-            var model = _mapper.Map<ScheduledTriggerModel>(trigger);
+            var model = _mapper.ForgeScheduledTriggerModel(trigger);
 
             _triggerService.Add(jobId, model);
 
@@ -107,7 +104,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="trigger">The <see cref="InstantTrigger"/>.</param>
         public void AddTrigger(long jobId, InstantTrigger trigger)
         {
-            var model = _mapper.Map<InstantTriggerModel>(trigger);
+            var model = _mapper.ForgeInstantTriggerModel(trigger);
 
             _triggerService.Add(jobId, model);
 
@@ -162,7 +159,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="trigger">The target trigger.</param>
         public void Update(RecurringTrigger trigger)
         {
-            var triggerModel = _mapper.Map<RecurringTriggerModel>(trigger);
+            var triggerModel = _mapper.ForgeRecurringTriggerModel(trigger);
 
             _triggerService.Update(triggerModel);
         }
@@ -173,7 +170,7 @@ namespace Jobbr.Server.ComponentServices.Management
         /// <param name="trigger">The target trigger.</param>
         public void Update(ScheduledTrigger trigger)
         {
-            var triggerModel = _mapper.Map<ScheduledTriggerModel>(trigger);
+            var triggerModel = _mapper.ForgeScheduledTriggerModel(trigger);
 
             _triggerService.Update(triggerModel);
         }
@@ -207,7 +204,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var artefacts = _jobRunService.GetArtefactsByJobRunId(jobRunId);
 
-            return _mapper.Map<List<JobArtefact>>(artefacts);
+            return _mapper.ForgeJobArtefacts(artefacts);
         }
 
         /// <summary>

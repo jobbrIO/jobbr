@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using AutoMapper;
 using Jobbr.ComponentModel.ArtefactStorage;
 using Jobbr.Server.Core;
 using Jobbr.Server.Core.Messaging;
@@ -26,15 +25,11 @@ namespace Jobbr.Server.UnitTests.Core
 
         public JobRunServiceTests()
         {
-            var profiles = new List<Profile> { new ModelToStorageMappingProfile(), new StorageToModelMappingProfile() };
-            var config = new MapperConfiguration(cfg => cfg.AddProfiles(profiles));
-            var mapper = config.CreateMapper();
-
             _repositoryMock = new Mock<IJobbrRepository>();
             _messengerHubMock = new Mock<ITinyMessengerHub>();
             _storageProviderMock = new Mock<IArtefactsStorageProvider>();
 
-            _service = new JobRunService(NullLoggerFactory.Instance, _messengerHubMock.Object, _repositoryMock.Object, _storageProviderMock.Object, mapper);
+            _service = new JobRunService(NullLoggerFactory.Instance, _messengerHubMock.Object, _repositoryMock.Object, _storageProviderMock.Object);
         }
 
         [TestMethod]

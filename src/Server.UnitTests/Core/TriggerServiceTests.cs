@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Jobbr.ComponentModel.JobStorage.Model;
+﻿using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.Server.Core;
 using Jobbr.Server.Core.Messaging;
 using Jobbr.Server.Core.Models;
@@ -24,10 +23,7 @@ namespace Jobbr.Server.UnitTests.Core
             _repositoryMock = new Mock<IJobbrRepository>();
             _messengerHubMock = new Mock<ITinyMessengerHub>();
 
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<ModelToStorageMappingProfile>());
-            var mapper = config.CreateMapper();
-
-            _service = new TriggerService(NullLoggerFactory.Instance, _repositoryMock.Object, _messengerHubMock.Object, mapper);
+            _service = new TriggerService(NullLoggerFactory.Instance, _repositoryMock.Object, _messengerHubMock.Object);
         }
 
         [TestMethod]

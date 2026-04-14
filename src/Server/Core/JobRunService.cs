@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using AutoMapper;
 using Jobbr.ComponentModel.ArtefactStorage;
 using Jobbr.Server.Core.Messaging;
 using Jobbr.Server.Core.Models;
@@ -20,7 +19,7 @@ namespace Jobbr.Server.Core
         private readonly ITinyMessengerHub _messengerHub;
         private readonly IJobbrRepository _jobbrRepository;
         private readonly IArtefactsStorageProvider _artefactsStorageProvider;
-        private readonly IMapper _mapper;
+        private static readonly Models.CoreMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobRunService"/> class.
@@ -29,14 +28,12 @@ namespace Jobbr.Server.Core
         /// <param name="messengerHub">A messenger aggregator</param>
         /// <param name="jobbrRepository">Repository to access and update job data</param>
         /// <param name="artefactsStorageProvider">Storage provider to save or load artefacts</param>
-        /// <param name="mapper">Mapper instance</param>
-        public JobRunService(ILoggerFactory loggerFactory, ITinyMessengerHub messengerHub, IJobbrRepository jobbrRepository, IArtefactsStorageProvider artefactsStorageProvider, IMapper mapper)
+        public JobRunService(ILoggerFactory loggerFactory, ITinyMessengerHub messengerHub, IJobbrRepository jobbrRepository, IArtefactsStorageProvider artefactsStorageProvider)
         {
             _logger = loggerFactory.CreateLogger<JobRunService>();
             _messengerHub = messengerHub;
             _jobbrRepository = jobbrRepository;
             _artefactsStorageProvider = artefactsStorageProvider;
-            _mapper = mapper;
         }
 
         /// <inheritdoc/>
@@ -51,7 +48,7 @@ namespace Jobbr.Server.Core
             _logger.LogInformation("[{jobRunId}] The JobRun with id: {jobRunId} has switched to the '{state}'-State", jobRunId, jobRunId, state);
 
             var jobRun = _jobbrRepository.GetJobRunById(jobRunId);
-            jobRun.State = _mapper.Map<ComponentModel.JobStorage.Model.JobRunStates>(state);
+            jobRun.State = (ComponentModel.JobStorage.Model.JobRunStates)(int)state;
 
             if (state == JobRunStates.Started)
             {
@@ -82,7 +79,7 @@ namespace Jobbr.Server.Core
             try
             {
                 var artefacts = _artefactsStorageProvider.GetArtefacts(jobRunId.ToString());
-                return _mapper.Map<List<JobArtefactModel>>(artefacts);
+                return _mapper.ForgeArtefactModels(artefacts);
             }
             catch (Exception)
             {

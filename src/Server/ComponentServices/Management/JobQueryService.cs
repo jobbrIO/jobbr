@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using Jobbr.ComponentModel.Management;
 using Jobbr.ComponentModel.Management.Model;
 using Jobbr.Server.Storage;
@@ -14,17 +13,15 @@ namespace Jobbr.Server.ComponentServices.Management
     internal class JobQueryService : IQueryService
     {
         private readonly IJobbrRepository _repository;
-        private readonly IMapper _mapper;
+        private static readonly ManagementMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobQueryService"/> class.
         /// </summary>
         /// <param name="repository">The Jobbr repository for querying.</param>
-        /// <param name="mapper">Object mapper.</param>
-        public JobQueryService(IJobbrRepository repository, IMapper mapper)
+        public JobQueryService(IJobbrRepository repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -36,7 +33,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var job = _repository.GetJob(id);
 
-            return _mapper.Map<Job>(job);
+            return _mapper.Forge(job);
         }
 
         /// <summary>
@@ -48,7 +45,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var job = _repository.GetJobByUniqueName(uniqueName);
 
-            return _mapper.Map<Job>(job);
+            return _mapper.Forge(job);
         }
 
         /// <summary>
@@ -68,7 +65,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<Job>
             {
-                Items = _mapper.Map<List<Job>>(jobs.Items),
+                Items = jobs.Items.Select(j => _mapper.Forge(j)).ToList(),
                 TotalItems = jobs.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -91,7 +88,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<IJobTrigger>
             {
-                Items = _mapper.Map<List<IJobTrigger>>(triggers.Items),
+                Items = triggers.Items.Select(MapTrigger).ToList(),
                 TotalItems = triggers.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -108,7 +105,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var trigger = _repository.GetTriggerById(jobId, triggerId);
 
-            return _mapper.Map<IJobTrigger>(trigger);
+            return trigger == null ? null : MapTrigger(trigger);
         }
 
         /// <summary>
@@ -125,7 +122,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<IJobTrigger>
             {
-                Items = _mapper.Map<List<IJobTrigger>>(triggers.Items),
+                Items = triggers.Items.Select(MapTrigger).ToList(),
                 TotalItems = triggers.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -141,7 +138,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var jobRun = _repository.GetJobRunById(id);
 
-            return _mapper.Map<JobRun>(jobRun);
+            return _mapper.ForgeJobRun(jobRun);
         }
 
         /// <summary>
@@ -161,7 +158,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -183,7 +180,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -207,7 +204,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -230,7 +227,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -254,7 +251,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -279,7 +276,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -306,7 +303,7 @@ namespace Jobbr.Server.ComponentServices.Management
 
             return new PagedResult<JobRun>
             {
-                Items = _mapper.Map<List<JobRun>>(jobruns.Items),
+                Items = jobruns.Items.Select(r => _mapper.ForgeJobRun(r)).ToList(),
                 TotalItems = jobruns.TotalItems,
                 Page = page,
                 PageSize = pageSize
@@ -324,7 +321,7 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var jobrun = _repository.GetLastJobRunByTriggerId(jobId, triggerId, utcNow);
 
-            return _mapper.Map<JobRun>(jobrun);
+            return _mapper.ForgeJobRun(jobrun);
         }
 
         /// <summary>
@@ -338,7 +335,18 @@ namespace Jobbr.Server.ComponentServices.Management
         {
             var jobrun = _repository.GetNextJobRunByTriggerId(jobId, triggerId, utcNow);
 
-            return _mapper.Map<JobRun>(jobrun);
+            return _mapper.ForgeJobRun(jobrun);
+        }
+
+        private IJobTrigger MapTrigger(ComponentModel.JobStorage.Model.JobTriggerBase trigger)
+        {
+            return trigger switch
+            {
+                ComponentModel.JobStorage.Model.RecurringTrigger r => _mapper.ForgeRecurringTrigger(r),
+                ComponentModel.JobStorage.Model.ScheduledTrigger s => _mapper.ForgeScheduledTrigger(s),
+                ComponentModel.JobStorage.Model.InstantTrigger i => _mapper.ForgeInstantTrigger(i),
+                _ => throw new NotSupportedException($"Trigger type {trigger.GetType().Name} is not supported.")
+            };
         }
     }
 }

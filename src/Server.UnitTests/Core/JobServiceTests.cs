@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Jobbr.ComponentModel.JobStorage.Model;
+﻿using Jobbr.ComponentModel.JobStorage.Model;
 using Jobbr.Server.Core;
 using Jobbr.Server.Core.Models;
 using Jobbr.Server.Storage;
@@ -17,13 +16,9 @@ namespace Jobbr.Server.UnitTests.Core
 
         public JobServiceTests()
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<ModelToStorageMappingProfile>());
-
-            var mapper = config.CreateMapper();
-
             _repositoryMock = new Mock<IJobbrRepository>();
 
-            _service = new JobService(_repositoryMock.Object, mapper);
+            _service = new JobService(_repositoryMock.Object);
         }
 
         [TestMethod]

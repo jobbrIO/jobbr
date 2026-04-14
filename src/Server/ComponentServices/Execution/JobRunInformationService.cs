@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Jobbr.ComponentModel.Execution;
+﻿using Jobbr.ComponentModel.Execution;
 using Jobbr.ComponentModel.Execution.Model;
 using Jobbr.Server.Storage;
 using Microsoft.Extensions.Logging;
@@ -13,19 +12,17 @@ namespace Jobbr.Server.ComponentServices.Execution
     {
         private readonly ILogger<JobRunInformationService> _logger;
         private readonly IJobbrRepository _jobbrRepository;
-        private readonly IMapper _mapper;
+        private static readonly ExecutionMapper _mapper = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JobRunInformationService"/> class.
         /// </summary>
         /// <param name="loggerFactory">The logger factory.</param>
         /// <param name="jobbrRepository">Repository that contains the jobs.</param>
-        /// <param name="mapper">The mapper.</param>
-        public JobRunInformationService(ILoggerFactory loggerFactory, IJobbrRepository jobbrRepository, IMapper mapper)
+        public JobRunInformationService(ILoggerFactory loggerFactory, IJobbrRepository jobbrRepository)
         {
             _logger = loggerFactory.CreateLogger<JobRunInformationService>();
             _jobbrRepository = jobbrRepository;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -49,9 +46,9 @@ namespace Jobbr.Server.ComponentServices.Execution
 
             var info = new JobRunInfo();
 
-            _mapper.Map(job, info);
-            _mapper.Map(trigger, info);
-            _mapper.Map(jobRun, info);
+            _mapper.ForgeInto(job, info);
+            _mapper.ForgeInto(trigger, info);
+            _mapper.ForgeInto(jobRun, info);
 
             return info;
         }
