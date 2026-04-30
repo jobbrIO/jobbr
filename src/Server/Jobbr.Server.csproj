@@ -12,7 +12,7 @@
     <PackageIcon>images\icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ForgeMap" Version="1.7.0" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="ForgeMap" Version="[1.7.0,)" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageReference Include="FastCloner" Version="[3.3.13,)" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="[9.0.9,)" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[9.0.9,)" />
