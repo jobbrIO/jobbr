@@ -21,7 +21,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="[7.0.1,)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[9.0.17,)" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.9.50">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.10.85">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
