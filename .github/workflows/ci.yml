@@ -87,7 +87,7 @@ jobs:
         uses: NuGet/login@v1
         id: login
         with:
-          user: jobbr
+          user: eXpl0it3r
 
       - name: Publish Jobbr NuGet Packages
         if: github.ref == 'refs/heads/master' && matrix.dotnet.name == '.NET 8' && runner.os == 'Windows'
