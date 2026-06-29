@@ -5,7 +5,7 @@
     <Description>Models of the Jobbr.Server.WebAPI</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="[9.0.17,)" />
+    <PackageReference Include="System.Text.Json" Version="[10.0.9,)" />
   </ItemGroup>
   <ImportGroup>
     <Import Project="..\DevSupport\StyleCopAnalyzer\Jobbr.DevSupport.StyleCopAnalyzer.targets" />
