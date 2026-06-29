@@ -9,6 +9,14 @@
       "minimumReleaseAge": "1 day"
     },
     {
+      "matchManagers": ["npm"],
+      "addLabels": ["c:Dashboard"]
+    },
+    {
+      "matchManagers": ["nuget"],
+      "addLabels": ["chore"]
+    },
+    {
       // Do not update Moq to v4.20.0 or beyond as the newer versions may contain traces of SponsorLink
       "matchDatasources": ["nuget"],
       "matchPackageNames": ["Moq"],
