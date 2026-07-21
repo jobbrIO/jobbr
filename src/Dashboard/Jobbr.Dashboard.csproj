@@ -21,8 +21,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SharpCoreFileSystem" Version="[1.1.6,)" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="[9.0.17,)" />
-    <PackageReference Include="System.Text.Json" Version="[9.0.17,)" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="[9.0.18,)" />
+    <PackageReference Include="System.Text.Json" Version="[9.0.18,)" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dashboard-app.zip" Pack="true" PackagePath="Build" />
