@@ -12,7 +12,7 @@ const CpuGraph: React.FC<CpuGraphProps> = ({ height = 120, enabled = true }) => 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<SmoothieChart | null>(null);
   const timeSeriesRef = useRef<TimeSeries | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     // Add global CSS for Smoothie tooltips
