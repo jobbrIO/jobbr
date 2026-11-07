@@ -13,7 +13,7 @@ const MemoryGraph: React.FC<MemoryGraphProps> = ({ height = 120, enabled = true 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<SmoothieChart | null>(null);
   const timeSeriesRef = useRef<TimeSeries | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [totalMemory, setTotalMemory] = useState<number>(0);
 
   useEffect(() => {
